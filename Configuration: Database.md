@@ -1,6 +1,6 @@
 # DatabaseConfiguration
 
-[Wiki](../wiki) &rarr; [Configuration](Configuration) &rarr; [DatabaseConfiguration](Configuration:-Database)
+[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr; [DatabaseConfiguration](../wiki/Configuration:-Database)
 
 The database configuration is used to configure the connection to the database, used for user management.
 
