@@ -1,6 +1,6 @@
 # LoggingConfiguration &rarr; Access Logging Formats
 
-[Wiki](/wiki) &rarr; [LoggingConfiguration](/wiki/configuration_logging) &rarr; [Access Logging Formats](/wiki/configuration_logging_formats_access)
+[Wiki](/wiki) &rarr; [Configuration](/wiki/Configuration) &rarr;[LoggingConfiguration](wiki/Configuration:-Logging) &rarr; [Access Logging Formats](/wiki/Configuration:-Access-Logging-Formats)
 
 This pages lists and visualizes the available logging formats for access logging.
 

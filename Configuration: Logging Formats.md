@@ -33,7 +33,7 @@
 
 # LoggingConfiguration &rarr; Logging Formats
 
-[Wiki](/wiki) &rarr; [LoggingConfiguration](/wiki/configuration_logging) &rarr; [Logging Formats](/wiki/configuration_logging_formats)
+[Wiki](/wiki) &rarr; [Configuration](/wiki/Configuration) &rarr;[LoggingConfiguration](wiki/Configuration:-Logging) &rarr; [Logging Formats](/wiki/Configuration:-Logging-Formats)
 
 This pages lists and visualizes the available logging formats.
 

@@ -32,20 +32,17 @@ npm install -g files-crud
 ```
 
 ## Permissions
-[CLI](wiki/permissions)
+[CLI](wiki/Permissions)
 
 ## Usage/CLI
-[CLI](wiki/cli)
+[CLI](wiki/CLI)
 
 ## Configuration
-[Configuration](wiki/configuration)
+[Configuration](wiki/Configuration)
 
 ## API
-[API](wiki/api)
+[API](wiki/Api)
 
 
 ## License
 This product is licensed via a [MIT License](./LICENSE.md)
-
-7C4A8D09CA3762AF61E59520943DC26494F8941B
-_____

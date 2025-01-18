@@ -1,6 +1,6 @@
 # LoggingConfiguration
 
-[Wiki](/wiki) &rarr; [LoggingConfiguration](/wiki/configuration_logging)
+[Wiki](/wiki) &rarr; [Configuration](/wiki/Configuration) &rarr;[LoggingConfiguration](/wiki/Configuration:-Logging)
 
 The logging configuration is used to specify the logging behaviour.
 
@@ -125,7 +125,7 @@ Specifies which format to use for logging in console.
 
 Required: No
 
-Default: [coloredHumanReadableLine](wiki/configuration_logging_formats#coloredHumanReadableLine)
+Default: [coloredHumanReadableLine](wiki/Configuration:-Logging-Formats#coloredHumanReadableLine)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -136,7 +136,7 @@ Type: LoggingFormat, which is one of
    (color depends on logging level)
 * `json` &minus; Logs all information as single line json object.
 
-See also: [Logging Formats](wiki/configuration_logging_formats)
+See also: [Logging Formats](wiki/Configuration:-Logging-Formats)
 
 ### logging.fileLoggingFormat
 Specifies which format to use for file logging.
@@ -146,7 +146,7 @@ This is used in the following to cases:
 
 Required: No
 
-Default: [json](wiki/configuration_logging_formats#json)
+Default: [json](wiki/Configuration:-Logging-Formats#json)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -157,20 +157,20 @@ Type: LoggingFormat, which is one of
    (color depends on logging level)
 * `json` &minus; Logs all information as single line json object.
 
-See also: [Logging Formats](wiki/configuration_logging_formats)
+See also: [Logging Formats](wiki/Configuration:-Logging-Formats)
 
 ### logging.accessLoggingFormat
 Specifies which format to use for detailed access logging.
 
 Required: No
 
-Default: [json](wiki/configuration_logging_formats_access#json)
+Default: [json](wiki/Configuration:-Access-Logging-Formats#json)
 
 Type: AccessLoggingFormat, which is one of
 * `classic` &minus; Logs details, similar to nginx or apache2 access logging.
 * `json` &minus; Logs details as single-line json object.
 
-See also: [Access Logging Formats](wiki/configuration_logging_formats_access)
+See also: [Access Logging Formats](wiki/Configuration:-Access-Logging-Formats)
 
 ### logging.enableLogFileRotation
 Specifies if the error log file and the access log file should be rotated automatically.
