@@ -20,6 +20,7 @@ Following example details are used to visualize the different formats
 Logs details, similar to nginx or apache2 access logging.
 
 ```
+
 42.0.8.15 - [2025-01-18T18:29:56.382] "POST /api/file/save/holidays/allTogether.png HTTP/1.1" 200 35 "https://example-files-crud.com/upload-form.html" "Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0" - 213
 ```
 
@@ -27,5 +28,6 @@ Logs details, similar to nginx or apache2 access logging.
 Logs details as single-line json object.
 
 ```
+
 {"ip":"42.0.8.15","timestamp":"2025-01-18T18:29:56.382","method":"POST","path":"/api/file/save/holidays/allTogether.png","httpVersion":"HTTP/1.1","statusCode":200,"contentLength":35,"referer":"https://example-files-crud.com/upload-form.html","userAgent":"Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0","time":213}
 ```
