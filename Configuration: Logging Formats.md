@@ -67,6 +67,7 @@ actual lines have alternating background-colors.
 Logs a simple line of information.
 
 ### Debug
+
 <div class="bash" style="background: black; color: red; ">
     <div class="line">2025-01-29T12:11:12.654 [/opt/fc/built/lib/server/handler/file.js] DEBUG: Loaded following directory items. - {"directory":"holidays","items":["flight/","allTogether.png","swimming.mp4"]}</div>
 </div>
