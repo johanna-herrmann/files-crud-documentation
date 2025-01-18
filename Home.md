@@ -1,6 +1,6 @@
 # files-crud
 
-[Wiki](/wiki)
+[Wiki](wiki)
 
 REST file storage with CRUD based permissions on directory-level. \
 Written in Typescript

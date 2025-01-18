@@ -1,6 +1,6 @@
 # LoggingConfiguration
 
-[Wiki](/wiki) &rarr; [Configuration](/wiki/Configuration) &rarr;[LoggingConfiguration](/wiki/Configuration:-Logging)
+[Wiki](wiki) &rarr; [Configuration](wiki/Configuration) &rarr;[LoggingConfiguration](wiki/Configuration:-Logging)
 
 The logging configuration is used to specify the logging behaviour.
 

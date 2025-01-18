@@ -1,6 +1,6 @@
 # Configuration
 
-[Wiki](/wiki) &rarr; [Configuration](/wiki/Configuration)
+[Wiki](wiki) &rarr; [Configuration](wiki/Configuration)
 
 Configuration can be done, using one of the following methods:
 * Adding a `config.json` to the pwd of the application (`./config.json`).
