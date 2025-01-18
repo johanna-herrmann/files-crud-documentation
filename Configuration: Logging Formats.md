@@ -34,7 +34,7 @@ actual lines have alternating background-colors.
 Logs a simple line of information.
 
 [[/images/humanReadableLine.png|humanReadableLine]]
-![humanReadableLine](wiki/formats/humanReadableLine.png)
+![humanReadableLine](https://github.com/johanna-herrmann/files-crud/wiki/images/humanReadableLine.png)
 
 ## humanReadableBlock
 Logs a block of information.
