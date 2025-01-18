@@ -105,7 +105,7 @@ Specifies default directory permissions, used if `directoryPermissions` is not s
 Required: No
 
 Default: `crudcr------`
-(See: [Permissions](wiki/Permission))
+(See: [Permissions](Permissions))
 
 Type: String
 
