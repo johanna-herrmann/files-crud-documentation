@@ -33,6 +33,7 @@ actual lines have alternating background-colors.
 ## humanReadableLine
 Logs a simple line of information.
 
+[[/images/humanReadableLine.png|humanReadableLine]]
 ![humanReadableLine](wiki/formats/humanReadableLine.png)
 
 ## humanReadableBlock
