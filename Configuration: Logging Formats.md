@@ -1,6 +1,6 @@
 # LoggingConfiguration &rarr; Logging Formats
 
-[Wiki](wiki) &rarr; [Configuration](wiki/Configuration) &rarr;[LoggingConfiguration](wiki/Configuration:-Logging) &rarr; [Logging Formats](wiki/Configuration:-Logging-Formats)
+[Wiki](../wiki) &rarr; [Configuration](Configuration) &rarr;[LoggingConfiguration](Configuration:-Logging) &rarr; [Logging Formats](Configuration:-Logging-Formats)
 
 This pages lists and visualizes the available logging formats.
 

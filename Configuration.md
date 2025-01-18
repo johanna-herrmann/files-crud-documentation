@@ -1,6 +1,6 @@
 # Configuration
 
-[Wiki](wiki) &rarr; [Configuration](wiki/Configuration)
+[Wiki](../wiki) &rarr; [Configuration](Configuration)
 
 Configuration can be done, using one of the following methods:
 * Adding a `config.json` to the pwd of the application (`./config.json`).
@@ -123,27 +123,27 @@ Specifies configuration for the database connection.
 
 Required: No
 
-Default: See: [DatabaseConfig](wiki/Configuration:-Database)
+Default: See: [DatabaseConfig](Configuration:-Database)
 
-Type: [DatabaseConfig](wiki/Configuration:-Database)
+Type: [DatabaseConfig](Configuration:-Database)
 
 ### logging
 Specifies configuration for logging.
 
 Required: No
 
-Default: See: [LoggingConfig](wiki/Configuration:-Logging)
+Default: See: [LoggingConfig](Configuration:-Logging)
 
-Type: [LoggingConfig](wiki/Configuration:-Logging)
+Type: [LoggingConfig](Configuration:-Logging)
 
 ### storage
 Specifies configuration for storage to use.
 
 Required: No
 
-Default: See: [StorageConfig](wiki/Configuration:-Storage)
+Default: See: [StorageConfig](Configuration:-Storage)
 
-Type: [StorageConfig](wiki/Configuration:-Storage)
+Type: [StorageConfig](Configuration:-Storage)
 
 ### path
 Specifies the path used to store file data.
@@ -160,9 +160,9 @@ Specifies configuration for the application server.
 
 Required: No
 
-Default: See: [ServerConfig](wiki/Configuration:-Server)
+Default: See: [ServerConfig](Configuration:-Server)
 
-Type: [ServerConfig](wiki/Configuration:-Server)
+Type: [ServerConfig](Configuration:-Server)
 
 ### webRoot
 Specifies the path to serve as frontend. The application will serve static web content from this directory. The application is only backend if no `webRoot` is specified.

@@ -41,8 +41,8 @@ npm install -g files-crud
 [Configuration](wiki/Configuration)
 
 ## API
-[API](wiki/Api)
+[API](wiki/API)
 
 
 ## License
-This product is licensed via a [MIT License](./LICENSE.md)
+This product is licensed via a [MIT License](../blob/main/LICENSE.md)
