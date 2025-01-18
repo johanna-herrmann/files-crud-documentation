@@ -33,26 +33,26 @@ actual lines have alternating background-colors.
 ## humanReadableLine
 Logs a simple line of information.
 
-[[/images/humanReadableLine.png|humanReadableLine]]
 ![humanReadableLine](https://github.com/johanna-herrmann/files-crud/wiki/images/humanReadableLine.png)
 
 ## humanReadableBlock
 Logs a block of information.
 
-![humanReadableBlock](wiki/formats/humanReadableBlock.png)
+![humanReadableBlock](https://github.com/johanna-herrmann/files-crud/wiki/images/humanReadableBlock.png)
 
 ## coloredHumanReadableLine
 Logs a colored line of information. Color depends on log level.
 
-![coloredHumanReadableLine](wiki/formats/coloredHumanReadableLine.png)
+![coloredHumanReadableLine](https://github.com/johanna-herrmann/files-crud/wiki/images/coloredHumanReadableLine.png)
 
 ## coloredHumanReadableBlock
 Logs a colored block of information.
 
-![coloredHumanReadableBlock](wiki/formats/coloredHumanReadableBlock.png)
+![coloredHumanReadableBlock](https://github.com/johanna-herrmann/files-crud/wiki/images/coloredHumanReadableBlock.png)
 
 ### json
 
 Logs all information as single line json object.
 
 ![json](wiki/formats/json.png)
+![json](https://github.com/johanna-herrmann/files-crud/wiki/images/json.png)
