@@ -54,5 +54,4 @@ Logs a colored block of information.
 
 Logs all information as single line json object.
 
-![json](wiki/formats/json.png)
 ![json](https://github.com/johanna-herrmann/files-crud/wiki/images/json.png)
