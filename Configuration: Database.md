@@ -139,7 +139,8 @@ Specifies the database region for dynamodb.
 
 Required: No
 
-Default: `eu-central-1` (Frankfurt, Germany)
+Default: Value specified as [region](../wiki/Configuration#region) on configartion root,
+if specified, else `eu-central-1` (Frankfurt, Europe)
 
 Type: String
 
@@ -148,7 +149,8 @@ Specifies the database access key for dynamodb.
 
 Required: No
 
-Default: `fallback-key`
+Default: Value specified as [accessKeyId](../wiki/Configuration#accesskeyid) on configartion root,
+if specified, else `fallback-key`
 
 Type: String
 
@@ -157,7 +159,8 @@ Specifies the database secret key for dynamodb.
 
 Required: No
 
-Default: `fallback-secret`
+Default: Value specified as [secretAccessKey](../wiki/Configuration#secretaccesskey) on configartion root,
+if specified, else `fallback-secret`
 
 Type: String
 
