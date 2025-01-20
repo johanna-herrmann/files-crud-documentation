@@ -10,6 +10,7 @@ The logging configuration is used to specify the logging behaviour.
 
 ```json
 {
+    "level": "debug" | "info" | "warn" | "error",
     "ipLogging": "full" | "anonymous" | "none",
     "enableErrorFileLogging": boolean,
     "enableAccessLogging": boolean,
@@ -28,6 +29,7 @@ The logging configuration is used to specify the logging behaviour.
 ### YAML
 
 ```yaml
+level: debug | info | warn | error
 ipLogging: full | anonymous | none
 enableErrorFileLogging: boolean
 enableAccessLogging: boolean
@@ -45,6 +47,7 @@ logFileRotationEnableCompression: boolean
 ### Environment Variables
 
 ```properties
+FILES_CRUD_LOGGING__NAME=debug | info | warn | error
 FILES_CRUD_LOGGING__IP_LOGGING=full | anonymous | none
 FILES_CRUD_LOGGING__ENABLE_ERROR_FILE_LOGGING=boolean
 FILES_CRUD_LOGGING__ENABLE_ACCESS_LOGGING=boolean
@@ -61,6 +64,20 @@ FILES_CRUD_LOGGING__LOG_FILE_ROTATION_ENABLE_COMPRESSION=boolean
 
 ## Properties
 
+### logging.level
+
+Specifies the minimum level to log.
+
+Required: No
+
+Default: `info`
+
+Type: One of
+* `debug` &minus; Logs on: `debug`, `info`, `warn`, `error`
+* `info` &minus; Logs on: `info`, `warn`, `error`
+* `warn` &minus; Logs on: `warn`, `error`
+* `error` &minus; Logs on: `error`
+
 ### logging.ipLogging
 
 Specifies if and how to log ip addresses for access logging, if enabled.
@@ -70,10 +87,10 @@ Required: No
 Default: `anonymous`
 
 Type: One of
-* `full` &minus; Log full ip address
-* `anonymous` &minus; Log anonymized ip address (last part will be replaced by `_`) \
+* `full` &minus; Logs full ip address
+* `anonymous` &minus; Logs anonymized ip address (last part will be replaced by `_`) \
   (Example: `233.42.23._` instead of `233.42.23.123`)
-* `none` &minus; Don't log ip addresses (whole address be replaced by `_`)
+* `none` &minus; Does not log ip addresses (whole address be replaced by `_`)
 
 ### logging.enableErrorFileLogging
 
@@ -222,6 +239,7 @@ Type: boolean
 
 ```json
 {
+    "level": "debug",
     "ipLogging": "none",
     "enableErrorFileLogging": true,
     "enableAccessLogging": true,
@@ -240,6 +258,7 @@ Type: boolean
 ### YAML
 
 ```yaml
+level: debug
 ipLogging: none
 enableErrorFileLogging: true
 enableAccessLogging: true
@@ -256,6 +275,7 @@ logFileRotationEnableCompression: false
 ### Environment Variables
 
 ```properties
+FILES_CRUD_LOGGING__NAME=debug
 FILES_CRUD_LOGGING__IP_LOGGING=none
 FILES_CRUD_LOGGING__ENABLE_ERROR_FILE_LOGGING=true
 FILES_CRUD_LOGGING__ENABLE_ACCESS_LOGGING=true
