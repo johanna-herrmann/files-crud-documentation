@@ -47,8 +47,6 @@ Sets the value of the
 [Access-Control-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin)
 header.
 
-Required: No
-
 Default: none (no will be sent)
 
 Type: One of
@@ -62,8 +60,6 @@ Wildcards supported: Yes
 Sets the value of the
 [Access-Control-Allow-Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-methods)
 header.
-
-Required: No
 
 Default: none (no will be sent)
 
@@ -79,8 +75,6 @@ Sets the value of the
 [Access-Control-Allow-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-headers)
 header.
 
-Required: No
-
 Default: none (no will be sent)
 
 Type: One of
@@ -94,8 +88,6 @@ Wildcards supported: Yes
 Sets the value of the
 [Access-Control-Expose-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-expose-headers)
 header.
-
-Required: No
 
 Default: none (no will be sent)
 
@@ -111,8 +103,6 @@ Sets the value of the
 [Access-Control-Allow-Credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-credentials)
 header.
 
-Required: No
-
 Default: none (no will be sent)
 
 Type: boolean (`true` if credentials should be allowed)
@@ -122,8 +112,6 @@ Type: boolean (`true` if credentials should be allowed)
 Sets the value of the
 [Access-Control-Max-Age](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-max-age)
 header.
-
-Required: No
 
 Default: none (no will be sent)
 

@@ -56,8 +56,6 @@ FILES_CRUD_SERVER__FILE_SIZE_LIMIT=String | number
 
 Specifies on which ip(s) / domain(s) to listen.
 
-Required: No
-
 Default: `127.0.0.1` (Only listens on localhost)
 
 Type: String
@@ -68,8 +66,6 @@ Specifiy `0.0.0.0` to listen on any ip.
 
 Specifies on which port to listen.
 
-Required: No
-
 Default: `9000`
 
 Type: number
@@ -77,8 +73,6 @@ Type: number
 ### server.useHttps
 
 Uses `https` with ssl/tls, if `true`.
-
-Required: No
 
 Default: `false`
 
@@ -88,8 +82,6 @@ Type: boolean
 
 Uses `HTTP/2` for https. 
 
-Required: No
-
 Default: `false`
 
 Type: boolean
@@ -97,8 +89,6 @@ Type: boolean
 ### server.sslKeyPath
 
 Specifies the path to the private key for ssl/tls.
-
-Required: no
 
 Default: `./privateKey.pem`
 
@@ -108,8 +98,6 @@ Type: String
 
 Specifies the path to the certificate for ssl/tls.
 
-Required: No
-
 Default: `./certificate.pem`
 
 Type: String
@@ -117,8 +105,6 @@ Type: String
 ### server.hsts
 
 Sets `Strict-Transport-Security` header if `true` and `https` is used.
-
-Required: No
 
 Default: `true`
 
@@ -128,8 +114,6 @@ Type: boolean
 
 Sets `X-Robots-Tag`-Header with value `none` if `true`
 
-Required: No
-
 Default: `false`
 
 Type: boolean
@@ -138,8 +122,6 @@ Type: boolean
 
 Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 
-Required: No
-
 Default: {} (empty object, no cors properties specified)
 
 Type: [CorsConfig](../wiki/Configuration:-Server:-CORS)
@@ -147,8 +129,6 @@ Type: [CorsConfig](../wiki/Configuration:-Server:-CORS)
 ### server.fileSizeLimit
 
 Specifies the maximum file size, which can be uploaded to storage.
-
-Required: No
 
 Default: `100m` 100MiB (104.8MB)
 

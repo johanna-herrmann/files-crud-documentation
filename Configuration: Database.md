@@ -70,8 +70,6 @@ FILES_CRUD_DATABASE__JWT_KEY_TABLE_NAME=String
 ### database.name
 Specifies which database adapter to use.
 
-Required: No
-
 Default: `in-memory`
 
 Type: One of
@@ -83,16 +81,12 @@ Type: One of
 ### database.db
 Specifies the database name for postgresql.
 
-Required: No
-
 Default: `files-crud`
 
 Type: String
 
 ### database.url
 Specifies the database url for mongodb.
-
-Required: No
 
 Default: `mongodb://localhost:27017/files-crud`
 
@@ -101,16 +95,12 @@ Type: String
 ### database.host
 Specifies the database host for postgresql.
 
-Required: No
-
 Default: `localhost`
 
 Type: String
 
 ### database.port
 Specifies the database port for postgresql.
-
-Required: No
 
 Default: 5432
 
@@ -119,8 +109,6 @@ Type: number
 ### database.user
 Specifies the database user for mongodb and postgresql.
 
-Required: No
-
 Default: none
 
 Type: String
@@ -128,16 +116,12 @@ Type: String
 ### database.pass
 Specifies the database password for mongodb and postgresql.
 
-Required: No
-
 Default: none
 
 Type: String
 
 ### database.region
 Specifies the database region for dynamodb.
-
-Required: No
 
 Default: Value specified as [region](../wiki/Configuration#region) on configartion root,
 if specified, else `eu-central-1` (Frankfurt, Europe)
@@ -147,8 +131,6 @@ Type: String
 ### database.accessKeyId
 Specifies the database access key for dynamodb.
 
-Required: No
-
 Default: Value specified as [accessKeyId](../wiki/Configuration#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
@@ -156,8 +138,6 @@ Type: String
 
 ### database.secretAccessKey
 Specifies the database secret key for dynamodb.
-
-Required: No
 
 Default: Value specified as [secretAccessKey](../wiki/Configuration#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
@@ -167,8 +147,6 @@ Type: String
 ### database.userTableName
 Specifies the database user table name for dynamodb.
 
-Required: No
-
 Default `files-crud-user`
 
 Type: String
@@ -176,16 +154,12 @@ Type: String
 ### database.failedLoginAttemptsTableName
 Specifies the database login attempts table name for dynamodb, where failed login attempts are saved, used to lock further attempts for a period of time.
 
-Required: No
-
 Default `files-crud-failedloginattempts`
 
 Type: String
 
 ### database.jwtKeyTableName
 Specifies the database jwt key table name for dynamodb, where the jwt keys are saved, used to sign and verify JSON Web Tokens for user authorization.
-
-Required: No
 
 Default `files-crud-jwtkey`
 

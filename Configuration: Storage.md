@@ -53,8 +53,6 @@ FILES_CRUD_DATABASE__FORCE_PATH_STYLE=boolean
 
 Specifies which storage to use.
 
-Required: no
-
 Default: `fs`
 
 Type: One of
@@ -66,8 +64,6 @@ Type: One of
 
 Specifies which local file system path to use.
 
-Required: no
-
 Default: Value specified as [path](../wiki/Configuration#path) on configartion root,
 if specified, else `./`
 
@@ -76,8 +72,6 @@ Type: String
 ### storage.region
 
 Specifies AWS region to use for S3(-compatible) Storage.
-
-Required: no
 
 Default: Value specified as [region](../wiki/Configuration#region) on configartion root,
 if specified, else `eu-central-1` (Frankfurt, Europe)
@@ -88,8 +82,6 @@ Type: String
 
 Specifies AWS credential Access Key Id to use for S3(-compatible) Storage.
 
-Required: no
-
 Default: Value specified as [accessKeyId](../wiki/Configuration#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
@@ -98,8 +90,6 @@ Type: String
 ### storage.secretAccessKey
 
 Specifies AWS credential secret access key to use for S3(-compatible) Storage.
-
-Required: no
 
 Default: Value specified as [secretAccessKey](../wiki/Configuration#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
@@ -110,8 +100,6 @@ Type: String
 
 Specifies AWS S3 bucket to use for S3(-compatible) Storage.
 
-Required: no
-
 Default: `files-crud`
 
 Type: String
@@ -120,8 +108,6 @@ Type: String
 
 Specifies endpoint to use for S3-compatible Storage, if not default AWS S3.
 
-Required: no
-
 Default: none (Uses default AWS S3 endpoint)
 
 Type: String
@@ -129,8 +115,6 @@ Type: String
 ### storage.forcePathStyle
 
 Specifies if S3 path style should be used instead of sub-domain style.
-
-Required: no
 
 Default: `false`
 

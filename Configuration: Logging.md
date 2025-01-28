@@ -68,8 +68,6 @@ FILES_CRUD_LOGGING__LOG_FILE_ROTATION_ENABLE_COMPRESSION=boolean
 
 Specifies the minimum level to log.
 
-Required: No
-
 Default: `info`
 
 Type: One of
@@ -81,8 +79,6 @@ Type: One of
 ### logging.ipLogging
 
 Specifies if and how to log ip addresses for access logging, if enabled.
-
-Required: No
 
 Default: `anonymous`
 
@@ -98,8 +94,6 @@ If `true`, errors will be logged to a file,
 specified as [logging.errorLogFile](#loggingerrorlogfile),
 additionally to console logging.
 
-Required: No
-
 Default: `true`
 
 Type: Boolean
@@ -111,8 +105,6 @@ If `true`, additionally,
 each access (static files and API) will be logged detailed to a file,
 specified as [logging.accessLogFile](#loggingaccesslogfile).
 
-Required: No
-
 Default: `true`
 
 Type: Boolean
@@ -120,8 +112,6 @@ Type: Boolean
 ### logging.accessLogFile
 Specifies the path to the file for access logging
 (see: [logging.enableAccessLogging](#loggingenableaccesslogging))
-
-Required: No
 
 Default: `./access.log`
 
@@ -131,16 +121,12 @@ Type: String (path, absolute or relative to working directory)
 Specifies the path to the file for error file logging
 (see: [logging.enableErrorFileLogging](#loggingenableerrorfilelogging))
 
-Required: No
-
 Default: `./error.log`
 
 Type: String (path, absolute or relative to working directory)
 
 ### logging.ttyLoggingFormat
 Specifies which format to use for logging in console.
-
-Required: No
 
 Default: [coloredHumanReadableLine](../wiki/Configuration:-Logging-Formats#coloredHumanReadableLine)
 
@@ -161,8 +147,6 @@ This is used in the following to cases:
 * Error logging to error log file
 * Console logging if redirected to file
 
-Required: No
-
 Default: [json](../wiki/Configuration:-Logging-Formats#json)
 
 Type: LoggingFormat, which is one of
@@ -179,8 +163,6 @@ See also: [Logging Formats](../wiki/Configuration:-Logging-Formats)
 ### logging.accessLoggingFormat
 Specifies which format to use for detailed access logging.
 
-Required: No
-
 Default: [json](../wiki/Configuration:-Access-Logging-Formats#json)
 
 Type: AccessLoggingFormat, which is one of
@@ -192,16 +174,12 @@ See also: [Access Logging Formats](../wiki/Configuration:-Access-Logging-Formats
 ### logging.enableLogFileRotation
 Specifies if the error log file and the access log file should be rotated automatically.
 
-Required: No
-
 Default: `true`
 
 Type: boolean
 
 ### logging.logFileRotationFrequenceUnit
 Specifies the frequency of the log file rotation, if enabled.
-
-Required: No
 
 Default: `d` (Daily)
 
@@ -217,8 +195,6 @@ Type: One of
 ### logging.logFileRotationMaxFiles
 Specifies the amount of files to keep if log file rotation is enabled.
 
-Required: No
-
 Default: `14d` (Files of last 14 days)
 
 Type: String with number and unit (`s`, `m`, `h` or `d`) \
@@ -226,8 +202,6 @@ Type: String with number and unit (`s`, `m`, `h` or `d`) \
 
 ### logging.logFileRotationEnableCompression
 Specifies if the rotated files should be compressed using gzip.
-
-Required: No
 
 Default: `true`
 
