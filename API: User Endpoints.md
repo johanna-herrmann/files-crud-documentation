@@ -4,6 +4,8 @@
 
 This page documents the API user Endpoints.
 
+## <code style="color : red">Rot</code> /qpi/hh
+
 ## <span style="color: green; ">POST</span> /api/register
 Registers a new user
 
