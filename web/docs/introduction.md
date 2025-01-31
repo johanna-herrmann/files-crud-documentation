@@ -1,9 +1,4 @@
-# files-crud
-
-[Wiki](wiki)
-
-REST file storage with CRUD based permissions on directory-level. \
-Written in Typescript
+# Introduction
 
 ## Description
 * Stores files, using REST calls (CRUD)
@@ -25,24 +20,3 @@ Written in Typescript
 * different types of users (`normal`, `admin`)
 * optional public-access (access without login)
 * registration for new users can be open, restricted or disabled
-
-## Install
-```bash
-npm install -g files-crud
-```
-
-## Permissions
-[CLI](wiki/Permissions)
-
-## Usage/CLI
-[CLI](wiki/CLI)
-
-## Configuration
-[Configuration](wiki/Configuration)
-
-## API
-[API](wiki/API)
-
-
-## License
-This product is licensed via a [MIT License](../blob/main/LICENSE.md)

@@ -1,7 +1,5 @@
 # LoggingConfiguration
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr;[LoggingConfiguration](../wiki/Configuration:-Logging)
-
 The logging configuration is used to specify the logging behaviour.
 
 ## Syntax
@@ -128,7 +126,7 @@ Type: String (path, absolute or relative to working directory)
 ### logging.ttyLoggingFormat
 Specifies which format to use for logging in console.
 
-Default: [coloredHumanReadableLine](../wiki/Configuration:-Logging-Formats#coloredHumanReadableLine)
+Default: [coloredHumanReadableLine](#coloredhumanreadableline)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -139,7 +137,7 @@ Type: LoggingFormat, which is one of
    (color depends on logging level)
 * `json` &minus; Logs all information as single line json object.
 
-See also: [Logging Formats](../wiki/Configuration:-Logging-Formats)
+See also: [Logging Formats](#logging-formats)
 
 ### logging.fileLoggingFormat
 Specifies which format to use for file logging.
@@ -147,7 +145,7 @@ This is used in the following to cases:
 * Error logging to error log file
 * Console logging if redirected to file
 
-Default: [json](../wiki/Configuration:-Logging-Formats#json)
+Default: [json](json-error-log-file-and-console)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -158,18 +156,18 @@ Type: LoggingFormat, which is one of
    (color depends on logging level)
 * `json` &minus; Logs all information as single line json object.
 
-See also: [Logging Formats](../wiki/Configuration:-Logging-Formats)
+See also: [Logging Formats](#logging-formats)
 
 ### logging.accessLoggingFormat
 Specifies which format to use for detailed access logging.
 
-Default: [json](../wiki/Configuration:-Access-Logging-Formats#json)
+Default: [json](#json-access-logging-file)
 
 Type: AccessLoggingFormat, which is one of
 * `classic` &minus; Logs details, similar to nginx or apache2 access logging.
 * `json` &minus; Logs details as single-line json object.
 
-See also: [Access Logging Formats](../wiki/Configuration:-Access-Logging-Formats)
+See also: [Access Logging Formats](#access-logging-formats)
 
 ### logging.enableLogFileRotation
 Specifies if the error log file and the access log file should be rotated automatically.
@@ -262,4 +260,86 @@ FILES_CRUD_LOGGING__ENABLE_LOG_FILE_ROTATION=true
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_FREQUENCY_UNIT=h
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_MAX_FILES=20h
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_ENABLE_COMPRESSION=false
+```
+
+## Logging Formats
+
+Following examples are used to visualize the different formats
+* debug
+  * timestamp: `2025-01-29T12:11:12.654`
+  * sourcePath: `/opt/fc/built/lib/server/handler/file.js`
+  * message: `Loaded following directory items.`
+  * meta: `{"directory":"holidays","items":["flight/","allTogether.png","swimming.mp4"]}`
+* info
+  * timestamp: `2025-01-18T18:29:56.382`
+  * sourcePath: `/opt/fc/built/lib/server/handler/file.js`
+  * message: `Successfully saved file.`
+  * meta: `{"path":"holidays/allTogether.png","size":67367,"mimetype":"image/png","mimetypeFrom":"files attribute"}`
+* warn
+  * timestamp: `2025-02-23T13:44:11.765`
+  * sourcePath: `/opt/fc/built/lib/server/handler/user.js`
+  * message: `password is a bit short. Maybe implement passwords rules in future.`
+  * meta: `{"length":9}`
+* error
+  * timestamp: `2025-01-18T19:21:22.823`
+  * sourcePath: `/opt/fc/built/lib/server/handler/file.js`
+  * message: `Error. File holidays/allTogeth.png does not exist.`
+  * meta: `{"statusCode":400}`
+
+Visualization shows, how it would look like, using `bash` in `Linux Mint 22` (`Cinnamon`) with 80 chars length.
+To differentiate between true line breaks and those added by the terminal,
+actual lines have alternating background-colors.
+
+### humanReadableLine
+Logs a simple line of information.
+
+![humanReadableLine](/images/humanReadableLine.png)
+
+### humanReadableBlock
+Logs a block of information.
+
+![humanReadableBlock](/images/humanReadableBlock.png)
+
+### coloredHumanReadableLine
+Logs a colored line of information. Color depends on log level.
+
+![coloredHumanReadableLine](/images/coloredHumanReadableLine.png)
+
+### coloredHumanReadableBlock
+Logs a colored block of information.
+
+![coloredHumanReadableBlock](/images/coloredHumanReadableBlock.png)
+
+### json (error log file and console)
+
+Logs all information as single line json object.
+
+![json](/images/json.png)
+
+## Access Logging Formats
+
+Following example details are used to visualize the different formats
+* ip: `42.0.8.15`
+* timestamp: `2025-01-18T18:29:56.382`
+* method: `POST`
+* path: `/api/file/save/holidays/allTogether.png`
+* http version: `HTTP/1.1`
+* statusCode: 200
+* contentLength: 35
+* referer: `https://example-files-crud.com/upload-form.html`
+* user agent: `Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0`
+* time: 213 (time between request and response in milli seconds)
+
+### classic
+Logs details, similar to nginx or apache2 access logging.
+
+```
+42.0.8.15 - [2025-01-18T18:29:56.382] "POST /api/file/save/holidays/allTogether.png HTTP/1.1" 200 35 "https://example-files-crud.com/upload-form.html" "Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0" - 213
+```
+
+### json (access logging file)
+Logs details as single-line json object.
+
+```
+{"ip":"42.0.8.15","timestamp":"2025-01-18T18:29:56.382","method":"POST","path":"/api/file/save/holidays/allTogether.png","httpVersion":"HTTP/1.1","statusCode":200,"contentLength":35,"referer":"https://example-files-crud.com/upload-form.html","userAgent":"Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0","time":213}
 ```

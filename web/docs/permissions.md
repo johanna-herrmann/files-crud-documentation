@@ -1,7 +1,5 @@
 # Permissions
 
-[Wiki](../wiki) &rarr; [Permissions](../wiki/Permissions)
-
 Permissions can be used to specify who can do which file operation.
 The permissions can be specified on directory level and for different levels of api access.
 
@@ -74,4 +72,4 @@ The permissions can be specified:
 ```
 
 ## See also:
-[Configuration](../wiki/Configuration)
+[Configuration](/configuration/general)

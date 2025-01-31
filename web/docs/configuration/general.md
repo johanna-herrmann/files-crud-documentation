@@ -1,7 +1,5 @@
 # Configuration
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration)
-
 ## General information about configuration
 
 Configuration can be done, using one of the following methods:
@@ -108,7 +106,7 @@ For consistency, we recommend to use always the *separated notation*.
 Specifies default directory permissions, used if `directoryPermissions` is not specified.
 
 Default: `crudcr------`
-(See: [Permissions](../wiki/Permissions))
+(See: [Permissions](/permissions))
 
 Type: String
 
@@ -122,23 +120,23 @@ Type: Record/Map of String<=>String
 ### database
 Specifies configuration for the database connection.
 
-Default: See: [DatabaseConfig](../wiki/Configuration:-Database)
+Default: See: [DatabaseConfig](/configuration/database)
 
-Type: [DatabaseConfig](../wiki/Configuration:-Database)
+Type: [DatabaseConfig](/configuration/database)
 
 ### logging
 Specifies configuration for logging.
 
-Default: See: [LoggingConfig](../wiki/Configuration:-Logging)
+Default: See: [LoggingConfig](/configuration/logging)
 
-Type: [LoggingConfig](../wiki/Configuration:-Logging)
+Type: [LoggingConfig](/configuration/logging)
 
 ### storage
 Specifies configuration for storage to use.
 
-Default: See: [StorageConfig](../wiki/Configuration:-Storage)
+Default: See: [StorageConfig](/configuration/storage)
 
-Type: [StorageConfig](../wiki/Configuration:-Storage)
+Type: [StorageConfig](/configuration/storage)
 
 ### path
 Specifies the path used to store file data.
@@ -151,9 +149,9 @@ Type: String
 ### server
 Specifies configuration for the application server.
 
-Default: See: [ServerConfig](../wiki/Configuration:-Server)
+Default: See: [ServerConfig](/configuration/server)
 
-Type: [ServerConfig](../wiki/Configuration:-Server)
+Type: [ServerConfig](/configuration/server)
 
 ### webRoot
 Specifies the path to serve as frontend. The application will serve static web content from this directory. The application is only backend if no `webRoot` is specified.

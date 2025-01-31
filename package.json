@@ -1,0 +1,17 @@
+{
+  "name": "files-crud-documentation",
+  "version": "1.0.0",
+  "description": "Documentation for files-crud, powered by docute",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johanna-herrmann/files-crud-documentation.git"
+  },
+  "license": "MIT",
+  "author": "Johanna Herrmann",
+  "scripts": {
+    "serve": "serve -s ./web"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

@@ -1,7 +1,5 @@
 # DatabaseConfiguration
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr; [DatabaseConfiguration](../wiki/Configuration:-Database)
-
 The database configuration is used to configure the connection to the database, used for user management.
 
 ## Syntax
@@ -123,7 +121,7 @@ Type: String
 ### database.region
 Specifies the database region for dynamodb.
 
-Default: Value specified as [region](../wiki/Configuration#region) on configartion root,
+Default: Value specified as [region](/configuration/general#region) on configartion root,
 if specified, else `eu-central-1` (Frankfurt, Europe)
 
 Type: String
@@ -131,7 +129,7 @@ Type: String
 ### database.accessKeyId
 Specifies the database access key for dynamodb.
 
-Default: Value specified as [accessKeyId](../wiki/Configuration#accesskeyid) on configartion root,
+Default: Value specified as [accessKeyId](/configuration/general#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
 Type: String
@@ -139,7 +137,7 @@ Type: String
 ### database.secretAccessKey
 Specifies the database secret key for dynamodb.
 
-Default: Value specified as [secretAccessKey](../wiki/Configuration#secretaccesskey) on configartion root,
+Default: Value specified as [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
 
 Type: String

@@ -1,7 +1,5 @@
 # CorsConfiguration
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr; [ServerConfiguration](../wiki/Configuration:-Server) &rarr; [CorsConfiguration](../wiki/Configuration:-Server:-CORS)
-
 Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 
 ## Syntax

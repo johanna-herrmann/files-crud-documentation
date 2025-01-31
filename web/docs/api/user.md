@@ -1,10 +1,10 @@
 # API: User Endpoints
 
-[Wiki](../wiki) &rarr; [API](../wiki/API) &rarr; [User Endpoints](../wiki/API:-User-Endpoints)
-
 This page documents the API user Endpoints.
 
-## <span style="color: green; ">POST</span> /api/register
+## Register
+**<span style="color: green; ">POST</span> /api/register**
+
 Registers a new user
 
 ### Request Body
@@ -70,7 +70,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/login
+## Login
+**<span style="color: green; ">POST</span> /api/login**
+
 Logins user.
 It authorizes using username and password and provides JWT.
 The JWT must be sent in subsequent requests, using `Authorization`-Header. \
@@ -122,7 +124,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/user/add
+## Add User
+**<span style="color: green; ">POST</span> /api/user/add**
+
 Adds a new user. Used by an admin to add a new user
 
 ### Request Body
@@ -187,7 +191,8 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/user/set-admin
+## Update Admin State
+**<span style="color: green; ">POST</span> /api/user/set-admin**
 Changes the admin state of a user
 
 ### Request Body
@@ -234,7 +239,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/user/change-username
+## Change Username
+**<span style="color: green; ">POST</span> /api/user/change-username**
+
 Changes the username of a user
 
 ### Request Body
@@ -283,7 +290,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/user/change-password
+## Change Password
+**<span style="color: green; ">POST</span> /api/user/change-password**
+
 Changes the password of a user
 
 ### Request Body
@@ -342,7 +351,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">{username}</span>
+## Update Meta Data
+**<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">{username}</span>**
+
 Changes the meta data of a user
 
 ### Request Body
@@ -393,7 +404,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">{username}</span>
+## Get Meta Data
+**<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">{username}</span>**
+
 Loads the meta data of a user
 
 ### Request Body
@@ -439,7 +452,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{username}</span>
+## Get User
+**<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{username}</span>**
+
 Gets one user
 
 ### Request Body
@@ -490,7 +505,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/user/list
+## List Users
+**<span style="color: #60affe; ">GET</span> /api/user/list**
+
 Lists users (username and admin state)
 
 ### Request Body
@@ -540,7 +557,9 @@ Body:
 }
 ```
 
-## <span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{username}</span>
+## Delete User
+**<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{username}</span>**
+
 Deletes a user
 
 ### Request Body

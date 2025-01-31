@@ -1,7 +1,5 @@
 # Configuration: Storage
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr; [StorageConfiguration](../wiki/Configuration:-Storage)
-
 The storage configuration is used to choose the storage type and specify it's behavior.
 
 ## Syntax
@@ -64,7 +62,7 @@ Type: One of
 
 Specifies which local file system path to use.
 
-Default: Value specified as [path](../wiki/Configuration#path) on configartion root,
+Default: Value specified as [path](/configuration/general#path) on configartion root,
 if specified, else `./`
 
 Type: String
@@ -73,7 +71,7 @@ Type: String
 
 Specifies AWS region to use for S3(-compatible) Storage.
 
-Default: Value specified as [region](../wiki/Configuration#region) on configartion root,
+Default: Value specified as [region](/configuration/general#region) on configartion root,
 if specified, else `eu-central-1` (Frankfurt, Europe)
 
 Type: String
@@ -82,7 +80,7 @@ Type: String
 
 Specifies AWS credential Access Key Id to use for S3(-compatible) Storage.
 
-Default: Value specified as [accessKeyId](../wiki/Configuration#accesskeyid) on configartion root,
+Default: Value specified as [accessKeyId](/configuration/general#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
 Type: String
@@ -91,7 +89,7 @@ Type: String
 
 Specifies AWS credential secret access key to use for S3(-compatible) Storage.
 
-Default: Value specified as [secretAccessKey](../wiki/Configuration#secretaccesskey) on configartion root,
+Default: Value specified as [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
 
 Type: String

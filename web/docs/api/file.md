@@ -1,10 +1,10 @@
 # API: File Endpoints
 
-[Wiki](../wiki) &rarr; [API](../wiki/API) &rarr; [File Endpoints](../wiki/API:-File-Endpoints)
-
 This page documents the API file Endpoints.
 
-## <span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{{path}}</span>
+## Upload File
+**<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{path*}</span>**
+
 Endpoint to upload a file. \
 Can be a new file or an existing file. \
 It also stores following properties as file data.
@@ -12,7 +12,7 @@ It also stores following properties as file data.
   (or if provided: the value of `X-Mime-Type` request-header)
 * the owner (owner of the uploader, `-` if public).
 * size
-* md5 hash of the file content (used for [integrity check](../wiki/CLI.md#integrity))
+* md5 hash of the file content (used for [integrity check](/cli#integrity))
 
 Requires `Content-Type` request-header with value like `multipart/form-data;boundary=delimiter`
 where `delimiter` can be any value containing numbers, letters and dashes.
@@ -85,7 +85,9 @@ Body (example for limit: 10k):
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{{path}}</span>
+## Download File
+**<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span>**
+
 Endpoint to download a file.
 
 ### Request Body
@@ -131,7 +133,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999; ">{{path}}</span>
+## Update Meta Data
+**<span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999; ">{path*}</span>**
+
 Saves the meta data for a file.
 
 ### Request Body
@@ -179,7 +183,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/file/load-meta/<span style="color: #999; ">{{path}}</span>
+## Load Meta Data
+**<span style="color: #60affe; ">GET</span> /api/file/load-meta/<span style="color: #999; ">{path*}</span>**
+
 Loads the meta data for a file.
 
 ### Request Body
@@ -225,7 +231,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999; ">{{path}}</span>
+## Load File Data
+**<span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999; ">{path*}</span>**
+
 Loads the data for a file. This includes: meta data, size, mimetype, size and md5 path
 
 ### Request Body
@@ -277,7 +285,9 @@ Body:
 }
 ```
 
-## <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{{path}}</span>
+## List Files And Directories
+**<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
+
 Lists files and directories in a directory.
 
 ### Request Body
@@ -321,7 +331,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/file/copy
+## Copy File
+**<span style="color: green; ">POST</span> /api/file/copy**
+
 Copies a file.
 
 ### Request Body
@@ -404,7 +416,9 @@ Body:
 }
 ```
 
-## <span style="color: green; ">POST</span> /api/file/move
+## Move File
+**<span style="color: green; ">POST</span> /api/file/move**
+
 Moves a file to another path (can also be used to rename a file, still changing the filename).
 
 ### Request Body
@@ -497,7 +511,9 @@ Body:
 }
 ```
 
-## <span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999; ">{{path}}</span>
+## Delete File
+**<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999; ">{path*}</span>**
+
 Deletes a file.
 
 ### Request Body

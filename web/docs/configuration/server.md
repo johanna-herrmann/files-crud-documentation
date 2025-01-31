@@ -1,7 +1,5 @@
 # ServerConfiguration
 
-[Wiki](../wiki) &rarr; [Configuration](../wiki/Configuration) &rarr; [ServerConfiguration](../wiki/Configuration:-Server)
-
 The server configuration is used to specify the connection to and behaviour of the files-crud server.
 
 ## Syntax
@@ -124,7 +122,7 @@ Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 
 Default: {} (empty object, no cors properties specified)
 
-Type: [CorsConfig](../wiki/Configuration:-Server:-CORS)
+Type: [CorsConfig](/configuration/server-cors)
 
 ### server.fileSizeLimit
 
