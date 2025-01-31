@@ -19,7 +19,7 @@ To deploy to AWS Amplify:
   | ---------------- | -------------- | -------------------------- | ------------ |
   | /index.html	     | /	          | 302 (Redirect - Temporary) | - (empty)    |
   | </\^\\/[\^.]+$/> | /              |	200 (Rewrite)	           | - (empty)    |
-  | /<*>	           | /docs/404.md | 404 (Redirect)             | - (empty)    |
+  | /<*>	         | /docs/404.md   | 404 (Redirect)             | - (empty)    |
 
   Purpose of the three rewrites/redirects:
   * Redirect explicit `index.html` requests to implicit `/`
