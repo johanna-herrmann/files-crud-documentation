@@ -17,9 +17,9 @@ To deploy to AWS Amplify:
 * Under `Rewrites and Redirects` configure Amplify, as follows (order matters):
   | Source address   | Target address | Type                       | Country code |
   | ---------------- | -------------- | -------------------------- | ------------ |
-  | /index.html	     | /	          | 302 (Redirect - Temporary) | - (empty)    |
-  | </\^\\/[\^.]+$/> | /              |	200 (Rewrite)	           | - (empty)    |
-  | /<*>	         | /docs/404.md   | 404 (Redirect)             | - (empty)    |
+  | /index.html	     | /	            | 302 (Redirect - Temporary) | - (empty)    |
+  | </\^\\/[\^.]+$/> | /              |	200 (Rewrite)	             | - (empty)    |
+  | /<*>	           | /docs/404.md   | 404 (Redirect)             | - (empty)    |
 
   Purpose of the three rewrites/redirects:
   * Redirect explicit `index.html` requests to implicit `/`
