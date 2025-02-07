@@ -21,6 +21,20 @@ The token will be signed, using HMAC-256, with a key, randomly chosen from 30 ke
 
 On subsequent requests this token has to be provided as the value of the `Authorization` request header (`Bearer` prefix is optional).
 
+### JWT Payload properties (aka `claims`)
+* sub &minus; ID of the user the JWT belongs to
+* iat &minus; Unix timestamp when the JWT was issued (seconds)
+* exp &minus; Unix timestamp when the JWT will expire (seconds), 0 if the token never expires
+
+### Response body properties on successful login
+* token &minus; The JWT
+* expiresAt &minus;
+  Unix timestamp when the JWT will expire (milli seconds), 0 if the token never expires
+
+### See also
+[API: User Endpoints - Login](/api/user#login)
+
+
 ## Login attempts limitation and locks
 After 5 consecutive invalid login attempty with the same username,
 subsequent attempts with this username are locked for 15 seconds. \
@@ -42,4 +56,4 @@ Respective duration of the blocking depending on the number of failed attempts:
 * 10: 8 minutes
 * from 11: 15 minutes
 
-so 100 invalid attempts with same username will take almost 23 hours (22.7625).
+So 100 invalid attempts with same username will take almost 23 hours (22.7625).
