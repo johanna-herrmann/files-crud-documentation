@@ -133,10 +133,10 @@ Body:
 }
 ```
 
-## Update Meta Data
+## Save Meta Data
 **<span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999; ">{path*}</span>**
 
-Saves the meta data for a file.
+Saves the meta data for a file. First save meta data call on a file requires `create` permission, subsequent calls require `update` permission.
 
 ### Request Body
 ```json
@@ -163,7 +163,17 @@ Body:
 {}
 ```
 
-#### Missing update permission
+#### Missing create permission on first save meta data call on a file
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to create texts/examples/cool-text.txt"
+}
+```
+
+#### Missing update permission on subsequent calls
 Status-Code: 401
 
 Body:
@@ -234,7 +244,7 @@ Body:
 ## Load File Data
 **<span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999; ">{path*}</span>**
 
-Loads the data for a file. This includes: meta data, size, mimetype, size and md5 path
+Loads the data for a file. This includes: meta data, size, mimetype, owner and md5 hash.
 
 ### Request Body
 None
