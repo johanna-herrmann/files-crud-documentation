@@ -1,4 +1,5 @@
 const sidebar = [
+    { title: 'Auth', link: '/auth' },
     { title: 'Introduction', link: '/introduction' },
     { title: 'Permissions', link: '/permissions' },
     { title: 'Configuration', toc: false, collapsable: true, children: [
