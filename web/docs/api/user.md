@@ -100,9 +100,13 @@ Status-Code: 200
 Body:
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImU2Mjc5YjVhLWQxMzQtNDU0Mi1hZGJjLWRiMjRlMmU0Yjg2NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTQ4MzIyODgwMDAwMH0.dNux4Fp02uc3dDOfBdmxfLTvyyQx5MxoGsfTM7Mm6wI"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImU2Mjc5YjVhLWQxMzQtNDU0Mi1hZGJjLWRiMjRlMmU0Yjg2NiJ9.eyJzdWIiOiJ0ZXN0VXNlciIsImlhdCI6MTQ4MzIyODgwMDAwMH0.dNux4Fp02uc3dDOfBdmxfLTvyyQx5MxoGsfTM7Mm6wI",
+  "expiresAt": 2123456789123
 }
 ```
+* token &minus; The issued JWT
+* expiresAt: &minus;
+  The unix timestamp in milli seconds, when the JWT expires, 0 if it never expires
 
 #### Error: wrong username and/or password
 Status-Code: 401
@@ -352,7 +356,7 @@ Body:
 ```
 
 ## Update Meta Data
-**<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">{username}</span>**
+**<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">{id}</span>**
 
 Changes the meta data of a user
 
@@ -369,7 +373,7 @@ Changes the meta data of a user
 * meta (Object) &minus; object for the new user meta data
 
 ### Request Path parameters
-* username &minus; The username of the user to change the meta data for
+* id &minus; The id of the user to change the meta data for
 
 Examle:
 <span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">lisa42</span>
@@ -405,7 +409,7 @@ Body:
 ```
 
 ## Get Meta Data
-**<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">{username}</span>**
+**<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">{id}</span>**
 
 Loads the meta data of a user
 
@@ -413,7 +417,7 @@ Loads the meta data of a user
 None
 
 ### Request Path parameters
-* username &minus; The username of the user to load the meta data for
+* id &minus; The id of the user to load the meta data for
 
 Examle:
 <span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">lisa42</span>
@@ -453,7 +457,7 @@ Body:
 ```
 
 ## Get User
-**<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{username}</span>**
+**<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{id}</span>**
 
 Gets one user
 
@@ -461,7 +465,7 @@ Gets one user
 None
 
 ### Request Path parameters
-* username &minus; The username of the user to get
+* id &minus; The id of the user to get
 
 Examle:
 <span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">lisa42</span>
@@ -475,8 +479,8 @@ Body:
 ```json
 {
   "user": {
+    "id": "fc3f4c5e-93be-4d69-a4d3-a90c32e2309f",
     "username": "lisa42",
-    "ownerId": "fc3f4c5e-93be-4d69-a4d3-a90c32e2309f",
     "admin": true,
     "meta": {
       "birthday": "1988-08-26"
@@ -508,7 +512,7 @@ Body:
 ## List Users
 **<span style="color: #60affe; ">GET</span> /api/user/list**
 
-Lists users (username and admin state)
+Lists users (id, username and admin state)
 
 ### Request Body
 None
@@ -558,7 +562,7 @@ Body:
 ```
 
 ## Delete User
-**<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{username}</span>**
+**<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{id}</span>**
 
 Deletes a user
 
@@ -566,7 +570,7 @@ Deletes a user
 None
 
 ### Request Path parameters
-* username &minus; The username of the user to delete
+* id &minus; The id of the user to delete
 
 Examle:
 <span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">lisa42</span>
