@@ -2,7 +2,8 @@ const sidebar = [
     { title: 'Introduction', link: '/introduction' },
     { title: 'Usage', toc: false, collapsable: true, children: [
         { title: 'Install', link: '/usage/install' },
-        { title: 'CLI', link: '/usage/cli' }
+        { title: 'CLI', link: '/usage/cli' },
+        { title: 'Docker', link: '/usage/docker' }
     ]},
     { title: 'Auth', link: '/auth' },
     { title: 'Permissions', link: '/permissions' },
