@@ -22,7 +22,6 @@ Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dyn
     "database": DatabaseConfig,
     "logging": LoggingConfig,
     "storage": StorageConfig,
-    "path": String,
     "server": ServerConfig,
     "webRoot": String,
     "tokenExpiresInSeconds": number,
@@ -47,7 +46,6 @@ logging:
     LoggingConfig
 storage:
     StorageConfig
-path: String
 server:
     ServerConfig
 webRoot: String
@@ -70,7 +68,6 @@ FILES_CRUD_DIRECTORY_PERMISSIONS...
 FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
-FILES_CRUD_PATH=String
 FILES_CRUD_SERVER...
 FILES_CRUD_WEBROOT=String
 FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=number
@@ -140,14 +137,6 @@ Specifies configuration for storage to use.
 Default: See: [StorageConfig](/configuration/storage)
 
 Type: [StorageConfig](/configuration/storage)
-
-### path
-Specifies the path used to store file data.
-Is also used to store files itself if not specified at `storage.path` and storage is local file system.
-
-Default: `./`
-
-Type: String
 
 ### server
 Specifies configuration for the application server.
