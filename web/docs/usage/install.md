@@ -24,5 +24,5 @@ You also can use our files-crud docker image.
 
 ### Install
 ```sh
-docker pull johannadevd/filescrud:latest
+docker pull filescrud/filescrud:latest
 ```
