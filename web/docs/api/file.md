@@ -9,10 +9,13 @@ Endpoint to upload a file. \
 Can be a new file or an existing file. \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in body-request
-  (or if provided: the value of `X-Mime-Type` request-header)
-* the owner (owner of the uploader, `-` if public).
+  (or if provided: the value of `X-Mimetype` request-header)
+* the owner (user-id of the uploader, `-` if public) \
+  (unchaged on update).
 * size
 * md5 hash of the file content (used for [integrity check](/cli#integrity))
+* meta (file meta data) \
+  (set to undefined on create, unchaged on update)
 
 Requires `Content-Type` request-header with value like `multipart/form-data;boundary=delimiter`
 where `delimiter` can be any value containing numbers, letters and dashes.
@@ -108,7 +111,7 @@ Body: \
 File content
 
 Response will contain following headers
-* Content-Type &minus; Mimetype stored at upload (or if provided: the value of the `X-Mime-Type` request-header)
+* Content-Type &minus; Mimetype stored at upload (or if provided: the value of the `X-Mimetype` request-header)
 * Content-Length &minus; Length of file content (bytes)
 * Content-Disposition &minus; Contains info about file to download \
   Example: `attachment; filename=cool-text.txt`
