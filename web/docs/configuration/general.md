@@ -11,6 +11,10 @@ Configuration can be done, using one of the following methods:
 All configuration properties are optional (convention over configuration) but some properties are highly recommended in some cases. \
 Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dynamodb` is used as database adapter.
 
+## Precedence
+If you use both, a config file and environment variables,
+the environment variable properties overwrite the config file properties.
+
 ## Syntax
 
 ### JSON
