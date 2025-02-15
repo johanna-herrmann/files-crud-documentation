@@ -2,11 +2,13 @@
 
 This page shows, how to files-crud docker image.
 
-## Synopsis
-`docker run -d -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
+## docker run
+
+### Synopsis
+`docker run --init -dt -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
 
 or to listen only on `localhost`: \
-`docker run -d -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
+`docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
 
 * LOCAL_PORT &minus; local port whichs redirects to docker container exposed port
 * PORT &minus; docker container port to expose
@@ -17,33 +19,24 @@ or to listen only on `localhost`: \
 * OPTIONS &minus; Options for [CLI](/usage/cli) sub command
 * ARGS &minus; Args for [CLI](/usage/cli) sub command
 
-## Examples
+### Examples
 
-### Start with defaults
+#### Start with defaults
 The following starts the application width default configuration
 ([server.host](/configuration/server#host) is set to `0.0.0.0` automatically).
 
-`docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud start`
+`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start`
 
-#### shortcut
-`docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud` \
+shortcut:
+`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud` \
 (passing no sub command, options and args)
 
-### Start with custom host and port
-`docker run -d -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start`
+#### Start with custom host and port
+`docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start`
 
-### Check integrity for whole storage
-`docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud integrity`
+#### Check integrity for whole storage
+`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity`
 
-## Reload configuration in running container
-Assuming container is running with name `filescrud_1`:
-
-### without passing environment variables
-`docker exec -it filescrud_1 filescrud reload`
-
-### passing environment variables
-
-`docker exec -it -e FC_SERVER__HOST=0.0.0.0 -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
 
 ## docker compose
 
@@ -54,12 +47,14 @@ docker-compose.yml
 ```yaml
 name: filescrud
 
-# replace 'dbUser' and 'dbPassword' to your desired db credentials
+# replace 'dbUser' and 'dbPassword' by your desired db credentials
 
 services:
   fc:
     image: filescrud/filescrud
     restart: on-failure:3
+    tty: true
+    init: true
     depends_on:
       db:
         condition: service_healthy
@@ -69,18 +64,18 @@ services:
       FILES_CRUD_DATABASE__HOST: db
       FILES_CRUD_DATABASE__USER: dbUser
       FILES_CRUD_DATABASE__PASS: dbPassword
-      # since docker-compose hanldes stdout and stderr as file streams despite it's shown in console:
-      FILES_CRUD_LOGGING__FILE_LOGGING_FORMAT: coloredHumanReadableLine
     volumes:
       - ./fc:/data
     ports:
       - 9000:9000
-      # or if you want restrict access to docker host's 127.0.0.1
+      # or if you want to restrict access to docker host's 127.0.0.1:
       # - 127.0.0.1:9000:9000
 
   db:
     image: postgres:14-alpine
     restart: on-failure:3
+    tty: true
+    init: true
     environment:
       - POSTGRES_USER=dbUser
       - POSTGRES_PASSWORD=dbPassword
@@ -100,3 +95,22 @@ docker compose up -d
 ```
 
 Notice the space instead of a hyphen.
+
+## Reload configuration in running container
+Assuming container is running with name `filescrud_1`:
+
+### without passing environment variables
+`docker exec -it filescrud_1 filescrud reload`
+
+### passing environment variables
+
+`docker exec --init -it -e FC_SERVER__HOST=0.0.0.0 -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
+
+## Troubleshooting
+
+* missing permissions in docker container's `/data` directory (or sub directories)
+  * Ensure for all volumes, that the host directories already exist. \
+    Example: for `-v ./fc:/data` you have to ensure `./fc` already exists.
+* error message `Error: listen EADDRNOTAVAIL: address not available 172.0.0.0:3000` (or similar) at startup
+  * Using docker, you can not set `server.host` to `127.0.0.1`. \
+    Use `-p 127.0.0.1:9000:9000` instead.
