@@ -122,7 +122,7 @@ Type: boolean
 
 Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 
-Default: {} (empty object, no cors properties specified)
+Default: none (no cors header will be set)
 
 Type: [CorsConfig](/configuration/server-cors)
 

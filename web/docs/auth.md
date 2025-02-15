@@ -17,7 +17,7 @@ Currently, passwords are hashed, using [scrypt](https://en.wikipedia.org/wiki/Sc
 
 ## Token
 On successful authentication, a JWT token will be issued. \
-The token will be signed, using HMAC-256, with a key, randomly chosen from 30 keys, randomly created at first apllication startup.
+The token will be signed, using HMAC-256, with a key, randomly chosen from 20 keys, randomly created at first application startup.
 
 On subsequent requests this token has to be provided as the value of the `Authorization` request header (`Bearer` prefix is optional).
 
@@ -36,7 +36,7 @@ On subsequent requests this token has to be provided as the value of the `Author
 
 
 ## Login attempts limitation and locks
-After 5 consecutive invalid login attempty with the same username,
+After 5 consecutive invalid login attempts with the same username,
 subsequent attempts with this username are locked for 15 seconds. \
 It does not matter, if a user with this username exists. \
 After 6 invalid attempts the lock will last for 30 seconds, after 7 attempts for 1 minute, and so on.

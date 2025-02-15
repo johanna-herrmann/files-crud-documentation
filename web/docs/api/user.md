@@ -376,7 +376,7 @@ Changes the meta data of a user
 * id &minus; The id of the user to change the meta data for
 
 Examle:
-<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">lisa42</span>
+<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
@@ -420,7 +420,7 @@ None
 * id &minus; The id of the user to load the meta data for
 
 Examle:
-<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">lisa42</span>
+<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
@@ -468,7 +468,7 @@ None
 * id &minus; The id of the user to get
 
 Examle:
-<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">lisa42</span>
+<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
@@ -573,7 +573,7 @@ None
 * id &minus; The id of the user to delete
 
 Examle:
-<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">lisa42</span>
+<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 

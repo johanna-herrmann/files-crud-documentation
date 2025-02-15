@@ -23,7 +23,7 @@ The `delimiter` must be used in request-body.
 
 We recommend to also set the `Content-Length` request-header.
 
-We recommend to use a file upload tool (Upload Form, JS Files API, etc.).
+We highly recommend to use a file upload tool (Upload Form, JS Files API, etc.).
 
 ### Request Body
 File as `multipart/form-data`, using `file` as value for the `name` parameter.

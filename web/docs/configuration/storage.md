@@ -70,8 +70,8 @@ Type: String
 
 Specifies AWS region to use for S3(-compatible) Storage.
 
-Default: Value specified as [region](/configuration/general#region) on configartion root,
-if specified, else `eu-central-1` (Frankfurt, Europe)
+Default: Value specified at [region](/configuration/general#region) on configartion root,
+if specified, else `eu-central-1` (Frankfurt, Germany, Europe)
 
 Type: String
 
@@ -79,7 +79,7 @@ Type: String
 
 Specifies AWS credential Access Key Id to use for S3(-compatible) Storage.
 
-Default: Value specified as [accessKeyId](/configuration/general#accesskeyid) on configartion root,
+Default: Value specified at [accessKeyId](/configuration/general#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
 Type: String
@@ -88,7 +88,7 @@ Type: String
 
 Specifies AWS credential secret access key to use for S3(-compatible) Storage.
 
-Default: Value specified as [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
+Default: Value specified at [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
 
 Type: String
@@ -215,4 +215,38 @@ FILES_CRUD_STORAGE__SECRET_ACCESS_KEY=local.accesskey.example.secret.123
 FILES_CRUD_STORAGE__BUCKET=filescrud
 FILES_CRUD_STORAGE__ENDPOINT=storage.filescrud.local.zz
 FILES_CRUD_STORAGE__FORCE_PATH_STYLE=true
+```
+
+## s3 permissions
+The used AWS user needs following permissions on the specified bucket.
+
+* `DeleteObject`
+* `GetObject`
+* `PutObject`
+
+### Example policy
+Assuming:
+* default bucket name
+* using role policy
+* AWS user id: 123456789012
+* default region
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:eu-central-1:123456789012:files-crud/*",
+                "arn:aws:s3:eu-central-1:123456789012:files-crud"
+            ]
+        }
+    ]
+}
 ```

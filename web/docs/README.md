@@ -11,7 +11,7 @@ Documentation powered by [docute](https://docute.egoist.dev/)
 
 install
 ```
-npm install -g filescrud
+npm install -g files-crud
 ```
 
 startup
@@ -28,5 +28,5 @@ docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud
 
 To list all files in `<storage_root>/images/`
 ```
-curl -X POST -H "Content-Type: application/json" -H "Authorization: bearer <jwt>" http://localhost:9000/api/file/list/images
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <jwt>" http://localhost:9000/api/file/list/images
 ```

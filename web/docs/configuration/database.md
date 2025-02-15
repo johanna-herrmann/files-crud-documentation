@@ -74,7 +74,7 @@ Type: One of
 * `in-memory` &minus; Saves all data in RAM (memory). Only useful for tests, no data will be persistent
 * `mongodb` &minus; Saves data in a [mongodb](https://www.mongodb.com/)
 * `postgresql` &minus; Saves data in a [postgresql](https://www.postgresql.org/) database
-* `dynanodb` &minus; Saves data in a AWS [dynamodb](https://aws.amazon.com/dynamodb)
+* `dynanodb` &minus; Saves data in an AWS [dynamodb](https://aws.amazon.com/dynamodb)
 
 ### database.db
 Specifies the database name for postgresql.
@@ -107,29 +107,29 @@ Type: number
 ### database.user
 Specifies the database user for mongodb and postgresql.
 
-Default: none
+Default: none (no auth)
 
 Type: String
 
 ### database.pass
 Specifies the database password for mongodb and postgresql.
 
-Default: none
+Default: none (no auth)
 
 Type: String
 
 ### database.region
 Specifies the database region for dynamodb.
 
-Default: Value specified as [region](/configuration/general#region) on configartion root,
-if specified, else `eu-central-1` (Frankfurt, Europe)
+Default: Value specified at [region](/configuration/general#region) on configartion root,
+if specified, else `eu-central-1` (Frankfurt, Germany, Europe)
 
 Type: String
 
 ### database.accessKeyId
 Specifies the database access key for dynamodb.
 
-Default: Value specified as [accessKeyId](/configuration/general#accesskeyid) on configartion root,
+Default: Value specified at [accessKeyId](/configuration/general#accesskeyid) on configartion root,
 if specified, else `fallback-key`
 
 Type: String
@@ -137,7 +137,7 @@ Type: String
 ### database.secretAccessKey
 Specifies the database secret key for dynamodb.
 
-Default: Value specified as [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
+Default: Value specified at [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
 if specified, else `fallback-secret`
 
 Type: String
@@ -277,4 +277,67 @@ FILES_CRUD_DATABASE__SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 FILES_CRUD_DATABASE__USER_TABLE_NAME=fc_user
 FILES_CRUD_DATABASE__FAILED_LOGIN_ATTEMPTS_TABLE_NAME=fc_failed-login-attempts
 FILES_CRUD_DATABASE__JWT_KEY_TABLE_NAME=fc_jwt-key
+```
+
+## dynamodb permissions
+The used AWS user needs following permissions.
+
+We recommend to create the tables before using filescrud,
+to keep the used AWS user less-permissive.
+
+### If tables exist already
+* On dynanmodb root
+  * `ListTables`
+* following permissions on each specified table
+  * `DeleteItem`
+  * `PutItem`
+  * `Query`
+  * `Scan`
+  * `UpdateItem`
+
+### If tables must be created
+* On dynanmodb root
+  * `ListTables`
+  * `CreateTable`
+* following permissions on each specified table
+  * `DeleteItem`
+  * `PutItem`
+  * `Query`
+  * `Scan`
+  * `UpdateItem`
+
+### Example policy
+Assuming
+* tables already created, default names
+* using role policy
+* AWS user id: 123456789012
+* default region
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:ListTables"
+            ],
+            "Resource": "arn:aws:dynamodb:eu-central-1:123456789012"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:DeleteItem",
+                "dynamodb:PutItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:UpdateItem"
+            ],
+            "Resource": [
+              "arn:aws:dynamodb:eu-central-1:123456789012:table/files-crud-user"
+              "arn:aws:dynamodb:eu-central-1:123456789012:table/files-crud-jwtkey"
+              "arn:aws:dynamodb:eu-central-1:123456789012:table/files-crud-failedloginattempts"
+            ]
+        }
+    ]
+}
 ```

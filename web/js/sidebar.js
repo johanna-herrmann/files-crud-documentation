@@ -6,8 +6,6 @@ const sidebar = [
         { title: 'Docker', link: '/usage/docker' },
         { title: 'Fullstack', link: '/usage/fullstack' }
     ]},
-    { title: 'Auth', link: '/auth' },
-    { title: 'Permissions', link: '/permissions' },
     { title: 'Configuration', toc: false, collapsable: true, children: [
         { title: 'General', link: '/configuration/general' },
         { title: 'Database', link: '/configuration/database' },
@@ -20,5 +18,7 @@ const sidebar = [
         { title: 'General', link: '/api/general' },
         { title: 'User Endpoints', link: '/api/user' },
         { title: 'File Endpoints', link: '/api/file' }
-    ]}
+    ]},
+    { title: 'Permissions', link: '/permissions' },
+    { title: 'Auth', link: '/auth' }
 ];

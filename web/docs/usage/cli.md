@@ -1,11 +1,11 @@
 # Usage - CLI
 
-This pages shows the usage of files-crud CLI.
+This page shows the usage of files-crud CLI.
 
 ## General
 
 ### Usage
-`filescrud [options] [command]`
+`filescrud [options] [command] [command-args] [command-options]`
 
 ### Options
 
@@ -97,7 +97,7 @@ Checks the integrity of all files, using their md5 checksums.
 
 ### Arguments
 * path &minus; Path to the directory or file to check the integrity for.
-  Storage root directory if not specified (default: "")
+  Storage root directory if not specified
 
 
 ### Examples
