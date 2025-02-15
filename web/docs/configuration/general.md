@@ -3,8 +3,8 @@
 ## General information about configuration
 
 Configuration can be done, using one of the following methods:
-* Adding a `config.json` to the pwd of the application (`./config.json`).
-* Adding a `config.yaml` or `config.yml` to the pwd of the application (`./config.yaml` or `./config.yml`).
+* Adding a `config.json` to the current working directory (`./config.json`).
+* Adding a `config.yaml` or `config.yml` to the current working directory (`./config.yaml` or `./config.yml`).
 * Set environment variables with `FILES_CRUD_`-prefix
   (or prefix, set via `filescrud --env-prefix`).
 

@@ -2,12 +2,11 @@
 
 This page shows, how to files-crud docker image.
 
-Notice: The docker image automatically sets `FILES_CRUD_SERVER__HOST` to `0.0.0.0`. \
-Remember: This also overwrites server.host in config file. \
-You still can overwrite it, setting `FILES_CRUD_SERVER__HOST` environment variable yourself.
-
 ## Synopsis
 `docker run -d -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
+
+or to listen only on `localhost`: \
+`docker run -d -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
 
 * LOCAL_PORT &minus; local port whichs redirects to docker container exposed port
 * PORT &minus; docker container port to expose
@@ -55,6 +54,8 @@ docker-compose.yml
 ```yaml
 name: filescrud
 
+# replace 'dbUser' and 'dbPassword' to your desired db credentials
+
 services:
   fc:
     image: filescrud/filescrud
@@ -68,6 +69,7 @@ services:
       FILES_CRUD_DATABASE__HOST: db
       FILES_CRUD_DATABASE__USER: dbUser
       FILES_CRUD_DATABASE__PASS: dbPassword
+      # since docker-compose hanldes stdout and stderr as file streams despite it's shown in console:
       FILES_CRUD_LOGGING__FILE_LOGGING_FORMAT: coloredHumanReadableLine
     volumes:
       - ./fc:/data
@@ -89,12 +91,3 @@ services:
       timeout: 10s
       retries: 5
 ```
-
-## Custom env prefix
-You can change the default env prefix `FILES_CRUD`.
-
-Notice: using custom env previx requires you to set
-[server.host](/configuration/server#host) manually, since the docker image only sets `FILES_CRUD_SERVER__HOST` to `0.0.0.0`.
-
-Example, using `FC` as env prefix: \
-`docker run -d -p 9000:9000 -v ./:/data -e FC_SERVER__PORT=8000 -e FC_SERVER__HOST=0.0.0.0 filescrud/filescrud -e FC start`

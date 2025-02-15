@@ -33,7 +33,7 @@ Starts files-crud application.
 | -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
 
 ### Examples
-* `filescrud start` &minus; Starts application with default env-prefix (FILES_CRUD)
+* `filescrud start` &minus; Starts application with defaults
 * `filescrud start -e FC` &minus; Starts application with env-prefix `FC`
 * `filescrud start --env-prefix APP` &minus; Starts application with env-prefix `APP`
 
