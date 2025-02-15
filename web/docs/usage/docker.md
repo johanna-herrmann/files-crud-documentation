@@ -1,6 +1,10 @@
 # Usage - Docker
 
-This page shows, how to files-crud docker image
+This page shows, how to files-crud docker image.
+
+Notice: The docker image automatically sets `FILES_CRUD_SERVER__HOST` to `0.0.0.0`. \
+Remember: This also overwrites server.host in config file. \
+You still can overwrite it, setting `FILES_CRUD_SERVER__HOST` environment variable yourself.
 
 ## Synopsis
 `docker run -d -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
@@ -17,6 +21,9 @@ This page shows, how to files-crud docker image
 ## Examples
 
 ### Start with defaults
+The following starts the application width default configuration
+([server.host](/configuration/server#host) is set to `0.0.0.0` automatically).
+
 `docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud start`
 
 #### shortcut
@@ -24,7 +31,7 @@ This page shows, how to files-crud docker image
 (passing no sub command, options and args)
 
 ### Start with custom host and port
-`docker run -d -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=0.0.0.0 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start`
+`docker run -d -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start`
 
 ### Check integrity for whole storage
 `docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud integrity`
@@ -36,16 +43,58 @@ Assuming container is running with name `filescrud_1`:
 `docker exec -it filescrud_1 filescrud reload`
 
 ### passing environment variables
-with env-prefix `FC`
 
-`docker exec -it -e FC_SERVER__PORT=8000 -e FC_STORAGE__PATH=/opt filescrud_1 filescrud -e FC reload`
+`docker exec -it -e FC_SERVER__HOST=0.0.0.0 -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
 
-## workdir-datadir-linking
-The container has following symlinks to read config files and storage from `/data/...` without to change default storage path or any default bahaviour.
-* /home/node/config.json -> /data/config.json
-* /home/node/config.yaml -> /data/config.yaml
-* /home/node/config.yml -> /data/config.yml
-* /home/node/data -> /data/data
-* /home/node/files -> /data/files
+## docker compose
 
-So you won't need to change any config.
+The following example shows,
+how to start files-crud with a mongodb, using environment variables.
+
+docker-compose.yml
+```yaml
+name: filescrud
+
+services:
+  fc:
+    image: filescrud/filescrud
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+    environment:
+      FILES_CRUD_DATABASE__NAME: postgresql
+      FILES_CRUD_DATABASE__HOST: db
+      FILES_CRUD_DATABASE__USER: dbUser
+      FILES_CRUD_DATABASE__PASS: dbPassword
+      FILES_CRUD_LOGGING__FILE_LOGGING_FORMAT: coloredHumanReadableLine
+    volumes:
+      - ./fc:/data
+    ports:
+      - 9000:9000
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=dbUser
+      - POSTGRES_PASSWORD=dbPassword
+      - POSTGRES_DB=files-crud
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbUser -d files-crud"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+```
+
+## Custom env prefix
+You can change the default env prefix `FILES_CRUD`.
+
+Notice: using custom env previx requires you to set
+[server.host](/configuration/server#host) manually, since the docker image only sets `FILES_CRUD_SERVER__HOST` to `0.0.0.0`.
+
+Example, using `FC` as env prefix: \
+`docker run -d -p 9000:9000 -v ./:/data -e FC_SERVER__PORT=8000 -e FC_SERVER__HOST=0.0.0.0 filescrud/filescrud -e FC start`
