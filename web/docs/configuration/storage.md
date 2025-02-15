@@ -62,8 +62,7 @@ Type: One of
 
 Specifies which local file system path to use.
 
-Default: Value specified as [path](/configuration/general#path) on configartion root,
-if specified, else `./`
+Default: `./`
 
 Type: String
 

@@ -9,10 +9,13 @@ Endpoint to upload a file. \
 Can be a new file or an existing file. \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in body-request
-  (or if provided: the value of `X-Mime-Type` request-header)
-* the owner (owner of the uploader, `-` if public).
+  (or if provided: the value of `X-Mimetype` request-header)
+* the owner (user-id of the uploader, `-` if public) \
+  (unchaged on update).
 * size
 * md5 hash of the file content (used for [integrity check](/cli#integrity))
+* meta (file meta data) \
+  (set to undefined on create, unchaged on update)
 
 Requires `Content-Type` request-header with value like `multipart/form-data;boundary=delimiter`
 where `delimiter` can be any value containing numbers, letters and dashes.
@@ -108,7 +111,7 @@ Body: \
 File content
 
 Response will contain following headers
-* Content-Type &minus; Mimetype stored at upload (or if provided: the value of the `X-Mime-Type` request-header)
+* Content-Type &minus; Mimetype stored at upload (or if provided: the value of the `X-Mimetype` request-header)
 * Content-Length &minus; Length of file content (bytes)
 * Content-Disposition &minus; Contains info about file to download \
   Example: `attachment; filename=cool-text.txt`
@@ -133,10 +136,10 @@ Body:
 }
 ```
 
-## Update Meta Data
+## Save Meta Data
 **<span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999; ">{path*}</span>**
 
-Saves the meta data for a file.
+Saves the meta data for a file. First save meta data call on a file requires `create` permission, subsequent calls require `update` permission.
 
 ### Request Body
 ```json
@@ -163,7 +166,17 @@ Body:
 {}
 ```
 
-#### Missing update permission
+#### Missing create permission on first save meta data call on a file
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to create texts/examples/cool-text.txt"
+}
+```
+
+#### Missing update permission on subsequent calls
 Status-Code: 401
 
 Body:
@@ -234,7 +247,7 @@ Body:
 ## Load File Data
 **<span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999; ">{path*}</span>**
 
-Loads the data for a file. This includes: meta data, size, mimetype, size and md5 path
+Loads the data for a file. This includes: meta data, size, mimetype, owner and md5 hash.
 
 ### Request Body
 None

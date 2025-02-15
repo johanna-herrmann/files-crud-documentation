@@ -3,13 +3,17 @@
 ## General information about configuration
 
 Configuration can be done, using one of the following methods:
-* Adding a `config.json` to the pwd of the application (`./config.json`).
-* Adding a `config.yaml` or `config.yml` to the pwd of the application (`./config.yaml` or `./config.yml`).
+* Adding a `config.json` to the current working directory (`./config.json`).
+* Adding a `config.yaml` or `config.yml` to the current working directory (`./config.yaml` or `./config.yml`).
 * Set environment variables with `FILES_CRUD_`-prefix
   (or prefix, set via `filescrud --env-prefix`).
 
 All configuration properties are optional (convention over configuration) but some properties are highly recommended in some cases. \
 Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dynamodb` is used as database adapter.
+
+## Precedence
+If you use both, a config file and environment variables,
+the environment variable properties overwrite the config file properties.
 
 ## Syntax
 
@@ -22,9 +26,9 @@ Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dyn
     "database": DatabaseConfig,
     "logging": LoggingConfig,
     "storage": StorageConfig,
-    "path": String,
     "server": ServerConfig,
     "webRoot": String,
+    "tokenExpiresInSeconds": number,
     "register": "all" | "admin" | "token",
     "tokens": [String, ...],
     "region": String,
@@ -46,10 +50,10 @@ logging:
     LoggingConfig
 storage:
     StorageConfig
-path: String
 server:
     ServerConfig
 webRoot: String
+tokenExpiresInSeconds: number
 register: all | admin | token
 tokens:
     - String,
@@ -68,9 +72,9 @@ FILES_CRUD_DIRECTORY_PERMISSIONS...
 FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
-FILES_CRUD_PATH=String
 FILES_CRUD_SERVER...
 FILES_CRUD_WEBROOT=String
+FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=number
 FILES_CRUD_REGISTER=all|admin|token
 FILES_CRUD_TOKENS=String,...
 FILES_CRUD_REGION=String
@@ -138,14 +142,6 @@ Default: See: [StorageConfig](/configuration/storage)
 
 Type: [StorageConfig](/configuration/storage)
 
-### path
-Specifies the path used to store file data.
-Is also used to store files itself if not specified at `storage.path` and storage is local file system.
-
-Default: `./`
-
-Type: String
-
 ### server
 Specifies configuration for the application server.
 
@@ -159,6 +155,14 @@ Specifies the path to serve as frontend. The application will serve static web c
 Default: none
 
 Type: String
+
+### tokenExpiresInSeconds
+Specifies how many seconds a JWT will be valid after it was issued. \
+If you want the JWTs to be valid for ever (NOT RECOMMENDED), set `tokenExpiresInSeconds` to 0.
+
+Default: 1800 (30 minutes)
+
+Type: number
 
 ### register
 Specifies how users can be added and registered.
@@ -228,6 +232,7 @@ Type: String
         "port": 1234
     },
     "webRoot": "/opt/filescrud/web",
+    "tokenExpiresInSeconds": 3600,
     "register": "token",
     "tokens": ["ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"],
     "region": "us-east-1",
@@ -253,6 +258,7 @@ path: /opt/filescrud
 server:
     port: 1234
 webRoot: /opt/filescrud/web
+tokenExpiresInSeconds: 3600
 register: token
 tokens: 
     - ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
@@ -273,6 +279,7 @@ FILES_CRUD_STORAGE__NAME=s3
 FILES_CRUD_PATH=/opt/filescrud
 FILES_CRUD_SERVER__PORT=1234
 FILES_CRUD_WEBROOT=/opt/filescrud/web
+FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=3600
 FILES_CRUD_REGISTER=token
 FILES_CRUD_TOKENS=1a79a4d60de6718e8e5b326e338ae533,3712c56ef7490da429ffe2d364871edb
 FILES_CRUD_REGION=us-east-1
@@ -303,4 +310,5 @@ If no property is set at all, the application defaults to:
   * No CORS header will be set
   * file size limit is: `100m` (100MiB (104857600 bytes))
 * No static files will be served
+* Auth: JWT tokens will be valid for 30 Minutes
 * registration is disabled (Only admins can add users)

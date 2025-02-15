@@ -54,11 +54,13 @@ FILES_CRUD_SERVER__FILE_SIZE_LIMIT=String | number
 
 Specifies on which ip(s) / domain(s) to listen.
 
-Default: `127.0.0.1` (Only listens on localhost)
+Default: `0.0.0.0` (listens to any source IP)
 
 Type: String
 
-Specifiy `0.0.0.0` to listen on any ip.
+To listen only on `localhost`:
+* If installed via `npm install -g files-crud`: set `server.host` to `127.0.0.1`
+* If using docker: use `-p 127.0.0.1:9000:9000` instead of `-p 9000:9000`
 
 ### server.port
 
@@ -139,7 +141,7 @@ Type: One of
 ### JSON
 
 ```json
-    "host": "0.0.0.0",
+    "host": "127.0.0.1",
     "port": 443,
     "useHttps": true,
     "useHttp2": true,
@@ -156,7 +158,7 @@ Type: One of
 ### YAML
 
 ```yaml
-host: "0.0.0.0"
+host: "127.0.0.1"
 port: 443
 useHttps: true
 useHttp2: true
@@ -171,7 +173,7 @@ fileSizeLimit: 2g
 
 ### Environment Variables
 ```properties
-FILES_CRUD_SERVER__HOST=0.0.0.0
+FILES_CRUD_SERVER__HOST=127.0.0.1
 FILES_CRUD_SERVER__PORT=443
 FILES_CRUD_SERVER__USE_HTTPS=true
 FILES_CRUD_SERVER__USE_HTTP2=true

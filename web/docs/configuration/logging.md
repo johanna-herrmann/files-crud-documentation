@@ -16,6 +16,7 @@ The logging configuration is used to specify the logging behaviour.
     "errorLogFile": String,
     "ttyLoggingFormat": String,
     "fileLoggingFormat": LoggingFormat,
+    "errorFileLoggingFormat": LoggingFormat,
     "accessLoggingFormat": AccessLoggingFormat,
     "enableLogFileRotation": boolean,
     "logFileRotationFrequencyUnit": "s" | "m" | "h" | "d",
@@ -35,6 +36,7 @@ accessLogFile: String
 errorLogFile: String
 ttyLoggingFormat: String
 fileLoggingFormat: LoggingFormat
+errorFileLoggingFormat: LoggingFormat
 accessLoggingFormat: AccessLoggingFormat
 enableLogFileRotation: boolean
 logFileRotationFrequencyUnit: s | m | h | d
@@ -53,6 +55,7 @@ FILES_CRUD_LOGGING__ACCESS_LOG_FILE=String
 FILES_CRUD_LOGGING__ERROR_LOG_FILE=String
 FILES_CRUD_LOGGING__TTY_LOGGING_FORMAT=String
 FILES_CRUD_LOGGING__FILE_LOGGING_FORMAT=LoggingFormat
+FILES_CRUD_LOGGING__ERROR_FILE_LOGGING_FORMAT=LoggingFormat
 FILES_CRUD_LOGGING__ACCESS_LOGGING_FORMAT=AccessLoggingFormat
 FILES_CRUD_LOGGING__ENABLE_LOG_FILE_ROTATION=boolean
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_FREQUENCY_UNIT=s | m | h | d
@@ -140,10 +143,24 @@ Type: LoggingFormat, which is one of
 See also: [Logging Formats](#logging-formats)
 
 ### logging.fileLoggingFormat
-Specifies which format to use for file logging.
-This is used in the following to cases:
-* Error logging to error log file
-* Console logging if redirected to file
+Specifies which format to use for file logging
+if stdout or stderr is redirected to a file.
+
+Default: [json](json-error-log-file-and-console)
+
+Type: LoggingFormat, which is one of
+* `humanReadableLine` &minus; Logs a simple line of information
+* `humanReadableBlock` &minus; Logs a block of information, one line per detail
+* `coloredHumanReadableLine` &minus; Logs a colored line of information
+   (color depends on logging level)
+* `coloredHumanReadableBlock` &minus; Logs a colored block of information, one line per detail
+   (color depends on logging level)
+* `json` &minus; Logs all information as single line json object.
+
+See also: [Logging Formats](#logging-formats)
+
+### logging.errorFileLoggingFormat
+Specifies which format to use for error file logging.
 
 Default: [json](json-error-log-file-and-console)
 
