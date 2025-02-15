@@ -141,7 +141,7 @@ Type: One of
 ### JSON
 
 ```json
-    "host": "0.0.0.0",
+    "host": "127.0.0.1",
     "port": 443,
     "useHttps": true,
     "useHttp2": true,
@@ -158,7 +158,7 @@ Type: One of
 ### YAML
 
 ```yaml
-host: "0.0.0.0"
+host: "127.0.0.1"
 port: 443
 useHttps: true
 useHttp2: true
@@ -173,7 +173,7 @@ fileSizeLimit: 2g
 
 ### Environment Variables
 ```properties
-FILES_CRUD_SERVER__HOST=0.0.0.0
+FILES_CRUD_SERVER__HOST=127.0.0.1
 FILES_CRUD_SERVER__PORT=443
 FILES_CRUD_SERVER__USE_HTTPS=true
 FILES_CRUD_SERVER__USE_HTTP2=true
