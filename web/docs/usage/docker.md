@@ -75,6 +75,8 @@ services:
       - ./fc:/data
     ports:
       - 9000:9000
+      # or if you want restrict access to docker host's 127.0.0.1
+      # - 127.0.0.1:9000:9000
 
   db:
     image: postgres:14-alpine
@@ -91,3 +93,10 @@ services:
       timeout: 10s
       retries: 5
 ```
+
+command:
+```
+docker compose up -d
+```
+
+Notice the space instead of a hyphen.
