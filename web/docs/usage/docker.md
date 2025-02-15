@@ -58,7 +58,7 @@ name: filescrud
 services:
   fc:
     image: filescrud/filescrud
-    restart: always
+    restart: on-failure:3
     depends_on:
       db:
         condition: service_healthy
@@ -76,7 +76,7 @@ services:
 
   db:
     image: postgres:14-alpine
-    restart: always
+    restart: on-failure:3
     environment:
       - POSTGRES_USER=dbUser
       - POSTGRES_PASSWORD=dbPassword
