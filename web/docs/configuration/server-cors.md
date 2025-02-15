@@ -7,7 +7,7 @@ Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 ### JSON
 
 ```json
-    "origin": String | boolean | [String | boolean],
+    "origin": String | [String],
     "methods": String | [String],
     "allowedHeaders": String | [String],
     "exposedHeaders": String | [String],
@@ -18,7 +18,7 @@ Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 ### YAML
 
 ```yaml
-origin: String | boolean | [String | boolean]
+origin: String | [String]
 methods: String | [String]
 allowedHeaders: String | [String]
 exposedHeaders: String | [String]
@@ -29,7 +29,7 @@ maxAge: number
 ### Environment Variables
 
 ```properties
-FILES_CRUD_SERVER__CORS__ORIGIN=String | boolean | [String | boolean]
+FILES_CRUD_SERVER__CORS__ORIGIN=String | [String]
 FILES_CRUD_SERVER__CORS__METHODS=String | [String]
 FILES_CRUD_SERVER__CORS__ALLOWED_HEADERS=String | [String]
 FILES_CRUD_SERVER__CORS__EXPOSED_HEADERS=String | [String]
@@ -45,7 +45,7 @@ Sets the value of the
 [Access-Control-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: One of
 * String &minus; comma-separated list of origins
@@ -59,7 +59,7 @@ Sets the value of the
 [Access-Control-Allow-Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-methods)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: One of
 * String &minus; comma-separated list of methods
@@ -73,7 +73,7 @@ Sets the value of the
 [Access-Control-Allow-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-headers)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: One of
 * String &minus; comma-separated list of headers
@@ -87,7 +87,7 @@ Sets the value of the
 [Access-Control-Expose-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-expose-headers)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: One of
 * String &minus; comma-separated list of headers
@@ -101,7 +101,7 @@ Sets the value of the
 [Access-Control-Allow-Credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-credentials)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: boolean (`true` if credentials should be allowed)
 
@@ -111,7 +111,7 @@ Sets the value of the
 [Access-Control-Max-Age](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-max-age)
 header.
 
-Default: none (no will be sent)
+Default: none (header won't be sent)
 
 Type: number (seconds)
 
@@ -145,7 +145,7 @@ maxAge: 3600
 
 ```properties
 FILES_CRUD_SERVER__CORS__ORIGIN='*'
-FILES_CRUD_SERVER__CORS__METHODS=GET,POST
+FILES_CRUD_SERVER__CORS__METHODS='GET,POST'
 FILES_CRUD_SERVER__CORS__ALLOWED_HEADERS='*'
 FILES_CRUD_SERVER__CORS__EXPOSED_HEADERS=Server
 FILES_CRUD_SERVER__CORS__CREDENTIALS=false

@@ -87,7 +87,7 @@ Type: One of
 * `full` &minus; Logs full ip address
 * `anonymous` &minus; Logs anonymized ip address (last part will be replaced by `_`) \
   (Example: `233.42.23._` instead of `233.42.23.123`)
-* `none` &minus; Does not log ip addresses (whole address be replaced by `_`)
+* `none` &minus; Does not log ip addresses (whole address will be replaced by `_`)
 
 ### logging.enableErrorFileLogging
 
@@ -101,7 +101,7 @@ Type: Boolean
 
 ### logging.enableAccessLogging
 
-Static file access always wille be logged (method, path, statusCode) to console.
+Static file access always will be logged (method, path, statusCode) to console.
 If `true`, additionally,
 each access (static files and API) will be logged detailed to a file,
 specified as [logging.accessLogFile](#loggingaccesslogfile).
@@ -236,6 +236,7 @@ Type: boolean
     "errorLogFile": "/opt/fc/error.log",
     "ttyLoggingFormat": "coloredHumanReadableBock",
     "fileLoggingFormat": "humanReadableLine",
+    "errorFileLoggingFormat": "humanReadableBlock",
     "accessLoggingFormat": "classic",
     "enableLogFileRotation": true,
     "logFileRotationFrequencyUnit": "h",
@@ -255,6 +256,7 @@ accessLogFile: /opt/fc/access.log
 errorLogFile: /opt/fc/error.log
 ttyLoggingFormat: coloredHumanReadableBock
 fileLoggingFormat: humanReadableLine
+errorFileLoggingFormat: humanReadableBlock
 accessLoggingFormat: classic
 enableLogFileRotation: true
 logFileRotationFrequencyUnit: h
@@ -272,6 +274,7 @@ FILES_CRUD_LOGGING__ACCESS_LOG_FILE=/opt/fc/access.log
 FILES_CRUD_LOGGING__ERROR_LOG_FILE=/opt/fc/error.log
 FILES_CRUD_LOGGING__TTY_LOGGING_FORMAT=coloredhumanReadableBlock
 FILES_CRUD_LOGGING__FILE_LOGGING_FORMAT=humanReadableLine
+FILES_CRUD_LOGGING__ERROR_FILE_LOGGING_FORMAT=humanReadableBlock
 FILES_CRUD_LOGGING__ACCESS_LOGGING_FORMAT=json
 FILES_CRUD_LOGGING__ENABLE_LOG_FILE_ROTATION=true
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_FREQUENCY_UNIT=h

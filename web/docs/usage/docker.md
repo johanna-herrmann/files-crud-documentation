@@ -1,6 +1,6 @@
 # Usage - Docker
 
-This page shows, how to files-crud docker image.
+This page shows, how to use files-crud docker image.
 
 ## docker run
 
@@ -10,9 +10,9 @@ This page shows, how to files-crud docker image.
 or to listen only on `localhost`: \
 `docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
 
-* LOCAL_PORT &minus; local port whichs redirects to docker container exposed port
-* PORT &minus; docker container port to expose
-* LOCAL_PATH &minus; local path to bind to container's data directory `/data`
+* LOCAL_PORT &minus; local port which redirects to docker container port
+* PORT &minus; docker container port to redirect to
+* LOCAL_PATH &minus; local path to bind to container's data directory `/data` (must exist already)
 * ENV_NAME &minus; Environment variable name
 * ENV_VALUE &minus; Environment variable value
 * COMMAND &minus; [CLI](/usage/cli) sub command to run
@@ -22,8 +22,7 @@ or to listen only on `localhost`: \
 ### Examples
 
 #### Start with defaults
-The following starts the application width default configuration
-([server.host](/configuration/server#host) is set to `0.0.0.0` automatically).
+The following starts the application width default configuration.
 
 `docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start`
 
@@ -41,7 +40,7 @@ shortcut:
 ## docker compose
 
 The following example shows,
-how to start files-crud with a mongodb, using environment variables.
+how to start files-crud with a postgresql, using environment variables.
 
 docker-compose.yml
 ```yaml
@@ -94,7 +93,9 @@ command:
 docker compose up -d
 ```
 
-Notice the space instead of a hyphen.
+Notice the space instead of a hyphen. \
+wrong: `docker-compose` \
+correct: `docker compose`
 
 ## Reload configuration in running container
 Assuming container is running with name `filescrud_1`:
@@ -104,7 +105,7 @@ Assuming container is running with name `filescrud_1`:
 
 ### passing environment variables
 
-`docker exec --init -it -e FC_SERVER__HOST=0.0.0.0 -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
+`docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
 
 ## Troubleshooting
 

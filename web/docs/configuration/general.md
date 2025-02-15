@@ -73,7 +73,7 @@ FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
 FILES_CRUD_SERVER...
-FILES_CRUD_WEBROOT=String
+FILES_CRUD_WEB_ROOT=String
 FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=number
 FILES_CRUD_REGISTER=all|admin|token
 FILES_CRUD_TOKENS=String,...
@@ -115,7 +115,7 @@ Default: `crudcr------`
 Type: String
 
 ### directoryPermissions
-Specifies directory permissions for specific directories.
+Specifies permissions for specific directories.
 
 Default: empty
 
@@ -158,7 +158,7 @@ Type: String
 
 ### tokenExpiresInSeconds
 Specifies how many seconds a JWT will be valid after it was issued. \
-If you want the JWTs to be valid for ever (NOT RECOMMENDED), set `tokenExpiresInSeconds` to 0.
+If you want the JWTs to be valid forever (NOT RECOMMENDED), set `tokenExpiresInSeconds` to 0.
 
 Default: 1800 (30 minutes)
 
@@ -278,7 +278,7 @@ FILES_CRUD_LOGGING__IP_LOGGING=full
 FILES_CRUD_STORAGE__NAME=s3
 FILES_CRUD_PATH=/opt/filescrud
 FILES_CRUD_SERVER__PORT=1234
-FILES_CRUD_WEBROOT=/opt/filescrud/web
+FILES_CRUD_WEB_ROOT=/opt/filescrud/web
 FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=3600
 FILES_CRUD_REGISTER=token
 FILES_CRUD_TOKENS=1a79a4d60de6718e8e5b326e338ae533,3712c56ef7490da429ffe2d364871edb
@@ -300,11 +300,12 @@ If no property is set at all, the application defaults to:
     * error log: `<AppRoot>/error.log`
   * formats:
     * console: `coloredHumanReadableLine`
+    * console redirected to file: `json`
     * access log file: `json`
     * error log file: `json`
 * Local file system storage is used with path: `<AppRoot>/`
 * Server:
-  * Listens on `127.0.0.1:9000`
+  * Listens on `0.0.0.0:9000`
   * No ssl
   * `X-Robots-Tag` header is not set
   * No CORS header will be set
