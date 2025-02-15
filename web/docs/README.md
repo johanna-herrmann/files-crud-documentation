@@ -11,7 +11,7 @@ Documentation powered by [docute](https://docute.egoist.dev/)
 
 install
 ```
-npm install -g filescrud
+npm install -g files-crud
 ```
 
 startup
