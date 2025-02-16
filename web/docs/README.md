@@ -7,6 +7,8 @@ Written in Typescript.
 
 Documentation powered by [docute](https://docute.egoist.dev/)
 
+[Source code on GitHub](https://github.com/johanna-herrmann/files-crud/)
+
 ## Quickstart
 
 ### nodejs
