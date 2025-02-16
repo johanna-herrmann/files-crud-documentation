@@ -12,6 +12,11 @@
     <script src="/js/docute.js"></script>
     <script src="/js/sidebar.js"></script>
     <script>
+      const footer = `
+      <div style="border-top:1px solid var(--border-color);padding-top:30px;margin: 40px 0;color:#999999;font-size: .9rem;">
+      &copy; ${new Date().getFullYear()} Developed by <a href="https://github.com/johanna-herrmann/" target="_blank">Johanna Herrmann</a>. Released under MIT license.
+      </div>
+      `;
       new Docute({
         target: '#docute',
         sourcePath: '/docs/',
@@ -19,7 +24,8 @@
         router: { mode: 'history' },
         darkThemeToggler: true,
         detectSystemDarkTheme: true,
-        sidebar
+        sidebar,
+        footer,
       })
     </script>
   </body>
