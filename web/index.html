@@ -31,7 +31,7 @@
         </div>
       `;
 
-      new Docute({
+      const docute = new Docute({
         target: '#docute',
         sourcePath: '/docs/',
         highlight: ['json', 'yaml', 'properties', 'bash'],
@@ -52,6 +52,20 @@
           }
         }
       });
+
+      while(!docute.app._isMounted) {
+        continue;
+      }
+
+      setTimeout(() => {
+        if (self.location.pathname.startsWith('/de/')) {
+          document.querySelectorAll('.router-link-active')[0].href = '/de/';
+        }
+        document.querySelector('.LanguageSelector select').addEventListener('change', () => {
+          self.location.reload();
+        });
+      }, 1_000);
+        
     </script>
   </body>
 </html>
