@@ -14,23 +14,23 @@ Dokumentation powered by [docute](https://docute.egoist.dev/)
 ### nodejs
 
 Installation
-```
+```bash
 npm install -g files-crud
 ```
 
 Start
-```
+```bash
 filescrud start
 ```
 
 ### docker
-```
+```bash
 docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
 
 ### List files in a directory
 
 Um alle Dateien und Ordner in `<speicher_hauptordner>/images/` aufzulisten:
-```
+```bash
 curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <jwt>" http://localhost:9000/api/file/list/images
 ```

@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="/docute.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
-      .pre-wrapper[data-lang="properties"]::before {
+      .page-content .pre-wrapper[data-lang="properties"]::before {
         content: "env";
+      }
+
+      .page-content .pre-wrapper[data-lang="bash"]::before {
+        content: "shell";
+      }
+
+      .page-content .pre-wrapper {
+        margin: -13px 0 2rem 0;
       }
     </style>
   </head>
@@ -26,7 +34,7 @@
       new Docute({
         target: '#docute',
         sourcePath: '/docs/',
-        highlight: ['json', 'yaml', 'properties'],
+        highlight: ['json', 'yaml', 'properties', 'bash'],
         router: { mode: 'history' },
         darkThemeToggler: true,
         detectSystemDarkTheme: true,

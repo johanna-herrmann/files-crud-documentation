@@ -5,10 +5,14 @@ This page shows, how to use files-crud docker image.
 ## docker run
 
 ### Synopsis
-`docker run --init -dt -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
+```bash
+docker run --init -dt -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
+```
 
-or to listen only on `localhost`: \
-`docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]`
+or to listen only on `localhost`:
+```bash
+docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
+```
 
 * LOCAL_PORT &minus; local port which redirects to docker container port
 * PORT &minus; docker container port to redirect to
@@ -24,17 +28,25 @@ or to listen only on `localhost`: \
 #### Start with defaults
 The following starts the application width default configuration.
 
-`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start`
+```bash
+docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start
+```
 
 shortcut:
-`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud` \
+```bash
+docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud
+```
 (passing no sub command, options and args)
 
 #### Start with custom host and port
-`docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start`
+```bash
+docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start
+```
 
 #### Check integrity for whole storage
-`docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity`
+```bash
+docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity
+```
 
 
 ## docker compose
@@ -89,7 +101,7 @@ services:
 ```
 
 command:
-```
+```bash
 docker compose up -d
 ```
 
@@ -101,11 +113,15 @@ correct: `docker compose`
 Assuming container is running with name `filescrud_1`:
 
 ### without passing environment variables
-`docker exec -it filescrud_1 filescrud reload`
+```bash
+docker exec -it filescrud_1 filescrud reload
+```
 
 ### passing environment variables
 
-`docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload`
+```bash
+docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload
+```
 
 ## Troubleshooting
 

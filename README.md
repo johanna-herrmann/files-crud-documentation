@@ -3,7 +3,7 @@
 Documentation for files-crud, powered by [docute](https://docute.egoist.dev/)
 
 ## serve locally
-```sh
+```bash
 npm run serve
 ```
 

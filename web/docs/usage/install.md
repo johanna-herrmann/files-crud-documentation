@@ -15,7 +15,7 @@ Example: `filescrud start`
   * 22.14.0
 
 ### Install
-```sh
+```bash
 npm install -g files-crud
 ```
 
@@ -26,6 +26,6 @@ You also can use our files-crud docker image.
 * [docker](https://www.docker.com/) installed
 
 ### Get image
-```sh
+```bash
 docker pull filescrud/filescrud:latest
 ```
