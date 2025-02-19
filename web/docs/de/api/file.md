@@ -1,35 +1,35 @@
-# API: File Endpoints
+# API: Datei Endpoints
 
-This page documents the API file Endpoints.
+Diese Seite dokumentiert die API Datei Endpoints.
 
-## Upload File
+## Datei hochladen
 **<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{path*}</span>**
 
-Endpoint to upload a file. \
-Can be a new file or an existing file. \
-It also stores following properties as file data.
-* the Mimetype provided in the value of the `Content-Type` parameter in request-body
-  (or if provided: the value of `X-Mimetype` request-header)
-* the owner (user-id of the uploader, `-` if public) \
-  (unchaged on update).
-* size
-* md5 hash of the file content (used for [integrity check](/cli#integrity))
-* meta (file meta data) \
-  (set to undefined on create, unchaged on update)
+Endpoint um eine Datei hochzuladen. \
+Kann eine neue oder eine bereits existierende Datei sein. \
+Speichert außerdem folgende Eigenschaften als Datei-Daten.
+* Den Mimetype der via `Content-Type`-Parameter im request-body angegeben wurde
+  (oder falls angegeben: der Wert des `X-Mimetype`-request-headers)
+* Den Eigentümer (user-id des Uploaders, `-` wenn Upload ohne Login erfolgt) \
+  (Unverändert beim überschreiben der Datei).
+* Größe
+* MD5 hash des Dateiinhalts (Verwendet für den [integrity check](/cli#integrity))
+* meta (Datei-Metadaten) \
+  (undefined beim initialen Upload, unverändert beim überschreiben der Datei)
 
-Requires `Content-Type` request-header with value like `multipart/form-data;boundary=delimiter`
-where `delimiter` can be any value containing numbers, letters and dashes.
-The `delimiter` must be used in request-body.
+Der `Content-Type`-request-header muss gesendet werden, mit einem Wert wie `multipart/form-data;boundary=delimiter`,
+wobei `delimiter` eine beliebige Zeichenfolge aus Zahlen, Buchstaben und Bindestrichen sein kann.
+Der `delimiter` muss im request-body verwendet werden.
 
-We recommend to also set the `Content-Length` request-header.
+Wir empfehlen, ebenfalls den `Content-Length`-request-header zu senden.
 
-We highly recommend to use a file upload tool (Upload Form, JS Files API, etc.).
+Wir empfehlen stark, Upload-Tools (Upload-Formular, JS Files API, etc.) zu verwenden.
 
 ### Request Body
-File as `multipart/form-data`, using `file` as value for the `name` parameter.
-`filename` parameter will be ignored.
+Datei als `multipart/form-data`, mit `file` als Wert für den `name`-Parameter.
+Der `filename`-Parameter wird ignoriert.
 
-Example with delimiter `---delimiter123`:
+Beispiel mit delimiter `---delimiter123`:
 ```
 ---delimiter123
 Content-Disposition: form-data; name="file"; filename="does-not-matter.txt"
@@ -40,15 +40,15 @@ example-text-file-content
 
 ```
 
-### Request Path parameters
-* path &minus; The path where to upload the file to (relative to storage root)
+### Request Path Parameter
+* path &minus; Der Pfad wohin die Datei hochgeladen werden soll (Relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: green; ">POST</span> /api/file/save/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -58,7 +58,7 @@ Body:
 }
 ```
 
-#### Missing create permission
+#### Fehlende create Berechtigung
 Status-Code: 401
 
 Body:
@@ -68,7 +68,7 @@ Body:
 }
 ```
 
-#### Missing update permission
+#### Fehlende update Berechtigung
 Status-Code: 401
 
 Body:
@@ -78,7 +78,7 @@ Body:
 }
 ```
 
-#### File too big
+#### Datei zu groß
 Status-Code: 413
 
 Body (example for limit: 10k):
@@ -88,35 +88,35 @@ Body (example for limit: 10k):
 }
 ```
 
-## Download File
+## Datei herunterladen
 **<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span>**
 
-Endpoint to download a file.
+Endpoint um eine Datei herunterzuladen.
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* path &minus; The path where to download the file from (relative to storage root)
+### Request Path Parameter
+* path &minus; Der Pfad von wo die Datei heruntergeladen werden soll (Relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body: \
 File content
 
-Response will contain following headers
-* Content-Type &minus; Mimetype stored at upload (or if provided: the value of the `X-Mimetype` request-header)
-* Content-Length &minus; Length of file content (bytes)
-* Content-Disposition &minus; Contains info about file to download \
-  Example: `attachment; filename=cool-text.txt`
+Response enthält folgende header
+* Content-Type &minus; Mimetype der Upload gespeichert wurde (oder falls angegeben: Der Wert des `X-Mimetype`-request-headers)
+* Content-Length &minus; Größe der Datei (bytes)
+* Content-Disposition &minus; Enthält Informationen zur herunterzuladenden Datei \
+  Beispiel: `attachment; filename=cool-text.txt`
 
-#### Missing read permission
+#### Fehlende read Berechtigung
 Status-Code: 401
 
 Body:
@@ -126,7 +126,7 @@ Body:
 }
 ```
 
-#### File does not exist
+#### Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -136,10 +136,12 @@ Body:
 }
 ```
 
-## Save Meta Data
+## Metadaten speichern
 **<span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999; ">{path*}</span>**
 
-Saves the meta data for a file. First save meta data call on a file requires `create` permission, subsequent calls require `update` permission.
+Speichert die Metadaten zu einer Datei.
+Das erste Speichern der Metadaten einer Datei erfordert `create` Berechtigungen.
+Danach erfordert jedes weitere Speichern von Metadaten `update` Berechtigungen.
 
 ### Request Body
 ```json
@@ -150,15 +152,15 @@ Saves the meta data for a file. First save meta data call on a file requires `cr
 }
 ```
 
-### Request Path parameters
-* path &minus; The path to the file to save the meta data of (relative to storage root)
+### Request Path Parameter
+* path &minus; Der Pfad zu der Datei zu der die Metadaten gespeichert werden sollen (relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: green; ">POST</span> /api/file/save-meta/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -166,7 +168,7 @@ Body:
 {}
 ```
 
-#### Missing create permission on first save meta data call on a file
+#### Fehlende create Berechtigung beim ersten speichern
 Status-Code: 401
 
 Body:
@@ -176,7 +178,7 @@ Body:
 }
 ```
 
-#### Missing update permission on subsequent calls
+#### Fehlende update Berechtigung bei jedem weiteren speichern
 Status-Code: 401
 
 Body:
@@ -186,7 +188,7 @@ Body:
 }
 ```
 
-#### File does not exist
+#### Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -196,23 +198,23 @@ Body:
 }
 ```
 
-## Load Meta Data
+## Metadaten laden
 **<span style="color: #60affe; ">GET</span> /api/file/load-meta/<span style="color: #999; ">{path*}</span>**
 
-Loads the meta data for a file.
+Lädt die Metadaten zu einer Datei.
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* path &minus; The path to the file to load the meta data from (relative to storage root)
+### Request Path Parameter
+* path &minus; Der Pfad zu der Datei zu der die Metadaten geladen werden sollen (Relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: #60affe; ">GET</span> /api/file/load-meta/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -250,7 +252,7 @@ Body:
 Loads the data for a file. This includes: meta data, size, mimetype, owner and md5 hash.
 
 ### Request Body
-None
+Keiner
 
 ### Request Path parameters
 * path &minus; The path to the file to load the data from (relative to storage root)
@@ -260,7 +262,7 @@ Examle:
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -278,7 +280,7 @@ Body:
 }
 ```
 
-#### Missing read permission
+#### Fehlende read Berechtigung
 Status-Code: 401
 
 Body:
@@ -288,7 +290,7 @@ Body:
 }
 ```
 
-#### File does not exist
+#### Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -298,25 +300,25 @@ Body:
 }
 ```
 
-## List Files And Directories
+## Dateien und Ordner auflisten
 **<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
 
-Lists files and directories in a directory.
+Zeigt die Dateien und Ordner eines Ordners an
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* path &minus; The path to the directory to list the files and directories in (relative to storage root) \
-  (empty to list items of storage root)
+### Request Path Parameter
+* path &minus; Der Pfad zum Ordner von dem die Dateien und Ordner angezeigt werden sollen (Relativ zum Hauptordner des Speichers) \
+  (leer, um die Dateien und Ordner des Hauptordners anzuzeigen)
 
-Examles:
+Beispiele:
 * <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999">texts/examples</span>
 * <span style="color: #60affe; ">GET</span> /api/file/list/
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -326,7 +328,7 @@ Body:
 }
 ```
 
-#### Missing read permission
+#### Fehlende read Berechtigung
 Status-Code: 401
 
 Body:
@@ -336,7 +338,7 @@ Body:
 }
 ```
 
-#### Directory does not exist
+#### Ordner existiert nicht
 Status-Code: 400
 
 Body:
@@ -346,10 +348,10 @@ Body:
 }
 ```
 
-## Copy File
+## Datei kopieren
 **<span style="color: green; ">POST</span> /api/file/copy**
 
-Copies a file.
+Kopiert eine Datei.
 
 ### Request Body
 ```json
@@ -360,18 +362,18 @@ Copies a file.
 }
 ```
 
-* path &minus; Path to the file to copy from
-* targetPath &minus; Path to the file to copy to
-* copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file
-  * true: target file will have same owner as source file
-  * false (default): target file owner will be the person which does the copy if target file is new, else owner stays unchanged.
+* path &minus; Pfad zur Datei die kopiert werden
+* targetPath &minus; Pfad zur Ziel-Datei
+* copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
+  * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
+  * false (standard): Eigentümer ist der jenige der die Datei kopiert, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -381,7 +383,7 @@ Body:
 }
 ```
 
-#### Missing read permission on source file
+#### Fehlende read Berechtigung für die Quell-Datei
 Status-Code: 401
 
 Body:
@@ -391,7 +393,7 @@ Body:
 }
 ```
 
-#### Missing create permission for target file
+#### Fehlende create Berechtigung für die Ziel-Datei
 Status-Code: 401
 
 Body:
@@ -401,7 +403,7 @@ Body:
 }
 ```
 
-#### Missing update permission on target file
+#### Fehlende update Berechtigung für die Ziel-Datei
 Status-Code: 401
 
 Body:
@@ -411,7 +413,7 @@ Body:
 }
 ```
 
-#### None-admin user tries to copy the owner attribute (copyOwner)
+#### Nutzer der kein Admin ist, versucht Eigentümer-Attribut zu kopieren (copyOwner)
 Status-Code: 401
 
 Body:
@@ -421,7 +423,7 @@ Body:
 }
 ```
 
-#### Source File does not exist
+#### Quell-Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -431,10 +433,10 @@ Body:
 }
 ```
 
-## Move File
+## Datei verschieben
 **<span style="color: green; ">POST</span> /api/file/move**
 
-Moves a file to another path (can also be used to rename a file).
+Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
 
 ### Request Body
 ```json
@@ -445,18 +447,18 @@ Moves a file to another path (can also be used to rename a file).
 }
 ```
 
-* path &minus; Path to the file to move from
-* targetPath &minus; Path to the file to move to
-* copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file had
-  * true: target file will have same owner as source file
-  * false (default): target file owner will be the person which does the move, if file is new, else owner stays unchanged.
+* path &minus; Pfad zu der Datei die verschoben werden soll
+* targetPath &minus; Neuer Pfad
+* copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
+  * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
+  * false (standard): Eigentümer ist der jenige der die Datei verschiebt, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -466,7 +468,7 @@ Body:
 }
 ```
 
-#### Missing read permission on source file
+#### Fehlende read Berechtigung für die Quell-Datei
 Status-Code: 401
 
 Body:
@@ -476,7 +478,7 @@ Body:
 }
 ```
 
-#### Missing create permission for target file
+#### Fehlende create Berechtigung für die Ziel-Datei
 Status-Code: 401
 
 Body:
@@ -486,7 +488,7 @@ Body:
 }
 ```
 
-#### Missing update permission on target file
+#### Fehlende update Berechtigung für die Ziel-Datei
 Status-Code: 401
 
 Body:
@@ -496,7 +498,7 @@ Body:
 }
 ```
 
-#### Missing delete permission on source file
+#### Fehlende delete Berechtigung für die Quell-Datei
 Status-Code: 401
 
 Body:
@@ -506,7 +508,7 @@ Body:
 }
 ```
 
-#### None-admin user tries to copy the owner attribute (copyOwner)
+#### Nutzer der kein Admin ist, versucht Eigentümer-Attribut zu kopieren (copyOwner)
 Status-Code: 401
 
 Body:
@@ -516,7 +518,7 @@ Body:
 }
 ```
 
-#### Source File does not exist
+#### Quell-Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -526,23 +528,23 @@ Body:
 }
 ```
 
-## Delete File
+## Datei löschen
 **<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999; ">{path*}</span>**
 
-Deletes a file.
+Löscht eine Datei
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* path &minus; The path to the file to delete (relative to storage root)
+### Request Path Parameter
+* path &minus; Der Pfad zu der Datei die gelöscht werden soll (Relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -550,7 +552,7 @@ Body:
 {}
 ```
 
-#### Missing delete permission
+#### Fehlende delete Berechtigung
 Status-Code: 401
 
 Body:
@@ -560,7 +562,7 @@ Body:
 }
 ```
 
-#### File does not exist
+#### Datei existiert nicht
 Status-Code: 400
 
 Body:

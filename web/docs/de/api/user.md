@@ -1,11 +1,11 @@
-# API: User Endpoints
+# API: Benutzer Endpoints
 
-This page documents the API user Endpoints.
+Diese Seite dokumentiert die API Benutzer Endpoints.
 
-## Register
+## Registrieren
 **<span style="color: green; ">POST</span> /api/register**
 
-Registers a new user
+Registtriert einen neuen Benutzer
 
 ### Request Body
 ```json
@@ -19,18 +19,18 @@ Registers a new user
 }
 ```
 
-* username (String) &minus; Desired username for the new user
-* password (String) &minus; Desired password for the new user
-* meta (Object) &minus; Optional object for user meta data
+* username (String) &minus; Gewünschter Benutzername für den neuen Benutzer
+* password (String) &minus; Gewünschtes Passwort für den neuen Benutzer
+* meta (Object) &minus; Optionales Objekt für Metadaten zum Benutzer
 * token (String) &minus;
-  Optional string: If registration-mode is set to `token`, a valid token must be provided here
+  Optionale zeichenfolge: Wenn registration-mode ist `token`, muss der Wert ein gültiger Token sein
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -40,7 +40,7 @@ Body:
 }
 ```
 
-#### Error: user already exists
+#### Fehler: Benutzer existiert bereits
 Status-Code: 400
 
 Body:
@@ -50,7 +50,7 @@ Body:
 }
 ```
 
-#### Error: registration is disabled (admin have to add users)
+#### Fehler: Registreirung ist deaktiviert (Benutzer müssen durch Admins hinzugefügt werden)
 Status-Code: 401
 
 Body:
@@ -60,7 +60,7 @@ Body:
 }
 ```
 
-#### Error: registration is restricted (token must be provided)
+#### Fehler: Registerierung ist eingeschränkt (Gültiger Token muss mitgesendet werden)
 Status-Code: 401
 
 Body:
@@ -70,13 +70,13 @@ Body:
 }
 ```
 
-## Login
+## Einloggen
 **<span style="color: green; ">POST</span> /api/login**
 
-Logins user.
-It authorizes using username and password and provides JWT.
-The JWT must be sent in subsequent requests, using `Authorization`-Header. \
-(The `Bearer `-prefix is optional)
+Loggt einen Benutzer ein.
+Authentisiert via Benutzername und Passwort und stellt einen JWT aus.
+Der JWT muss in nachfolgenden Anfragen gesendet werden, mittels `Authorization`-Header. \
+(Der `Bearer `-Prefix ist optional)
 
 ### Request Body
 ```json
@@ -86,15 +86,15 @@ The JWT must be sent in subsequent requests, using `Authorization`-Header. \
 }
 ```
 
-* username (String) &minus; username for login
-* password (String) &minus; password for login
+* username (String) &minus; Benutzername für Login
+* password (String) &minus; Passwort für Login
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -104,11 +104,11 @@ Body:
   "expiresAt": 2123456789123
 }
 ```
-* token &minus; The issued JWT
+* token &minus; Der ausgestellte Token (JWT)
 * expiresAt: &minus;
-  The unix timestamp in milli seconds, when the JWT expires, 0 if it never expires
+  Der Unix Timestamp in Millisekunden, wann der JWT abläuft, 0 wenn er niemals abläuft
 
-#### Error: wrong username and/or password
+#### Fehler: Falscher Benutzername und/oder falsches Passwort
 Status-Code: 401
 
 Body:
@@ -118,7 +118,7 @@ Body:
 }
 ```
 
-#### Error: Invalid login attempts exceeded
+#### Fehler: Anzahl fehlerhafter Versuche überschritten
 Status-Code: 401
 
 Body:
@@ -128,11 +128,10 @@ Body:
 }
 ```
 
-## Add User
+## Benutzer hinzufügen
 **<span style="color: green; ">POST</span> /api/user/add**
 
-Adds a new user. Used by an admin to add a new user
-
+Fügt einen neuen Benutzer hinzu. Nur für Admins
 ### Request Body
 ```json
 {
@@ -145,17 +144,17 @@ Adds a new user. Used by an admin to add a new user
 }
 ```
 
-* username (String) &minus; Desired username for the new user
-* password (String) &minus; Desired password for the new user
-* admin (boolean) &minus; Defines if the new user will be an admin
-* meta (Object) &minus; Optional object for user meta data
+* username (String) &minus; Gewünschter Benutzername für den neuen Benutzer
+* password (String) &minus; Gewünschtes Passwort für den neuen Benutzer
+* admin (boolean) &minus; Gibt an, ob der neue Benutzer ein Admin sein soll
+* meta (Object) &minus; Optionales Objekt für Metadaten zum Benutzer
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -165,7 +164,7 @@ Body:
 }
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -175,7 +174,7 @@ Body:
 }
 ```
 
-#### Error: Not admin
+#### Fehler: Kein Admin
 Status-Code: 401
 
 Body:
@@ -185,7 +184,7 @@ Body:
 }
 ```
 
-#### Error: user already exists
+#### Fehler: Benutzer existiert schon
 Status-Code: 400
 
 Body:
@@ -195,9 +194,9 @@ Body:
 }
 ```
 
-## Update Admin State
+## Admin Status anpassen
 **<span style="color: green; ">POST</span> /api/user/set-admin**
-Changes the admin state of a user
+Ändert den Admin-Status eines Benutzers
 
 ### Request Body
 ```json
@@ -207,15 +206,15 @@ Changes the admin state of a user
 }
 ```
 
-* id (String) &minus; id of the user to change the state for
-* admin (boolean) &minus; New state (`true`: admin, `false`: not admin)
+* id (String) &minus; ID des Benutzers für den der Status geändert werden soll
+* admin (boolean) &minus; Neuer Status (`true`: Admin, `false`: nicht Admin)
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -223,7 +222,7 @@ Body:
 {}
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -233,7 +232,7 @@ Body:
 }
 ```
 
-#### Error: Not admin
+#### Fehler: Kein Admin
 Status-Code: 401
 
 Body:
@@ -243,10 +242,10 @@ Body:
 }
 ```
 
-## Change Username
+## Benutzername ändern
 **<span style="color: green; ">POST</span> /api/user/change-username**
 
-Changes the username of a user
+Ändert den Benutzernamen eines Benutzers.
 
 ### Request Body
 ```json
@@ -256,15 +255,15 @@ Changes the username of a user
 }
 ```
 
-* id (String) &minus; id of the user to change the username for (`self` to change own username)
-* newUsername (String) &minus; New username for user
+* id (String) &minus; ID des Benutzers dessen Benutzername geändert werden soll (`self` um den eigenen Benutzernamen zu ändern)
+* newUsername (String) &minus; Neuer Benutzername des Benutzers
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -274,7 +273,7 @@ Body:
 }
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -284,7 +283,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to rename other user
+#### Fehler: Nicht-Admin versucht Benutzername anderer Bunutzer zu ändern
 Status-Code: 401
 
 Body:
@@ -294,10 +293,10 @@ Body:
 }
 ```
 
-## Change Password
+## Passwort ändern
 **<span style="color: green; ">POST</span> /api/user/change-password**
 
-Changes the password of a user
+Ändert das Passwort eines Benutzers
 
 ### Request Body
 ```json
@@ -308,16 +307,16 @@ Changes the password of a user
 }
 ```
 
-* id (String) &minus; id of the user to change the password for (`self` to change own password)
+* id (String) &minus; ID des Benutzers von dem das Passwort geändert werden soll (`self` um das eigene Passwort zu ändern)
 * oldPassword (String) &minus; Required if you change your own password: your old password
 * newPassword (String) &minus; The desired new password
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -325,7 +324,7 @@ Body:
 {}
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -335,7 +334,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to change the password of another user
+#### Fehler: Nicht-Admin versucht das Passwort eines Benutzers zu ändern
 Status-Code: 401
 
 Body:
@@ -345,7 +344,7 @@ Body:
 }
 ```
 
-#### Error: You tried to change your own password and provided an invalid old password
+#### Fehler: Du hast versucht dein eigenes Passwort zu ändern, ohne das richtige alte Passwort anzugeben
 Status-Code: 401
 
 Body:
@@ -355,10 +354,10 @@ Body:
 }
 ```
 
-## Update Meta Data
+## Metadaten ändern
 **<span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">{id}</span>**
 
-Changes the meta data of a user
+Ändert die Metadaten eines Benutzers
 
 ### Request Body
 ```json
@@ -370,17 +369,17 @@ Changes the meta data of a user
 }
 ```
 
-* meta (Object) &minus; object for the new user meta data
+* meta (Objekt) &minus; Objekt für die neuen Metadaten des Benutzers
 
 ### Request Path parameters
-* id &minus; The id of the user to change the meta data for (`self` to change own meta data)
+* id &minus; Die ID des Benutzers für den die Metadaten geändert werden sollen (`self` um die eigenen Metadaten zu ändern)
 
-Examle:
+Beispiel:
 <span style="color: green; ">POST</span> /api/user/save-meta/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -388,7 +387,7 @@ Body:
 {}
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -398,7 +397,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to change the meta data of another user
+#### Fehler: Nicht-Admin versucht die Metadaten eines anderen Benutzers zu ändern
 Status-Code: 401
 
 Body:
@@ -408,23 +407,23 @@ Body:
 }
 ```
 
-## Get Meta Data
+## Metadaten laden
 **<span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">{id}</span>**
 
-Loads the meta data of a user
+Lädt die Metadaten eines Benutzers
 
 ### Request Body
-None
+Keiner
 
 ### Request Path parameters
-* id &minus; The id of the user to load the meta data for (`self` to load own meta data)
+* id &minus; Die ID des Benutzers von dem die Metadaten geladen werden sollen (`self` um die eigenen Metadaten zu laden)
 
-Examle:
+Beispiel:
 <span style="color: #60affe; ">GET</span> /api/user/load-meta/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -436,7 +435,7 @@ Body:
 }
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -446,7 +445,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to load the meta data of another user
+#### Fehler: Nicht-Admin versucht die Metadaten eines anderen Benutzers zu laden
 Status-Code: 401
 
 Body:
@@ -456,23 +455,23 @@ Body:
 }
 ```
 
-## Get User
+## Benutzer laden
 **<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{id}</span>**
 
-Gets one user
+Lädt einen Benutzer
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* id &minus; The id of the user to get (`self` to get own user)
+### Request Path Parameter
+* id &minus; Die ID des Benutzers der geladen werden soll (`self` um den eigenen Benutzer zu laden)
 
-Examle:
+Beispiel:
 <span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -489,7 +488,7 @@ Body:
 }
 ```
 
-#### Error: Not logged in
+#### Error: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -499,7 +498,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to get another user
+#### Error: Nicht-Admin versucht einen anderen Benutzer zu laden
 Status-Code: 401
 
 Body:
@@ -509,20 +508,20 @@ Body:
 }
 ```
 
-## List Users
+## Benutzer auflisten
 **<span style="color: #60affe; ">GET</span> /api/user/list**
 
-Lists users (id, username and admin state)
+Listet die Benutzer auf (ID, Benutzername und Admin-Status)
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-None
+### Request Path Parameter
+Keiner
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -543,7 +542,7 @@ Body:
 }
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -553,7 +552,7 @@ Body:
 }
 ```
 
-#### Error: Not Admin
+#### Fehler: Kein Admin
 Status-Code: 401
 
 Body:
@@ -563,23 +562,23 @@ Body:
 }
 ```
 
-## Delete User
+## Benutzer löschen
 **<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{id}</span>**
 
-Deletes a user
+Löscht einen Benutzer
 
 ### Request Body
-None
+Keiner
 
-### Request Path parameters
-* id &minus; The id of the user to delete (`self` to delete yourself)
+### Request Path Parameter
+* id &minus; ID des Benutzers der gelöscht werden soll (`self` um dich selbst zu löschen)
 
-Examle:
+Beispiel:
 <span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
-#### Success
+#### Erfolg
 Status-Code: 200
 
 Body:
@@ -587,7 +586,7 @@ Body:
 {}
 ```
 
-#### Error: Not logged in
+#### Fehler: Nicht eingeloggt
 Status-Code: 401
 
 Body:
@@ -597,7 +596,7 @@ Body:
 }
 ```
 
-#### Error: None-Admin tries to delete another user
+#### Fehler: Nicht-Admin versucht einen anderen Benutzer zu löschen
 Status-Code: 401
 
 Body:

@@ -15,6 +15,11 @@ Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dyn
 If you use both, a config file and environment variables,
 the environment variable properties overwrite the config file properties.
 
+If multiple config files are used, the following applies:
+* If there is a `./config.json`, it will be used
+* If not, but there is a `./config.yaml`, then this will be used
+* If this is not available either, but a `./config.yml` is available, then this one will be used
+
 ## Syntax
 
 ### JSON
@@ -120,6 +125,12 @@ Specifies permissions for specific directories.
 Default: empty
 
 Type: Record/Map of String<=>String
+
+Permissions will be inherited. \
+Example:
+* You specified directory permissions for `images` but not for `images/holidays`
+* A user wants to access `images/holidays`
+* In this case, the permission definition on `images` will be used, since `holidays` is a sub directory.
 
 ### database
 Specifies configuration for the database connection.
@@ -290,20 +301,21 @@ FILES_CRUD_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ## Default summary
 
 If no property is set at all, the application defaults to:
-* `crudcr------`-permissions for all directories
+* `crudcr------`-permissions for all directories (Full-Access for owner, create and read permissions for users)
 * in-memory-db is used
 * Logging:
+  * No debug logging
   * All logging features enabled
   * Anonymous ip logging
   * files:
-    * access log: `<AppRoot>/access.log`
-    * error log: `<AppRoot>/error.log`
+    * access log: `./access.log`
+    * error log: `./error.log`
   * formats:
     * console: `coloredHumanReadableLine`
     * console redirected to file: `json`
     * access log file: `json`
     * error log file: `json`
-* Local file system storage is used with path: `<AppRoot>/`
+* Local file system storage is used with path: `./`
 * Server:
   * Listens on `0.0.0.0:9000`
   * No ssl

@@ -1,4 +1,4 @@
-# LoggingConfiguration
+# Logging-Configuration
 
 The logging configuration is used to specify the logging behaviour.
 
@@ -146,7 +146,7 @@ See also: [Logging Formats](#logging-formats)
 Specifies which format to use for file logging
 if stdout or stderr is redirected to a file.
 
-Default: [json](json-error-log-file-and-console)
+Default: [json](#json-error-log-file-and-console)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -162,7 +162,7 @@ See also: [Logging Formats](#logging-formats)
 ### logging.errorFileLoggingFormat
 Specifies which format to use for error file logging.
 
-Default: [json](json-error-log-file-and-console)
+Default: [json](#json-error-log-file-and-console)
 
 Type: LoggingFormat, which is one of
 * `humanReadableLine` &minus; Logs a simple line of information
@@ -200,7 +200,7 @@ Default: `d` (Daily)
 
 Type: One of
 * `s` &minus; Secondly (On logging event, if last event is at least one second in past)
-  (Only recommended for tests)
+  (Only suitable for tests)
 * `m` &minus; Minutely (On logging event, if last event is at least one minute in past)
   (Only recommended for tests)
 * `h` &minus; Hourly (On logging event, if last event is at least one hour in past)
@@ -343,11 +343,11 @@ Following example details are used to visualize the different formats
 * timestamp: `2025-01-18T18:29:56.382`
 * method: `POST`
 * path: `/api/file/save/holidays/allTogether.png`
-* http version: `HTTP/1.1`
+* httpVersion: `HTTP/1.1`
 * statusCode: 200
 * contentLength: 35
 * referer: `https://example-files-crud.com/upload-form.html`
-* user agent: `Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0`
+* userAgent: `Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0`
 * time: 213 (time between request and response in milli seconds)
 
 ### classic

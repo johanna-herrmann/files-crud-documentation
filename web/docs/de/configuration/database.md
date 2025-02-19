@@ -1,6 +1,6 @@
-# Database Configuration
+# Datenbank-Konfiguration
 
-The database configuration is used to configure the connection to the database, used for user management.
+Die Datenbank-Konfiguration wird für die Verbindung zur Datenbank verwendet, die für die Benutzerverwaltung genutzt wird.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ failedLoginAttemptsTableName: String
 jwtKeyTableName: String
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_DATABASE__NAME=String
@@ -63,107 +63,107 @@ FILES_CRUD_DATABASE__FAILED_LOGIN_ATTEMPTS_TABLE_NAME=String
 FILES_CRUD_DATABASE__JWT_KEY_TABLE_NAME=String
 ```
 
-## Properties
+## Eigenschaften
 
 ### database.name
-Specifies which database adapter to use.
+Gibt an, welcher Adapter verwendet werden soll
 
-Default: `in-memory`
+Standard: `in-memory`
 
-Type: One of
-* `in-memory` &minus; Saves all data in RAM (memory). Only useful for tests, no data will be persistent
-* `mongodb` &minus; Saves data in a [mongodb](https://www.mongodb.com/)
-* `postgresql` &minus; Saves data in a [postgresql](https://www.postgresql.org/) database
-* `dynanodb` &minus; Saves data in an AWS [dynamodb](https://aws.amazon.com/dynamodb)
+Typ: Eines der folgenden
+* `in-memory` &minus; Daten werden im Arbeitsspeicher gespeichert. Nur für Tests sinnvoll, keine Daten dauerhaft
+* `mongodb` &minus; Daten werden in einer [mongodb](https://www.mongodb.com/) gespeichert
+* `postgresql` &minus; Daten werden in einer [postgresql](https://www.postgresql.org/)-Datenbank gespeichert
+* `dynanodb` &minus; Daten werden in einer [dynamodb](https://aws.amazon.com/dynamodb) gespeichert
 
 ### database.db
-Specifies the database name for postgresql.
+Gibt den Namen der postgresql Datenbank an.
 
-Default: `files-crud`
+Standard: `files-crud`
 
-Type: String
+Typ: String
 
 ### database.url
-Specifies the database url for mongodb.
+Gibt die Datenbank-URL für mongodb an.
 
-Default: `mongodb://localhost:27017/files-crud`
+Standard: `mongodb://localhost:27017/files-crud`
 
-Type: String
+Typ: String
 
 ### database.host
-Specifies the database host for postgresql.
+Gibt den host für die postgresql Datenbank an.
 
-Default: `localhost`
+Standard: `localhost`
 
-Type: String
+Typ: String
 
 ### database.port
-Specifies the database port for postgresql.
+Gibt den Port für die postgresql Datenbank an.
 
 Default: 5432
 
-Type: number
+Typ: number
 
 ### database.user
-Specifies the database user for mongodb and postgresql.
+Gibt den Benutzernamen für die postgresql Datenbank oder mongodb an.
 
-Default: none (no auth)
+Standard: keiner (Verbindung ohne Login)
 
-Type: String
+Typ: String
 
 ### database.pass
-Specifies the database password for mongodb and postgresql.
+Gibt das Passwort für die postgresql Datenbank oder mongodb an.
 
-Default: none (no auth)
+Standard: keines (Verbindung ohne Login)
 
-Type: String
+Typ: String
 
 ### database.region
-Specifies the database region for dynamodb.
+Gibt die Region für die dynamodb an.
 
-Default: Value specified at [region](/configuration/general#region) on configartion root,
-if specified, else `eu-central-1` (Frankfurt, Germany, Europe)
+Standard: Wert von [region](/de/configuration/general#region) in der Hauptkonfiguration,
+wenn angegeben, ansonsten `eu-central-1` (Frankfurt, Deutschland, Europa)
 
-Type: String
+Typ: String
 
 ### database.accessKeyId
-Specifies the database access key for dynamodb.
+Gibt den Access-Key für dynamodb an.
 
-Default: Value specified at [accessKeyId](/configuration/general#accesskeyid) on configartion root,
-if specified, else `fallback-key`
+Standard: Wert von [accessKeyId](/de/configuration/general#accesskeyid) in der Hauptkonfiguration,
+wenn angegeben, ansonsten `fallback-key`
 
-Type: String
+Typ: String
 
 ### database.secretAccessKey
-Specifies the database secret key for dynamodb.
+Gibt den Secret-Key für dynamodb an.
 
-Default: Value specified at [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
-if specified, else `fallback-secret`
+Standard: Wert von [secretAccessKey](/de/configuration/general#secretaccesskey) in der Hauptkonfiguration,
+wenn angegeben, ansonsten `fallback-secret`
 
-Type: String
+Typ: String
 
 ### database.userTableName
-Specifies the database user table name for dynamodb.
+Gibt den Namen der Benutzertabelle für dynamodb an.
 
-Default `files-crud-user`
+Standard `files-crud-user`
 
-Type: String
+Typ: String
 
 ### database.failedLoginAttemptsTableName
-Specifies the database login attempts table name for dynamodb, where failed login attempts are saved, used to lock further attempts for a period of time.
+Gibt den Namen der dynamodb Tabelle an, mit der die fehlerhaften Logins verwaltet werden.
 
-Default: `files-crud-failedloginattempts`
+Standard: `files-crud-failedloginattempts`
 
-Type: String
+Typ: String
 
 ### database.jwtKeyTableName
-Specifies the database jwt key table name for dynamodb, where the jwt keys are saved, used to sign and verify JSON Web Tokens for user authorization.
+Gibt den Namen der JWT-Key-Tabelle für dynamodb an.
 
-Default: `files-crud-jwtkey`
+Standard: `files-crud-jwtkey`
 
-Type: String
+Typ: String
 
-## Examples
+## Beispiele
 
 ### JSON
 
@@ -243,7 +243,7 @@ failedLoginAttemptsTableName: fc_failed-login-attempts
 jwtKeyTableName: fc_jwt-key
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 #### in-memory
 ```properties
@@ -279,39 +279,39 @@ FILES_CRUD_DATABASE__FAILED_LOGIN_ATTEMPTS_TABLE_NAME=fc_failed-login-attempts
 FILES_CRUD_DATABASE__JWT_KEY_TABLE_NAME=fc_jwt-key
 ```
 
-## dynamodb permissions
-The used AWS user needs following permissions.
+## dynamodb Berechtigungen
+Der verwendete AWS-Benutzer benötigt folgende Berechtigungen.
 
-We recommend to create the tables before using filescrud,
-to keep the used AWS user less-permissive.
+Wir empfehlen, vor der Verwendung von files-crud die Tabellen selbst anzulegen,
+um die erforderlichen Berechtigungen des AWS-Benutzers zu reduzieren.
 
-### If tables exist already
-* On dynanmodb root
+### Wenn die Tabellen bereits existieren
+* Dynamodb-Wurzel
   * `ListTables`
-* following permissions on each specified table
+* Für jede Tabelle
   * `DeleteItem`
   * `PutItem`
   * `Query`
   * `Scan`
   * `UpdateItem`
 
-### If tables must be created
-* On dynanmodb root
+### Wenn die Tabellen noch nicht existieren
+* Dynamodb-Wurzel
   * `ListTables`
   * `CreateTable`
-* following permissions on each specified table
+* Für jede Tabelle
   * `DeleteItem`
   * `PutItem`
   * `Query`
   * `Scan`
   * `UpdateItem`
 
-### Example policy
-Assuming
-* tables already created, default names
-* using role policy
+### Beispiel-Policy
+Unter folgenden Annahmen
+* Tabellen bereits erstellt, Standard-Namen
+* Nutzung einer Role-Policy
 * AWS user id: 123456789012
-* default region
+* Standard-Region
 ```json
 {
     "Version": "2012-10-17",
@@ -343,9 +343,9 @@ Assuming
 ```
 
 ## dynamodb table definition
-The dynamodb tables have to be created as follows.
+Die Tabellen für dynamodb müssen wie folgt erstellt werden.
 
-### user table
+### Benutzer-Tabelle
 ```json
 {
   "TableName": "files-crud-user",
@@ -366,7 +366,7 @@ The dynamodb tables have to be created as follows.
 }
 ```
 
-### failed login attempts table
+### Tabelle für fehlgeschlagene Login-Versuche
 ```json
 {
   "TableName": "files-crud-failedloginattempts",
@@ -387,7 +387,7 @@ The dynamodb tables have to be created as follows.
 }
 ```
 
-### jwt key table
+### Tabelle für JWT Keys
 ```json
 {
   "TableName": "files-crud-jwtkey",

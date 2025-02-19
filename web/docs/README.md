@@ -30,7 +30,7 @@ docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud
 
 ### List files in a directory
 
-To list all files in `<storage_root>/images/`
+To list all files and directories in `<storage_root>/images/`
 ```
 curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <jwt>" http://localhost:9000/api/file/list/images
 ```

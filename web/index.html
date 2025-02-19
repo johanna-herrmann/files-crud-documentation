@@ -13,10 +13,11 @@
     <script src="/js/sidebar.js"></script>
     <script>
       const footer = `
-      <div style="border-top:1px solid var(--border-color);padding-top:30px;margin: 40px 0;color:#999999;font-size: .9rem;">
-      &copy; ${new Date().getFullYear()} Developed by <a href="https://github.com/johanna-herrmann/" target="_blank">Johanna Herrmann</a>. Released under MIT license.
-      </div>
+        <div style="border-top:1px solid var(--border-color);padding-top:30px;margin: 40px 0;color:#999999;font-size: .9rem;">
+          &copy; ${new Date().getFullYear()} Developed by <a href="https://github.com/johanna-herrmann/" target="_blank">Johanna Herrmann</a>. Released under MIT license.
+        </div>
       `;
+
       new Docute({
         target: '#docute',
         sourcePath: '/docs/',
@@ -26,7 +27,18 @@
         detectSystemDarkTheme: true,
         sidebar,
         footer,
-      })
+        title: 'files-crud - Documentation',
+        overrides: {
+          '/': {
+            language: 'English'
+          },
+          '/de/': {
+            language: 'Deutsch',
+            sidebar: sidebarDE,
+            title: 'files-crud - Dokumentation'
+          }
+        }
+      });
     </script>
   </body>
 </html>
