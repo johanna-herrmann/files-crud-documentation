@@ -1,0 +1,11 @@
+.page-content .pre-wrapper[data-lang="properties"]::before {
+  content: "env";
+}
+
+.page-content .pre-wrapper[data-lang="bash"]::before {
+  content: "shell";
+}
+
+.page-content .pre-wrapper {
+  margin: -13px 0 2rem 0;
+}
