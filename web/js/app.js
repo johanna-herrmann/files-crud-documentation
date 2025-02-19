@@ -4,6 +4,25 @@ const footer = `
   </div>
 `;
 
+let selectedLanguage = localStorage.getItem('language');
+const actualLanguage = self.location.pathname.startsWith('/de/') ? 'de' : 'en';
+
+if (!selectedLanguage) {
+  selectedLanguage = navigator.language;
+  localStorage.setItem('language', selectedLanguage);
+}
+
+if (selectedLanguage !== actualLanguage) {
+  const pathname = self.location.pathname;
+  let target;
+  if (selectedLanguage === 'de' && !pathname.startsWith('/de/')) {
+    target = '/de/';
+  } else if (pathname.startsWith('/de/')) {
+    target = '/';
+  }
+  self.location.href = target;
+}
+
 const docute = new Docute({
   target: '#docute',
   sourcePath: '/docs/',
@@ -35,6 +54,8 @@ setTimeout(() => {
     document.querySelectorAll('.router-link-active')[0].href = '/de/';
   }
   document.querySelector('.LanguageSelector select').addEventListener('change', () => {
+    const newAtualLanguage = self.location.pathname.startsWith('/de/') ? 'de' : 'en';
+    localStorage.setItem('language', newAtualLanguage);
     self.location.reload();
   });
 }, 1_000);
