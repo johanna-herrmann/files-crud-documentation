@@ -50,9 +50,11 @@ while(!docute.app._isMounted) {
 }
 
 setTimeout(() => {
-  if (self.location.pathname.startsWith('/de/')) {
-    document.querySelectorAll('.router-link-active')[0].href = '/de/';
-  }
+  const logoLink = document.querySelectorAll('.router-link-active')[0];
+  const target = selectedLanguage === 'de' ? '/de/' : '/';
+  logoLink.href = target;
+  logoLink.replaceWith(logoLink.cloneNode(true));
+  
   document.querySelector('.LanguageSelector select').addEventListener('change', () => {
     const newAtualLanguage = self.location.pathname.startsWith('/de/') ? 'de' : 'en';
     localStorage.setItem('language', newAtualLanguage);
