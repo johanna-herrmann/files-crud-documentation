@@ -28,7 +28,7 @@ filescrud start
 docker run -d -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
 
-### List files in a directory
+### List directory
 
 To list all files and directories in `<storage_root>/images/`
 ```bash

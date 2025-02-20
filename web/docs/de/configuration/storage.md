@@ -1,6 +1,6 @@
-# Configuration: Storage
+# Konfiguration: Speicher
 
-The storage configuration is used to choose the storage type and specify it's behavior.
+Die Speicher-Konfiguration definiert die Art und das Verhalten des Speichers.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ endpoint: String
 forcePathStyle: boolean
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_DATABASE__NAME=fs | s3
@@ -45,85 +45,88 @@ FILES_CRUD_DATABASE__ENDPOINT=String
 FILES_CRUD_DATABASE__FORCE_PATH_STYLE=boolean
 ```
 
-## Properties
+## Eigenschaften
 
 ### storage.name
 
-Specifies which storage to use.
+Gibt an, welche Speicher-Art verwendet werden soll.
 
-Default: `fs`
+Standard: `fs`
 
-Type: One of
-* `fs` &minus; Uses local file system as files and data storage.
-* `s3` &minus; Uses AWS S3 (or S3-compatible service)
-  as file storage and local file system as data storage.
+Typ: Eines von
+* `fs` &minus; Nutzt das lokale Dateisystem für Dateien und Datei-Daten*.
+* `s3` &minus; Nutzt AWS S3 (oder S3-kompatible Dienste)
+  als Speicher für die Dateien und das lokale Dateisystem für Datei-Daten*.
+
+*Datei-Daten: Grüße, Eigentümer, Mimetype, MD5-Hash und Metadaten
 
 ### storage.path
 
-Specifies which local file system path to use.
+Gibt den Pfad im lokalen Dateisystem an
 
-Default: `./`
+Standard: `./`
 
-Type: String
+Typ: String
 
 ### storage.region
 
-Specifies AWS region to use for S3(-compatible) Storage.
+Gibt die AWS-Region für den S3-Speicher an.
 
-Default: Value specified at [region](/configuration/general#region) on configartion root,
-if specified, else `eu-central-1` (Frankfurt, Germany, Europe)
+Standard: Der Wert von [region](/configuration/general#region) in der Hauptkonfiguration,
+wenn angebenen, ansonsten `eu-central-1` (Frankfurt, Deutschland, Europa)
 
-Type: String
+Typ: String
 
 ### storage.accessKeyId
 
-Specifies AWS credential Access Key Id to use for S3(-compatible) Storage.
+Gibt den AWS Access Key für den S3(-kompatiblen) Speicher an.
 
-Default: Value specified at [accessKeyId](/configuration/general#accesskeyid) on configartion root,
-if specified, else `fallback-key`
+Standard: Der Wert von [accessKeyId](/configuration/general#accesskeyid) in der Hauptkonfiguration,
+wenn angegeben, ansonsten `fallback-key`
 
-Type: String
+Typ: String
 
 ### storage.secretAccessKey
 
-Specifies AWS credential secret access key to use for S3(-compatible) Storage.
+Gibt den AWS Secret Key für den S3(-kompatiblen) Speicher an.
 
-Default: Value specified at [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
-if specified, else `fallback-secret`
+Standard: Der Wert von [secretAccessKey](/configuration/general#secretaccesskey) in der Hauptkonfiguration,
+wenn angegeben, ansonsten `fallback-secret`
 
-Type: String
+Typ: String
 
 ### storage.bucket
 
-Specifies AWS S3 bucket to use for S3(-compatible) Storage.
+Gibt den Namen des Buckets für den S3(-kompatiblen) Speicher an.
+Der Bucket muss bereits existieren.
 
-Default: `files-crud`
+Standard: `files-crud`
 
-Type: String
+Typ: String
 
 ### storage.endpoint
 
-Specifies endpoint to use for S3-compatible Storage, if not default AWS S3.
+Definiert den Endpoint für den S3-kompatiblen Speicher, falls nicht AWS Standard.
 
-Default: none (Uses default AWS S3 endpoint)
+Standard: keiner (Standard AWS S3 Endpoint wird genutzt)
 
-Type: String
+Typ: String
 
 ### storage.forcePathStyle
 
-Specifies if S3 path style should be used instead of sub-domain style.
+Gibt für S3 an, ob path style statt sub-domain style verwendet werden soll.
 
-Default: `false`
+Standard: `false`
 
-Type: boolean
-* `false` (default) &minus; Uses `bucketname.domain.tld/key` as bucket address
-* `true` &minus; Uses `domain.tld/bucketname/key` as bucket address
+Typ: boolean
+* `false` (Standard) &minus; Nutzt `bucketname.domain.tld/key` als Bucket-Adresse
+* `true` &minus; Nutzt `domain.tld/bucketname/key` als Bucket-Adresse
 
-## Examples
+## Beispiele
 
 ### JSON
 
-#### local file system storage
+#### Lokales Dateisystem
 ```json
 {
     "name": "fs",
@@ -131,7 +134,7 @@ Type: boolean
 }
 ```
 
-#### s3 storage (AWS S3)
+#### S3 Speicher (AWS S3)
 ```json
 {
     "name": "s3",
@@ -143,7 +146,7 @@ Type: boolean
 }
 ```
 
-#### s3 storage (local MinIO)
+#### S3 Speicher (lokales MinIO)
 ```json
 {
     "name": "s3",
@@ -159,13 +162,13 @@ Type: boolean
 
 ### YAML
 
-#### local file system storage
+#### Lokales Dateisystem
 ```yaml
 name: fs
 path: /opt/fc/storage
 ```
 
-#### s3 storage (AWS S3)
+#### S3 Speicher (AWS S3)
 ```yaml
 name: s3
 path: /opt/fc/storage
@@ -175,7 +178,7 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 bucket: filescrud
 ```
 
-#### s3 storage (local MinIO)
+#### S3 Speicher (lokales MinIO)
 ```yaml
 name: s3
 path: /opt/fc/storage
@@ -187,15 +190,15 @@ endpoint: storage.filescrud.local.zz
 forcePathStyle: true
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
-#### local file system storage
+#### Lokales Dateisystem
 ```properties
 FILES_CRUD_STORAGE__NAME=fs
 FILES_CRUD_STORAGE__PATH=/opt/fc/storage
 ```
 
-#### s3 storage (AWS S3)
+#### S3 Speicher (AWS S3)
 ```properties
 FILES_CRUD_STORAGE__NAME=s3
 FILES_CRUD_STORAGE__PATH=/opt/fc/storage
@@ -205,7 +208,7 @@ FILES_CRUD_STORAGE__SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 FILES_CRUD_STORAGE__BUCKET=filescrud
 ```
 
-#### s3 storage (local MinIO)
+#### S3 Speicher (lokales MinIO)
 ```properties
 FILES_CRUD_STORAGE__NAME=s3
 FILES_CRUD_STORAGE__PATH=/opt/fc/storage
@@ -217,19 +220,19 @@ FILES_CRUD_STORAGE__ENDPOINT=storage.filescrud.local.zz
 FILES_CRUD_STORAGE__FORCE_PATH_STYLE=true
 ```
 
-## s3 permissions
-The used AWS user needs following permissions on the specified bucket.
+## AWS S3 Berechtigungen
+Der AWS-Benutzer benötigt folgende Berechtigungen auf dem angegebenen Bucket.
 
 * `DeleteObject`
 * `GetObject`
 * `PutObject`
 
-### Example policy
-Assuming:
-* default bucket name
-* using role policy
-* AWS user id: 123456789012
-* default region
+### Beispiel-Policy
+Annahmen:
+* Standard Bucket Name
+* Verwendung einer Role-Policy
+* AWS-Benutzer-ID: 123456789012
+* Standard-Region
 
 ```json
 {

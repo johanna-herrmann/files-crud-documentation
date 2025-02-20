@@ -1,248 +1,232 @@
-# Usage - CLI
+# Anwendung - CLI
 
-This page shows the usage of files-crud CLI.
+Diese Seite zeigt, wie die CLI genutzt wird.
 
-## General
+## Allgemein
 
-### Usage
+### Anwendung
 ```bash
-filescrud [options] [command] [command-args] [command-options]
+filescrud [Optionen] [Kommando] [Kommando-Argumente] [Kommando-Optionen]
 ```
 
-### Options
+### Optionen
 
-| Option                    | Description                                               |
+| Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
-| -V, --version             | output the version number                                 |
-| -h, --help                | display help for command                                  |
+| -V, --version             | Zeigt die  Version an                                     |
+| -h, --help                | Zeigt Hilfe zum Kommando an                               |
 
-### Examples
-Displays files-crud version
+### Beispiele
+Anzeigen der Version
 ```bash
 filescrud --version
 ```
 
-Displays help summary
+Allgemeine Hilfe anzeigen
 ```bash
 filescrud help
 ```
 
-Displays help for `start` command
+Hilfe fürs `start`-Kommando anzeigen
 ```bash
 filescrud help start
 ```
 
 ## Start
-Starts files-crud application.
+Startet die files-crud Anwendung.
 
-### Usage
+### Anwendung
 ```bash
-filescrud start [options]
+filescrud start [Optionen]
 ```
 
 ### Options
 
-| Option                    | Description                                               |
+| Optionen                  | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
+| -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
 
-### Examples
-Starts application with defaults
+### Beispiele
+Startet die Anwendung mit Standards
 ```bash
 filescrud start
 ```
 
-Starts application with env-prefix `FC`
+Startet die Anwendung mit env-prefix `FC`
 ```bash
 filescrud start -e FC
 ```
 
-Starts application with env-prefix `APP`
+Startet die Anwendung mit env-prefix `APP`
 ```bash
 filescrud start --env-prefix APP
 ```
 
+## Steuern einer laufenden Anwendung
+Steuert eine laufene files-crud Anwendung. \
+Beim starten legt die Anwendung eine `.control.json`-Datei im aktuellen Arbeitsverzeichnis (`./`) an.
+Die folgenden Kommandos lesen diese Datei, ebenfalls vom Arbeitsverzeichnis.
 
-## Stop
-Stops a running files-crud application.
+### Anwendung
+```bash
+filescrud stop|restart|reload  [Optionen]
+```
 
-### Usage
+### Options
+For `restart` and `reload` command:
+
+| Option                    | Beschreibung                                              |
+| ------------------------- | --------------------------------------------------------- |
+| -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
+
+### stop
+Stoppt die laufende Anwendung
+
 ```bash
 filescrud stop
 ```
 
-## Restart
-Restarts a running files-crud application.
+### restart
 
-### Usage
-```bash
-filescrud restart [options]
-```
-
-#### Options
-
-| Option                    | Description                                               |
-| ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-
-### Examples
-Restarts application with default env-prefix (FILES_CRUD)
+Startet die Anwendung mit Standard env-prefix (FILES_CRUD) neu
 ```bash
 filescrud restart
 ```
 
-Restarts application with env-prefix `FC`
+Startet die Anwendung mit env-prefix `FC`
 ```bash
 filescrud restart -e FC
 ```
 
-Restarts application with env-prefix `APP`
-```bash
-filescrud restart --env-prefix APP
-```
-
-## Reload
-Reloads the configuration for a running application. \
-Affects all properties except for
+### reload
+Lädt die Konfiguration der Anwendung neu. \
+Betrifft alle Eigenschaften außer
 * server.host
 * server.port
 * server.useHttps
 * server.useHttp2
 
-### Usage
-```bash
-filescrud reload [options]
-```
-
-### Options
-
-| Option                    | Description                                               |
-| ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-
-### Examples
-Reloads config with default env-prefix (FILES_CRUD)
+Lädt die Konfiguration neu, unter Verwendung des Standard env-prefix (FILES_CRUD)
 ```bash
 filescrud reload
 ```
 
-Reloads config with env-prefix `FC`
+Lädt die Konfiguration neu, unter Verwendung des env-prefix `FC`
 ```bash
 filescrud reload -e FC
 ```
 
-Reloads config with env-prefix `APP`
-```bash
-filescrud reload --env-prefix APP
-```
-
 ## Integrity
-Checks the integrity of all files, using their md5 checksums.
+Prüft die Datei-Integrität, unter Verwendung der MD5-Hashes.
 
-### Usage
+### Anwendung
 ```bash
-filescrud integrity [options] [path]
+filescrud integrity [Optionen] [Argumente]
 ```
 
 ### Options
 
-| Option                    | Description                                               |
+| Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
+| -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
 
 ### Arguments
-* path &minus; Path to the directory or file to check the integrity for.
-  Storage root directory if not specified
+* Pfad &minus; Pfad zum Verzeichnis oder zur Datei wovon die Integrität geprüft werden soll.
+  Hauptordner des Speichers, falls nicht angegeben
 
 
 
-### Examples
-Checks integrity for whole storage
+### Beispiele
+Integrität des gesamten Speichers prüfen
 ```bash
 filescrud integrity
 ```
 
-Checks integrity for directory `images/holidays`
+Integrität des Verzeichnisses `images/holidays` prüfen
 ```bash
 filescrud integrity images/holidays
 ```
 
-Checks integrity for directory `videos/holidays in Rome`
+Integrität des Verzeichnisses `videos/holidays in Rome` prüfen
 ```bash
 filescrud integrity "videos/holidays in Rome"
 ```
 
 ## Admin
-Creates an admin user.
+Erstellt einen Admin-Benutzer.
 
-### Usage
+### Anwendung
 ```bash
-filescrud admin [options]
+filescrud admin [Optionen]
 ```
 
 ### Options
 
-| Option                    | Description                                               |
+| Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-| -u, --username <username> | Username of the user to create (default: random string)   |
-| -p, --password <password> | Password of the user to create (default: random string)   |
+| -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
+| -u, --username <username> | Benutzername des neuen Benutzers (Standard: zufällig)     |
+| -p, --password <password> | Passwort des neuen Benutzers (Standard: zufällig)         |
 
-### Examples
-Creates admin with random username and password
+### Beispiele
+Erstellt einen Benutzer mit zufälligem Benutzernamen und zufälligem Passwort
 ```bash
 filescrud admin
 ```
 
-Creates admin with username `johanna123_admin` and random password
+Erstellt einen Benutzer mit Benutzername `johanna123_admin` und einem zufälligem Passwort
 ```bash
 filescrud integrity --username johanna123_admin
 ```
 
-Creates admin with random username  and password `passw0rd987_fjqekfl`
+Erstellt einen Benutzer mit zufälligem Benutzernamen und Passwort `passw0rd987_fjqekfl`
 ```bash
 filescrud integrity -p passw0rd987_fjqekfl
 ```
 
-Creates admin with username `johanna123_admin` and password `passw0rd987_fjqekfl`
+Erstellt einen Benutzer mit Benutzername `johanna123_admin` und Passwort `passw0rd987_fjqekfl`
 ```bash
 filescrud integrity --username johanna123_admin -p passw0rd987_fjqekfl
 ```
 
-### Random
-If username or password is not given, random string is generated for it. \
-The random string consist of 6 bytes for username, 15 bytes for password, base64url-encoded
+### Zufall
+Wenn der Benutzername und/oder das Passwort nicht angegeben wird, wird jeweils eine zufällige Zeichenfolge dafür verwendet. \
+Die zufällige Zeichenfolge besteht aus 6 Bytes für den Benutzernamen, 15 Bytes für das Passwort, jeweils base64url-kodiert.
+
+Beispiel:
+* Benutzername: `d1J0N25S`
+* Passwort: `VExQUU1UZ3dNakl3TWpVRQ`
 
 ## Config
-Shows current configuration.
+Zeigt die aktuelle Konfiguration an.
 
-### Usage
+### Anwendung
 ```bash
-filescrud config [options] [format]
+filescrud config [Optionen] [Argumente]
 ```
 
 ### Options
 
-| Option                    | Description                                               |
-| ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-| -n, --no-defaults         | Only show specified configuration, but no defaults        |
+| Option                    | Beschreibung                                                |
+| ------------------------- | ----------------------------------------------------------- |
+| -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")      |
+| -n, --no-defaults         | Nur definierte Eigenschaften anzeigen, aber keine Standards |
 
-### Arguments
-* format &minus; Format to show the config in (json|yaml|env|properties) (default: "json")
+### Argumente
+* Format &minus; Das Format in dem die Konfiguration angezeigt werden soll (json|yaml|env|properties) (Standard: "json")
 
-### Examples
-Shows full config in json format
+### Beispiele
+Zeigt die gesamte Konfiguration im Standard-Format (json)
 ```bash
 filescrud config
 ```
 
-Shows specified config in yaml format
+Zeigt definierte Eigenschaften im yaml Format
 ```bash
 filescrud config -n yaml
 ```
 
-Shows full config in environment variables format
+eigt die gesamte Konfiguration in Form von Umgebungsvariablen
 ```bash
 filescrud config env
 ```

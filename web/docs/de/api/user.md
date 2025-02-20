@@ -5,7 +5,7 @@ Diese Seite dokumentiert die API Benutzer Endpoints.
 ## Registrieren
 **<span style="color: green; ">POST</span> /api/register**
 
-Registtriert einen neuen Benutzer
+Registriert einen neuen Benutzer
 
 ### Request Body
 ```json

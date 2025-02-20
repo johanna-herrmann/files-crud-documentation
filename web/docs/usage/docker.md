@@ -9,7 +9,7 @@ This page shows, how to use files-crud docker image.
 docker run --init -dt -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
 ```
 
-or to listen only on `localhost`:
+or to listen only on `localhost` of docker host:
 ```bash
 docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
 ```

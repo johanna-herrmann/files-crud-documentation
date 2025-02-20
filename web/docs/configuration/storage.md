@@ -54,9 +54,11 @@ Specifies which storage to use.
 Default: `fs`
 
 Type: One of
-* `fs` &minus; Uses local file system as files and data storage.
+* `fs` &minus; Uses local file system as files and data* storage.
 * `s3` &minus; Uses AWS S3 (or S3-compatible service)
-  as file storage and local file system as data storage.
+  as file storage and local file system as data* storage.
+
+*data: size, owner, mimetype, md5-hash and metadata
 
 ### storage.path
 
@@ -95,7 +97,7 @@ Type: String
 
 ### storage.bucket
 
-Specifies AWS S3 bucket to use for S3(-compatible) Storage.
+Specifies Bucket name for S3(-compatible) Storage. Bucket have to exist already.
 
 Default: `files-crud`
 
@@ -217,7 +219,7 @@ FILES_CRUD_STORAGE__ENDPOINT=storage.filescrud.local.zz
 FILES_CRUD_STORAGE__FORCE_PATH_STYLE=true
 ```
 
-## s3 permissions
+## aws s3 permissions
 The used AWS user needs following permissions on the specified bucket.
 
 * `DeleteObject`

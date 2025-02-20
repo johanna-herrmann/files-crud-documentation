@@ -1,31 +1,34 @@
-# Usage - Install
+# Nutzung - Installation
 
-This pages shows how to install/setup files-crud.
+Diese Seite zeigt wie files-crud installiert bzw. eingerichtet wird.
 
 ## npm install
-You can simply install files-crud globally to use it as CLI.
+Du kannst files-crud global als [npm-CLI](https://www.npmjs.com/package/files-crud) installieren, um sie direkt zu nutzen.
 
-After install, the CLI will be available as `filescrud`. \
-Example: `filescrud start`
+Nach der Installation steht die CLI als `filescrud` zur Verfügung. \
+Beispiel:
+```bash
+filescrud start`
+```
 
-### Requisites
-* [nodejs](https://nodejs.org/en) installed, at least in version 22.x.x \
-  tested for:
+### Voraussetzungen
+* [nodejs](https://nodejs.org/en) installiert, mindestens in Version 22.x.x \
+  getestet:
   * 22.11.0
   * 22.14.0
 
-### Install
+### Installation
 ```bash
 npm install -g files-crud
 ```
 
 ## Docker
-You also can use our files-crud docker image.
+Du kannst außerdem das files-crud [Docker Image](https://hub.docker.com/repository/docker/filescrud/filescrud/general) verwenden.
 
-### Requisites
-* [docker](https://www.docker.com/) installed
+### Voraussetzungen
+* [docker](https://www.docker.com/) installiert
 
-### Get image
+### Image holen
 ```bash
 docker pull filescrud/filescrud:latest
 ```

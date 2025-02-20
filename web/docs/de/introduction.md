@@ -1,22 +1,22 @@
-# Introduction
+# Einleitung
 
-## Description
-* Stores files, using REST calls (CRUD)
-* Supported storages:
-  * local file-system
-  * S3 Bucket (and s3-compatible storages)
-* Supported Databases (for user accounts)
+## Beschreibung
+* Speichert Dateien, ansteuerbar via REST API (CRUD)
+* Unterstützte Speicher-Arten:
+  * Lokales Dateisystem
+  * S3 Bucket (und s3-kompatible Dienste)
+* Unterstützte Datenbanken (für die Benutzerverwaltung)
   * mongoDB
   * postgresql
   * DynamoDB
-  * in-memory (for testing purposes)
-* Uses CRUD-based permissions, specified for different directories
+  * in-memory (zu Testzwecken)
+* Nutzt CRUD-basierte Berechtigung, angegeben für verschiedene Verzeichnisse
 
-## Features
-* create, override, read, delete files
-* crud-based permissions can be set for different directories via configuration
-* directories will be created and removed automatically as needed
-* user-specific permissions
-* different types of users (`normal`, `admin`)
-* optional public-access (access without login)
-* registration for new users can be open, restricted or disabled
+## Funktionen
+* Erstellen, überschreiben, lesen und löschen von Dateien
+* crud-basierte Berechtigungen können für verschiedene Verzeichnisse konfiguriert werden
+* Verzeichnisse werden automatisch erstellt und gelöscht, je nach Bedarf
+* Benutzer-spezifische Berechtigungen
+* Verschiedene Arten von Benutzern (`normal`, `admin`)
+* Optionaler öffentlicher Zugriff (Zugriff ohne Login)
+* Registrierung neue Benutzer kann offen, eingeschränkt oder deaktiviert sein

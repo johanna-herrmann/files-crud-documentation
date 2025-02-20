@@ -1,49 +1,49 @@
-# Usage - Docker
+# Anwendung - Docker
 
-This page shows, how to use files-crud docker image.
+Diese Seite zeigt, wie das files-crud Docker Image verwendet wird.
 
 ## docker run
 
 ### Synopsis
 ```bash
-docker run --init -dt -p <LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
+docker run --init -dt -p <LOKALER_PORT>:<PORT> -v <LOKALER_PFAD>:/data [-e <ENV_NAME>=<ENV_WERT> [...]] filescrud/filescrud [KOMMANDO] [OPTIONEN] [ARGS]
 ```
 
-or to listen only on `localhost`:
+oder um nur auf `localhost` des Docker-Hosts zu lauschen:
 ```bash
-docker run --init -dt -p 127.0.0.1:<LOCAL_PORT>:<PORT> -v <LOCAL_PATH>:/data [-e <ENV_NAME>=<ENV_VALUE> [...]] filescrud/filescrud [COMMAND] [OPTIONS] [ARGS]
+docker run --init -dt -p 127.0.0.1:<LOKALER_PORT>:<PORT> -v <LOKALER_PFAD>:/data [-e <ENV_NAME>=<ENV_WERT> [...]] filescrud/filescrud [KOMMANDO] [OPTIONEN] [ARGS]
 ```
 
-* LOCAL_PORT &minus; local port which redirects to docker container port
-* PORT &minus; docker container port to redirect to
-* LOCAL_PATH &minus; local path to bind to container's data directory `/data` (must exist already)
-* ENV_NAME &minus; Environment variable name
-* ENV_VALUE &minus; Environment variable value
-* COMMAND &minus; [CLI](/usage/cli) sub command to run
-* OPTIONS &minus; Options for [CLI](/usage/cli) sub command
-* ARGS &minus; Args for [CLI](/usage/cli) sub command
+* LOKALER_PORT &minus; Lokaler Port der auf den Port im Container gemappt werden soll
+* PORT &minus; Port im Container
+* LOKALER_PFAD &minus; Lokaler Pfad , der als Volume für `/data` im Container verwendet werden soll (muss bereits existieren)
+* ENV_NAME &minus; Umgebungsvariablen-Name
+* ENV_WERT &minus; Umgebungsvariablen-Wert
+* KOMMANDO &minus; [CLI](/de/usage/cli) Unter-Kommando
+* OPTIONEN &minus; Optionen fürs [CLI](/de/usage/cli) Unter-Kommando
+* ARGS &minus; Argumente fürs [CLI](/de/usage/cli) Unter-Kommando
 
-### Examples
+### Beispiele
 
-#### Start with defaults
-The following starts the application width default configuration.
+#### Mit Standard-Werten starten
 
+Folgendes Kommando startet die Anwendung mit Standard-Konfiguration:
 ```bash
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start
 ```
 
-shortcut:
+Kurzform:
 ```bash
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
-(passing no sub command, options and args)
+(Keine Angabe von Kommando, Optionen und/oder Argumenten)
 
-#### Start with custom host and port
+#### Starten mit alternativen Host und Port
 ```bash
 docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start
 ```
 
-#### Check integrity for whole storage
+#### Integrität des gesamten Speichers prüfen
 ```bash
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity
 ```
@@ -51,14 +51,15 @@ docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity
 
 ## docker compose
 
-The following example shows,
-how to start files-crud with a postgresql, using environment variables.
+Das folgende Beispiel zeigt,
+wie files-crud mit einer postgresql gestartet wird.
+Für die Konfiguration werden Umgebungsvariablen genutzt.
 
 docker-compose.yml
 ```yaml
 name: filescrud
 
-# replace 'dbUser' and 'dbPassword' by your desired db credentials
+# Erstze 'dbUser' und 'dbPassword' mit deinen gewünschten DB-Credentials
 
 services:
   fc:
@@ -79,7 +80,7 @@ services:
       - ./fc:/data
     ports:
       - 9000:9000
-      # or if you want to restrict access to docker host's 127.0.0.1:
+      # Oder wenn du den Zugriff auf localhost des Docker-Hosts beschränken möchtest:
       # - 127.0.0.1:9000:9000
 
   db:
@@ -100,34 +101,34 @@ services:
       retries: 5
 ```
 
-command:
+Kommado:
 ```bash
 docker compose up -d
 ```
 
-Notice the space instead of a hyphen. \
-wrong: `docker-compose` \
-correct: `docker compose`
+Beachte das Leerzeichen anstelle des Bindestrichs. \
+falsch: `docker-compose` \
+richtig: `docker compose`
 
-## Reload configuration in running container
-Assuming container is running with name `filescrud_1`:
+## Konfiguration in einem laufenden Container neuladen
+Angenommen, der Container läuft unter dem Namen `filescrud_1`:
 
-### without passing environment variables
+### Ohne Angabe von Umgebungsvariablen
 ```bash
 docker exec -it filescrud_1 filescrud reload
 ```
 
-### passing environment variables
+### Mit Angabe von Umgebungsvariablen
 
 ```bash
 docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt filescrud_1 filescrud reload
 ```
 
-## Troubleshooting
+## Fehlerbehebung
 
-* missing permissions in docker container's `/data` directory (or sub directories)
-  * Ensure for all volumes, that the host directories already exist. \
-    Example: for `-v ./fc:/data` you have to ensure `./fc` already exists.
-* error message `Error: listen EADDRNOTAVAIL: address not available 172.0.0.0:3000` (or similar) at startup
-  * Using docker, you can not set `server.host` to `127.0.0.1`. \
-    Use `-p 127.0.0.1:9000:9000` instead.
+* Fehlende Berechtigungen im `/data`-Verzeichnis oder Unterverzeichnissen im Container
+  * Stelle für alle Volumes sicher, dass der angegebene lokale Pfad existiert. \
+    Beispiel: für `-v ./fc:/data` muss sichergestellt sein, dass `./fc` bereits existiert.
+* Fehlermeldung `Error: listen EADDRNOTAVAIL: address not available 172.0.0.0:3000` (oder ähnlich) beim Starten
+  * Wenn docker genutzt wird, kann `server.host` nicht auf `127.0.0.1` gesetzt werden. \
+    Verwende stattdessen `-p 127.0.0.1:9000:9000`.

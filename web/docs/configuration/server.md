@@ -72,7 +72,7 @@ Type: number
 
 ### server.useHttps
 
-Uses `https` with ssl/tls, if `true`.
+Server uses `https` with ssl/tls, if `true`.
 
 Default: `false`
 
@@ -80,7 +80,7 @@ Type: boolean
 
 ### server.useHttp2
 
-Uses `HTTP/2` for https. 
+Server uses `HTTP/2` for https. 
 
 Default: `false`
 
@@ -104,7 +104,7 @@ Type: String
 
 ### server.hsts
 
-Sets `Strict-Transport-Security` header if `true` and `https` is used.
+Server sends `Strict-Transport-Security` header if `true` and ssl/tls enabled.
 
 Default: `true`
 
@@ -112,7 +112,7 @@ Type: boolean
 
 ### server.noRobots
 
-Sets `X-Robots-Tag`-Header with value `none` if `true`
+Server sends `X-Robots-Tag`-Header with value `none` if `true`
 
 Default: `false`
 
@@ -130,7 +130,7 @@ Type: [CorsConfig](/configuration/server-cors)
 
 Specifies the maximum file size, which can be uploaded to storage.
 
-Default: `100m` 100MiB (104.8MB)
+Default: `100m` (100MiB (104.8MB))
 
 Type: One of
 * String &minus; number and unit (Example: `42k` for 42KiB)

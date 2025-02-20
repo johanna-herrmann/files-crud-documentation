@@ -63,29 +63,32 @@ filescrud start --env-prefix APP
 ```
 
 
-## Stop
-Stops a running files-crud application.
+## Controlling running applications
+Controlls a running files-crud application. \
+On startup, the application creates a `.control.json` file in current working directory (`./`).
+The following commands read this file, also from working dir.
 
 ### Usage
 ```bash
-filescrud stop
+filescrud stop|restart|reload  [options]
 ```
 
-## Restart
-Restarts a running files-crud application.
-
-### Usage
-```bash
-filescrud restart [options]
-```
-
-#### Options
+### Options
+For `restart` and `reload` command:
 
 | Option                    | Description                                               |
 | ------------------------- | --------------------------------------------------------- |
 | -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
 
-### Examples
+### stop
+Stopps a running application
+
+```bash
+filescrud stop
+```
+
+### restart
+
 Restarts application with default env-prefix (FILES_CRUD)
 ```bash
 filescrud restart
@@ -96,12 +99,7 @@ Restarts application with env-prefix `FC`
 filescrud restart -e FC
 ```
 
-Restarts application with env-prefix `APP`
-```bash
-filescrud restart --env-prefix APP
-```
-
-## Reload
+### reload
 Reloads the configuration for a running application. \
 Affects all properties except for
 * server.host
@@ -109,18 +107,6 @@ Affects all properties except for
 * server.useHttps
 * server.useHttp2
 
-### Usage
-```bash
-filescrud reload [options]
-```
-
-### Options
-
-| Option                    | Description                                               |
-| ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-
-### Examples
 Reloads config with default env-prefix (FILES_CRUD)
 ```bash
 filescrud reload
@@ -131,17 +117,12 @@ Reloads config with env-prefix `FC`
 filescrud reload -e FC
 ```
 
-Reloads config with env-prefix `APP`
-```bash
-filescrud reload --env-prefix APP
-```
-
 ## Integrity
-Checks the integrity of all files, using their md5 checksums.
+Checks the integrity of files, using their md5 checksums.
 
 ### Usage
 ```bash
-filescrud integrity [options] [path]
+filescrud integrity [options] [arguments]
 ```
 
 ### Options
@@ -213,12 +194,16 @@ filescrud integrity --username johanna123_admin -p passw0rd987_fjqekfl
 If username or password is not given, random string is generated for it. \
 The random string consist of 6 bytes for username, 15 bytes for password, base64url-encoded
 
+Examples:
+* username: `d1J0N25S`
+* password: `VExQUU1UZ3dNakl3TWpVRQ`
+
 ## Config
 Shows current configuration.
 
 ### Usage
 ```bash
-filescrud config [options] [format]
+filescrud config [options] [arguments]
 ```
 
 ### Options

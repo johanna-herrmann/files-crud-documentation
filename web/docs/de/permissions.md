@@ -1,92 +1,87 @@
-# Permissions
+# Berechtigungen
 
-Permissions can be used to specify who can do which file operation.
-The permissions can be specified on directory level and for different levels of api access.
+Mit Berechtigungen kann festgelegt werden, wer welche Dateioperationen ausführen darf.
+Die Berechtigungen können auf Verzeichnisebene und für verschiedene API-Zugriffsebenen festgelegt werden.
 
-Instead of write/read/execute permissions files-crud uses create/read/update/delete permissions.
+Anstelle von Schreib-/Lese-/Ausführungsberechtigungen verwendet files-crud Berechtigungen zum Erstellen/Lesen/Aktualisieren/Löschen.
 
 ## Notation
 
-### rwx equivalent
-Permissions can be specified using a `crud`-syntax similar to unix's `rwx`-syntax.
+### rwx-Äquivalent
+Berechtigungen können mit einer `crud`-Syntax festgelegt werden, die der `rwx`-Syntax von Unix ähnelt.
 
-The first four letters specify the permissions for the owner,
-the second four letters specify the permissions for any other logged-in user
-and the last four letters specify the permission for access without login.
+Die ersten vier Buchstaben geben die Berechtigungen für den Eigentümer an,
+die zweiten vier Buchstaben geben die Berechtigungen für alle anderen angemeldeten Benutzer an
+und die letzten vier Buchstaben geben die Berechtigungen für den Zugriff ohne Anmeldung an.
 
-A permission is enabled if it's letter is present,
-a permission is disabled if it's letter is replaced with a dash.
+Eine Berechtigung ist aktiviert, wenn ihr Buchstabe vorhanden ist,
+eine Berechtigung ist deaktiviert, wenn ihr Buchstabe durch einen Bindestrich ersetzt wird.
 
-#### Examples
+#### Beispiele
 * `crud-r------` &minus;
-  Full access for owner, read-access for other none-admin users, no access without login
-* `crudcrud-r--` &minus; full access for all none-admin users, read-access without login
+Vollzugriff für Eigentümer, Lesezugriff für andere Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
+* `crudcrud-r--` &minus; Vollzugriff für alle Benutzer, Lesezugriff ohne Anmeldung
 * `-r---r------` &minus;
-  read-only access for non-admin users, no access without login
+Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
 
-### octal equivalent
-Permissions can be also specified using a hex-syntax similar to unix's octal syntax (000 to fff instead of 000 to 777).
+### Oktal-Äquivalent
+Berechtigungen können auch mit einer Hex-Syntax angegeben werden, die der Oktal-Syntax von Unix ähnelt (000 bis fff statt 000 bis 777).
 
-The first digit specifies the permissions for the owner,
-the second digit specifies the permissions for any other logged-in user
-and the last digit specifies the permission for access without login.
+Die erste Ziffer gibt die Berechtigungen für den Eigentümer an,
+die zweite Ziffer gibt die Berechtigungen für alle anderen angemeldeten Benutzer an
+und die letzte Ziffer gibt die Berechtigungen für den Zugriff ohne Anmeldung an.
 
-A permission is enabled if it's bit is set,
-a permission is disabled if it's bit is not set.
-Put simply,
-each digit is the sum of the enabled permission's bit values
-(create=8, read=4, update=2, delete=1).
+Eine Berechtigung ist aktiviert, wenn ihr Bit gesetzt ist,
+eine Berechtigung ist deaktiviert, wenn ihr Bit nicht gesetzt ist.
+Einfach ausgedrückt ist jede Ziffer die Summe der Bitwerte der aktivierten Berechtigungen (Erstellen = 8, Lesen = 4, Aktualisieren = 2, Löschen = 1).
 
-#### Examples
+#### Beispiele
 * `f40` &minus;
-  Full access for owner, read-access for other none-admin users, no access without login
-* `ff4` &minus; full access for all none-admin users, read-access without login
+Vollzugriff für Eigentümer, Lesezugriff für andere Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
+* `ff4` &minus; Vollzugriff für alle Benutzer, Lesezugriff ohne Anmeldung
 * `440` &minus;
-  read-only access for non-admin users, no access without login
+Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
 
+## Dateioperationen
+* Erstellen &minus; Neue Datei speichern, Dateimetadaten erstmals speichern
+* Lesen &minus; Datei herunterladen, Dateidaten lesen, Dateimetadaten lesen, Verzeichniselemente auflisten
+* Aktualisieren &minus; Datei aktualisieren/überschreiben, Dateimetadaten aktualisieren
+* Löschen &minus; Datei löschen (und ihre Metadaten)
 
-## File operations
-* create &minus; Save a new file, save file meta data
-* read &minus; download a file, read file data, read file meta data, list directory items
-* update &minus; update/overwrite a file, update file metadata
-* delete &minus; delete a file (and it's meta data)
+## Verzeichnisse
 
-## Directories
+Die Berechtigungen können angegeben werden:
+* Für ein bestimmtes Verzeichnis. \
+Verwende den Platzhalter `$user` für Benutzerverzeichnisse
+(Beispiel: `$user/sub` für das Verzeichnis `sub` in Benutzerverzeichnissen)
+* Standard: Wird angewendet, wenn das Verzeichnis und alle übergeordneten Verzeichnisse keine Spezifikation haben
 
-The permissions can be specified:
-* For a specific directory. \
-  Use `$user` placeholder for user directories
-  (Example: `$user/sub` for directory `sub` in user directories)
-* Default: Applicated if the directory does not have a specification
+### Benutzerverzeichnisse
+Jedem Benutzer wird ein Verzeichnis zugewiesen. \
+Der Pfad lautet: `<hauptordner>/user_<user_id>` \
+Beispiel: `<hauptordner>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 
-### User directories
-Each user is assigned to a directory &minus; their user directory. \
-The path is: `<storage_root>/user_<user_id>` \
-Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
-
-
-### Example
+### Beispiel
 ```json
 {
-    "directoryPermissions": {
-        "someDir": "crud-r------",
-        ...
-    },
-    "defaultPermissions": "fc4"
+  "directoryPermissions": {
+  "someDir": "crud-r------",
+  ...
+},
+  "defaultPermissions": "fc4"
 }
 ```
 
-## Owner
-* For file operations
-  (update meta data, read meta data, read file data, download file, overwrite file, delete file),
-  the owner is the user, who initially created the file
-  (`-` on public access upload) \
-  (admins can set the owner to the source file owner on copy and move operations)
-* For directory operations (create new file, list directory items),
-  the owner is:
-  * on user directories: the user, the directory belongs to
-  * on other directories: none (always user permissions are used)
-  
+## Eigentümer
+* Bei Dateioperationen
+(Metadaten aktualisieren, Metadaten lesen, Dateidaten lesen, Datei herunterladen, Datei überschreiben, Datei löschen)
+ist der Eigentümer der Benutzer, der die Datei ursprünglich erstellt hat
+(`-` beim Hochladen mit öffentlichem Zugriff) \
+(Administratoren können den Eigentümer bei Kopier- und Verschiebeoperationen auf den Eigentümer der Quelldatei setzen)
+* Bei Verzeichnisoperationen (neue Datei erstellen, Verzeichniselemente auflisten)
+ist der Besitzer:
+* bei Benutzerverzeichnissen: der Benutzer, dem das Verzeichnis gehört
+* in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)
 
-## See also:
-[Configuration](/configuration/general)
+## Siehe auch:
+[Konfiguration](/de/configuration/general)
