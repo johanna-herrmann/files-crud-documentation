@@ -73,5 +73,5 @@ app.use(staticMiddleware);
 const server = http.createServer(app);
 
 server.listen({ host: '127.0.0.1', port: 3000 }, () => {
-  console.log('Startet, listening on http://localhost:3000');
+  console.log('Started, listening on http://localhost:3000');
 });

@@ -13,7 +13,7 @@ Speichert außerdem folgende Eigenschaften als Datei-Daten.
 * Den Eigentümer (user-id des Uploaders, `-` wenn Upload ohne Login erfolgt) \
   (Unverändert beim überschreiben der Datei).
 * Größe
-* MD5 hash des Dateiinhalts (Verwendet für den [integrity check](/cli#integrity))
+* MD5 hash des Dateiinhalts (Verwendet für den [Integritäts-Check](/de/usage/cli#integrity))
 * meta (Datei-Metadaten) \
   (undefined beim initialen Upload, unverändert beim überschreiben der Datei)
 

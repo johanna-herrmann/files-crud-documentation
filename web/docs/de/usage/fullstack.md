@@ -2,7 +2,7 @@
 
 Um ein Frontend hinzuzufügen und es files-crud ausliefern zu lassen, sind folgende Schritte nötig:
 * Bauen und deployen der Frontend-Dateien, zum Beispiel zum Verzeichnis `./web`
-* files-crud starten mit [webRoot](/configuration/general#webRoot) gesetzt zum Beispiel auf `./web`
+* files-crud starten mit [webRoot](/de/configuration/general#webRoot) gesetzt zum Beispiel auf `./web`
 
 ## Beispiel
 

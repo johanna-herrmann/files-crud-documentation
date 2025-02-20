@@ -135,30 +135,30 @@ Example:
 ### database
 Specifies configuration for the database connection.
 
-Default: See: [DatabaseConfig](/configuration/database)
+Default: See: [Database Configuration](/configuration/database)
 
-Type: [DatabaseConfig](/configuration/database)
+Type: [Database Configuration](/configuration/database)
 
 ### logging
 Specifies configuration for logging.
 
-Default: See: [LoggingConfig](/configuration/logging)
+Default: See: [Logging Configuration](/configuration/logging)
 
-Type: [LoggingConfig](/configuration/logging)
+Type: [Logging Configuration](/configuration/logging)
 
 ### storage
 Specifies configuration for storage to use.
 
-Default: See: [StorageConfig](/configuration/storage)
+Default: See: [Storage Configuration](/configuration/storage)
 
-Type: [StorageConfig](/configuration/storage)
+Type: [Storage Configuration](/configuration/storage)
 
 ### server
 Specifies configuration for the application server.
 
-Default: See: [ServerConfig](/configuration/server)
+Default: See: [Server Configuration](/configuration/server)
 
-Type: [ServerConfig](/configuration/server)
+Type: [Server Configuration](/configuration/server)
 
 ### webRoot
 Specifies the path to serve as frontend. The application will serve static web content from this directory. The application is only backend if no `webRoot` is specified.

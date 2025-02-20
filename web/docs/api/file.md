@@ -13,7 +13,7 @@ It also stores following properties as file data.
 * the owner (user-id of the uploader, `-` if public) \
   (unchaged on update).
 * size
-* md5 hash of the file content (used for [integrity check](/cli#integrity))
+* md5 hash of the file content (used for [integrity check](/usage/cli#integrity))
 * meta (file meta data) \
   (set to undefined on create, unchaged on update)
 

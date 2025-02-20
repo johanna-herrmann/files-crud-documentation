@@ -1,4 +1,4 @@
-# Logging-Configuration
+# Logging Configuration
 
 The logging configuration is used to specify the logging behaviour.
 

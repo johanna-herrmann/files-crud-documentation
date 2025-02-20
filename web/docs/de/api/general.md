@@ -12,10 +12,10 @@ Request-Body und Response-Body (wenn vorhanden) sind immer JSON, außer für:
 * <span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span> response-body
 
 ## Nutzer endpoints
-[Nutzer Endpoints](/api/user)
+[Nutzer Endpoints](/de/api/user)
 
 ## Datei endpoints
-[Datei Endpoints](/api/file)
+[Datei Endpoints](/de/api/file)
 
 ## Allgemeine Fehler Responses
 

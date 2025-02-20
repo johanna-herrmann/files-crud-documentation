@@ -1,4 +1,4 @@
-# ServerConfiguration
+# Server Configuration
 
 The server configuration is used to specify the connection to and behaviour of the files-crud server.
 
@@ -124,7 +124,7 @@ Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 
 Default: none (no cors header will be set)
 
-Type: [CorsConfig](/configuration/server-cors)
+Type: [CORS Configuration](/configuration/server-cors)
 
 ### server.fileSizeLimit
 

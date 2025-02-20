@@ -1,4 +1,4 @@
-# Configuration: Storage
+# Storage-Configuration
 
 The storage configuration is used to choose the storage type and specify it's behavior.
 
