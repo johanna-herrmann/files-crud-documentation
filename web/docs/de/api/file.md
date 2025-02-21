@@ -10,7 +10,7 @@ Kann eine neue oder eine bereits existierende Datei sein. \
 Speichert außerdem folgende Eigenschaften als Datei-Daten.
 * Den Mimetype der via `Content-Type`-Parameter im request-body angegeben wurde
   (oder falls angegeben: der Wert des `X-Mimetype`-request-headers)
-* Den Eigentümer (user-id des Uploaders, `-` wenn Upload ohne Login erfolgt) \
+* Den Eigentümer (user-id des Uploaders, `public` wenn Upload ohne Login erfolgt) \
   (Unverändert beim überschreiben der Datei).
 * Größe
 * MD5 hash des Dateiinhalts (Verwendet für den [Integritäts-Check](/de/usage/cli#integrity))
@@ -367,7 +367,7 @@ Kopiert eine Datei.
 * targetPath &minus; Pfad zur Ziel-Datei
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der jenige der die Datei kopiert, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
+  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner
@@ -452,7 +452,7 @@ Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
 * targetPath &minus; Neuer Pfad
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der jenige der die Datei verschiebt, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
+  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner

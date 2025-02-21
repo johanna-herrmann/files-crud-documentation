@@ -10,7 +10,7 @@ Can be a new file or an existing file. \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in request-body
   (or if provided: the value of `X-Mimetype` request-header)
-* the owner (user-id of the uploader, `-` if public) \
+* the owner (user-id of the uploader, `public` if public) \
   (unchaged on update).
 * size
 * md5 hash of the file content (used for [integrity check](/usage/cli#integrity))
@@ -365,7 +365,7 @@ Copies a file.
 * targetPath &minus; Path to the file to copy to
 * copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file
   * true: target file will have same owner as source file
-  * false (default): target file owner will be the person which does the copy if target file is new, else owner stays unchanged.
+  * false (default): target file owner will be the accessor if target file is new, else owner stays unchanged.
 
 ### Request Path parameters
 None
@@ -450,7 +450,7 @@ Moves a file to another path (can also be used to rename a file).
 * targetPath &minus; Path to the file to move to
 * copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file had
   * true: target file will have same owner as source file
-  * false (default): target file owner will be the person which does the move, if file is new, else owner stays unchanged.
+  * false (default): target file owner will be the accessor, if file is new, else owner stays unchanged.
 
 ### Request Path parameters
 None
