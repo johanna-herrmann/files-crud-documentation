@@ -3,7 +3,7 @@
 This page documents the API file Endpoints.
 
 ## Upload File
-**<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{path*}</span>**
+**<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint to upload a file. \
 Can be a new file or an existing file. \
@@ -26,10 +26,11 @@ We recommend to also set the `Content-Length` request-header.
 We highly recommend to use a file upload tool (Upload Form, JS Files API, etc.).
 
 ### Request Body
-File as `multipart/form-data`, using `file` as value for the `name` parameter.
+File as `multipart/form-data`, with exactly one file object.
+`name` can be any none-empty alpha-numeric string.
 `filename` parameter will be ignored.
 
-Example with delimiter `---delimiter123`:
+Example with delimiter `---delimiter123` and name `file`:
 ```
 ---delimiter123
 Content-Disposition: form-data; name="file"; filename="does-not-matter.txt"
@@ -44,7 +45,7 @@ example-text-file-content
 * path &minus; The path where to upload the file to (relative to storage root)
 
 Examle:
-<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
@@ -89,7 +90,7 @@ Body (example for limit: 10k):
 ```
 
 ## Download File
-**<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span>**
+**<span style="color: #60affe; ">GET</span> /api/file/download/<span style="color: #999; ">{path*}</span>**
 
 Endpoint to download a file.
 
@@ -100,7 +101,7 @@ None
 * path &minus; The path where to download the file from (relative to storage root)
 
 Examle:
-<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: #60affe; ">GET</span> /api/file/download/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
@@ -527,7 +528,7 @@ Body:
 ```
 
 ## Delete File
-**<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999; ">{path*}</span>**
+**<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999; ">{path*}</span>**
 
 Deletes a file.
 
@@ -538,7 +539,7 @@ None
 * path &minus; The path to the file to delete (relative to storage root)
 
 Examle:
-<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 

@@ -456,7 +456,7 @@ Body:
 ```
 
 ## Benutzer laden
-**<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{id}</span>**
+**<span style="color: #60affe; ">GET</span> /api/user/load/<span style="color: #999">{id}</span>**
 
 Lädt einen Benutzer
 
@@ -467,7 +467,7 @@ Keiner
 * id &minus; Die ID des Benutzers der geladen werden soll (`self` um den eigenen Benutzer zu laden)
 
 Beispiel:
-<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
+<span style="color: #60affe; ">GET</span> /api/user/load/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
@@ -563,7 +563,7 @@ Body:
 ```
 
 ## Benutzer löschen
-**<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{id}</span>**
+**<span style="color: #a00; ">DELETE</span> /api/user/remove/<span style="color: #999">{id}</span>**
 
 Löscht einen Benutzer
 
@@ -574,7 +574,7 @@ Keiner
 * id &minus; ID des Benutzers der gelöscht werden soll (`self` um dich selbst zu löschen)
 
 Beispiel:
-<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
+<span style="color: #a00; ">DELETE</span> /api/user/remove/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 

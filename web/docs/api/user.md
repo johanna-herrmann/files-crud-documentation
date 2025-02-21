@@ -457,7 +457,7 @@ Body:
 ```
 
 ## Get User
-**<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">{id}</span>**
+**<span style="color: #60affe; ">GET</span> /api/user/load/<span style="color: #999">{id}</span>**
 
 Gets one user
 
@@ -468,7 +468,7 @@ None
 * id &minus; The id of the user to get (`self` to get own user)
 
 Examle:
-<span style="color: #60affe; ">GET</span> /api/user/one/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
+<span style="color: #60affe; ">GET</span> /api/user/load/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 
@@ -564,7 +564,7 @@ Body:
 ```
 
 ## Delete User
-**<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">{id}</span>**
+**<span style="color: #a00; ">DELETE</span> /api/user/remove/<span style="color: #999">{id}</span>**
 
 Deletes a user
 
@@ -575,7 +575,7 @@ None
 * id &minus; The id of the user to delete (`self` to delete yourself)
 
 Examle:
-<span style="color: #a00; ">DELETE</span> /api/user/delete/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
+<span style="color: #a00; ">DELETE</span> /api/user/remove/<span style="color: #999">5251279e-6e21-4173-9b64-1be006bd22ba</span>
 
 ### Responses
 

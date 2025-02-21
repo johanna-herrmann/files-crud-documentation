@@ -3,7 +3,7 @@
 Diese Seite dokumentiert die API Datei Endpoints.
 
 ## Datei hochladen
-**<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{path*}</span>**
+**<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint um eine Datei hochzuladen. \
 Kann eine neue oder eine bereits existierende Datei sein. \
@@ -26,7 +26,8 @@ Wir empfehlen, ebenfalls den `Content-Length`-request-header zu senden.
 Wir empfehlen stark, Upload-Tools (Upload-Formular, JS Files API, etc.) zu verwenden.
 
 ### Request Body
-Datei als `multipart/form-data`, mit `file` als Wert für den `name`-Parameter.
+Datei als `multipart/form-data`, mit exakt einem Datei-Objekt.
+Der `name` kann jeder nicht-leerer, alpha-numerischer Wert sein.
 Der `filename`-Parameter wird ignoriert.
 
 Beispiel mit delimiter `---delimiter123`:
@@ -44,7 +45,7 @@ example-text-file-content
 * path &minus; Der Pfad wohin die Datei hochgeladen werden soll (Relativ zum Hauptordner des Speichers)
 
 Beispiel:
-<span style="color: green; ">POST</span> /api/file/save/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
@@ -89,7 +90,7 @@ Body (example for limit: 10k):
 ```
 
 ## Datei herunterladen
-**<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span>**
+**<span style="color: #60affe; ">GET</span> /api/file/download/<span style="color: #999; ">{path*}</span>**
 
 Endpoint um eine Datei herunterzuladen.
 
@@ -100,7 +101,7 @@ Keiner
 * path &minus; Der Pfad von wo die Datei heruntergeladen werden soll (Relativ zum Hauptordner des Speichers)
 
 Beispiel:
-<span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: #60affe; ">GET</span> /api/file/download/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
@@ -529,7 +530,7 @@ Body:
 ```
 
 ## Datei löschen
-**<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999; ">{path*}</span>**
+**<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999; ">{path*}</span>**
 
 Löscht eine Datei
 
@@ -540,7 +541,7 @@ Keiner
 * path &minus; Der Pfad zu der Datei die gelöscht werden soll (Relativ zum Hauptordner des Speichers)
 
 Beispiel:
-<span style="color: #a00; ">DELETE</span> /api/file/delete/<span style="color: #999">texts/examples/cool-text.txt</span>
+<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
 
