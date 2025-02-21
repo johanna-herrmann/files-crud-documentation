@@ -116,7 +116,7 @@ Specifies the path to the file for access logging
 
 Default: `./access.log`
 
-Type: String (path, absolute or relative to working directory)
+Type: String
 
 ### logging.errorLogFile
 Specifies the path to the file for error file logging
@@ -124,7 +124,7 @@ Specifies the path to the file for error file logging
 
 Default: `./error.log`
 
-Type: String (path, absolute or relative to working directory)
+Type: String
 
 ### logging.ttyLoggingFormat
 Specifies which format to use for logging in console.

@@ -13,7 +13,7 @@ Registers a new user
   "username": "lisa42",
   "password": "s33mlingl1G00dP8ssw0rd",
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   },
   "token": "4e7e0e32-8b67-473e-a4e9-7572765966e9"
 }
@@ -140,7 +140,7 @@ Adds a new user. Used by an admin to add a new user
   "password": "s33mlingl1G00dP8ssw0rd",
   "admin": true,
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   }
 }
 ```
@@ -364,7 +364,7 @@ Changes the meta data of a user
 ```json
 {
   "meta": {
-    "birthday": "1988-08-26",
+    "birthday": "1992-03-19",
     "marriage": "2029-05-12"
   }
 }
@@ -431,7 +431,7 @@ Body:
 ```json
 {
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   }
 }
 ```
@@ -483,7 +483,7 @@ Body:
     "username": "lisa42",
     "admin": true,
     "meta": {
-      "birthday": "1988-08-26"
+      "birthday": "1992-03-19"
     }
   }
 }

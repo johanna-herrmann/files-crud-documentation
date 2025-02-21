@@ -48,6 +48,9 @@ Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmel
 * Aktualisieren &minus; Datei aktualisieren/überschreiben, Dateimetadaten aktualisieren
 * Löschen &minus; Datei löschen (und ihre Metadaten)
 
+## Admins
+Admins haben immer Voll-Zugriff
+
 ## Verzeichnisse
 
 Die Berechtigungen können angegeben werden:
@@ -65,9 +68,9 @@ Beispiel: `<hauptordner>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 ```json
 {
   "directoryPermissions": {
-  "someDir": "crud-r------",
-  ...
-},
+    "someDir": "crud-r------",
+    ...
+  },
   "defaultPermissions": "fc4"
 }
 ```
@@ -78,10 +81,9 @@ Beispiel: `<hauptordner>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 ist der Eigentümer der Benutzer, der die Datei ursprünglich erstellt hat
 (`-` beim Hochladen mit öffentlichem Zugriff) \
 (Administratoren können den Eigentümer bei Kopier- und Verschiebeoperationen auf den Eigentümer der Quelldatei setzen)
-* Bei Verzeichnisoperationen (neue Datei erstellen, Verzeichniselemente auflisten)
-ist der Besitzer:
-* bei Benutzerverzeichnissen: der Benutzer, dem das Verzeichnis gehört
-* in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)
+* Bei Verzeichnisoperationen (neue Datei erstellen, Verzeichniselemente auflisten) ist der Eigentümer:
+  * bei Benutzerverzeichnissen und deren Unterverzeichnissen: der Benutzer, dem das Verzeichnis zugeordnet ist
+  * in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)
 
 ## Siehe auch:
 [Konfiguration](/de/configuration/general)

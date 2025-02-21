@@ -51,6 +51,9 @@ each digit is the sum of the enabled permission's bit values
 * update &minus; update/overwrite a file, update file metadata
 * delete &minus; delete a file (and it's meta data)
 
+## Admins
+Admins always have full-access.
+
 ## Directories
 
 The permissions can be specified:
@@ -84,9 +87,8 @@ Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
   (admins can set the owner to the source file owner on copy and move operations)
 * For directory operations (create new file, list directory items),
   the owner is:
-  * on user directories: the user, the directory belongs to
+  * on user directories and it's sub directories: the user, the directory belongs to
   * on other directories: none (always user permissions are used)
-  
 
 ## See also:
 [Configuration](/configuration/general)

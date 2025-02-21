@@ -1,6 +1,6 @@
 # Usage - Install
 
-This pages shows how to install/setup files-crud.
+This page shows how to install/setup files-crud.
 
 ## npm install
 You can simply install files-crud globally to use it as [npm CLI](https://www.npmjs.com/package/files-crud).
@@ -23,7 +23,7 @@ npm install -g files-crud
 ```
 
 ## Docker
-You also can use our files-crud [docker image](https://hub.docker.com/repository/docker/filescrud/filescrud/general).
+You also can use our files-crud [docker image](https://hub.docker.com/r/filescrud/filescrud).
 
 ### Requisites
 * [docker](https://www.docker.com/) installed

@@ -1,6 +1,6 @@
 # Storage-Configuration
 
-The storage configuration is used to choose the storage type and specify it's behavior.
+The storage configuration is used to choose the storage's type and specify it's behavior.
 
 ## Syntax
 
@@ -97,7 +97,7 @@ Type: String
 
 ### storage.bucket
 
-Specifies Bucket name for S3(-compatible) Storage. Bucket have to exist already.
+Specifies Bucket name for S3(-compatible) Storage. Bucket has to exist already.
 
 Default: `files-crud`
 

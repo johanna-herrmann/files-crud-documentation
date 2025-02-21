@@ -84,14 +84,14 @@ Gibt an, ob und wie IPs geloggt werden, wenn detailiertes Access-Logging aktivie
 Standard: `anonymous`
 
 Typ: Eines von
-* `full` &minus; Logt die komplette IP-Adresse
+* `full` &minus; Loggt die komplette IP-Adresse
 * `anonymous` &minus; Loggt IP-Addressen anonymisiert (letztes Segment wird durch `_` ersetzt) \
   (Beispiel: `233.42.23._` statt `233.42.23.123`)
 * `none` &minus; Loggt keine IP-Adressen (Gesamte Adresse wird durch `_` ersetzt)
 
 ### logging.enableErrorFileLogging
 
-Wenn `true`, werden Fehler zusätzlich eine Datei geloggt,
+Wenn `true`, werden Fehler zusätzlich in eine Datei geloggt,
 die via [logging.errorLogFile](#loggingerrorlogfile) angegeben wurde,
 zusätzlich zum Logging in der Konsole.
 
@@ -115,7 +115,7 @@ Gibt den Datei-Pfad für das detailierte Access-Logging an
 
 Standard: `./access.log`
 
-Typ: String (Pfad, absolut or relativ zum working directory)
+Typ: String
 
 ### logging.errorLogFile
 Gibt den Dateipfad fürs Error-Logging an
@@ -123,7 +123,7 @@ Gibt den Dateipfad fürs Error-Logging an
 
 Standard: `./error.log`
 
-Type: String (Pfad, absolut or relativ zum working directory)
+Type: String
 
 ### logging.ttyLoggingFormat
 Gibt das Format des Loggings in der Konsole an.
@@ -306,7 +306,7 @@ Folgende Beispiele werden genutzt, um die unterschiedlichen Formate zu visualisi
 
 Die Bilder zeigen, wie es aussehen würde, im Terminal `bash` von `Linux Mint 22` (`Cinnamon`) mit 80 Zeichen Fenster-Länge.
 Um zwischen echten Zeilenumbrüchen und zur besseren Darstellung eingefügten Zeilenumbrüchen zu unterscheiden,
-haben die eigentlichen Zeilen unterschiedliche Hintergrundfarben.
+haben die eigentlichen Zeilen alternierende Hintergrundfarben.
 
 ### humanReadableLine
 Loggt eine einfache Zeile aus Informationen.

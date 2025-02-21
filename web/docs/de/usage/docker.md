@@ -32,11 +32,11 @@ Folgendes Kommando startet die Anwendung mit Standard-Konfiguration:
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start
 ```
 
-Kurzform:
+Kurzform (keine Angabe von Kommando, Optionen und/oder Argumenten):
 ```bash
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
-(Keine Angabe von Kommando, Optionen und/oder Argumenten)
+
 
 #### Starten mit alternativen Host und Port
 ```bash

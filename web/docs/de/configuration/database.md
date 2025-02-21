@@ -342,7 +342,7 @@ Unter folgenden Annahmen
 }
 ```
 
-## dynamodb table definition
+## dynamodb Tabellen-Definition
 Die Tabellen für dynamodb müssen wie folgt erstellt werden.
 
 ### Benutzer-Tabelle

@@ -13,7 +13,7 @@ Registriert einen neuen Benutzer
   "username": "lisa42",
   "password": "s33mlingl1G00dP8ssw0rd",
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   },
   "token": "4e7e0e32-8b67-473e-a4e9-7572765966e9"
 }
@@ -23,7 +23,7 @@ Registriert einen neuen Benutzer
 * password (String) &minus; Gewünschtes Passwort für den neuen Benutzer
 * meta (Object) &minus; Optionales Objekt für Metadaten zum Benutzer
 * token (String) &minus;
-  Optionale zeichenfolge: Wenn registration-mode ist `token`, muss der Wert ein gültiger Token sein
+  Optionale Zeichenfolge: Wenn registration-mode ist `token`, muss der Wert ein gültiger Token sein
 
 ### Request Path Parameter
 Keiner
@@ -139,7 +139,7 @@ Fügt einen neuen Benutzer hinzu. Nur für Admins
   "password": "s33mlingl1G00dP8ssw0rd",
   "admin": true,
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   }
 }
 ```
@@ -308,8 +308,8 @@ Body:
 ```
 
 * id (String) &minus; ID des Benutzers von dem das Passwort geändert werden soll (`self` um das eigene Passwort zu ändern)
-* oldPassword (String) &minus; Required if you change your own password: your old password
-* newPassword (String) &minus; The desired new password
+* oldPassword (String) &minus; Erforderlich um das eigene Passwort zu ändern: dein altes Passwort
+* newPassword (String) &minus; Das gewünschte neue Passwort
 
 ### Request Path Parameter
 Keiner
@@ -334,7 +334,7 @@ Body:
 }
 ```
 
-#### Fehler: Nicht-Admin versucht das Passwort eines Benutzers zu ändern
+#### Fehler: Nicht-Admin versucht das Passwort eines anderen Benutzers zu ändern
 Status-Code: 401
 
 Body:
@@ -363,7 +363,7 @@ Body:
 ```json
 {
   "meta": {
-    "birthday": "1988-08-26",
+    "birthday": "1992-03-19",
     "marriage": "2029-05-12"
   }
 }
@@ -430,7 +430,7 @@ Body:
 ```json
 {
   "meta": {
-    "birthday": "1988-08-26"
+    "birthday": "1992-03-19"
   }
 }
 ```
@@ -482,7 +482,7 @@ Body:
     "username": "lisa42",
     "admin": true,
     "meta": {
-      "birthday": "1988-08-26"
+      "birthday": "1992-03-19"
     }
   }
 }

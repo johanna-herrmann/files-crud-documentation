@@ -33,11 +33,11 @@ Bei fortfolgenden Anfragen muss dieser Token als Wert des `Authorization`-Header
   Unix Timestamp wann der JWT abläuft (Millisekunden), 0 wenn der Token niemals abläuft
 
 ### Siehe auch
-[API: Benutzer Endpoints - Login](/de/api/user#login)
+[API: Benutzer Endpoints - Login](/de/api/user#einloggen)
 
 
 ## Begrenzung der Login-Versuche und Sperren
-Nach 5 aufeinander folgenden, fehlerhaften Login-Versuche mit dem gleichen Benutzernamen,
+Nach 5 aufeinander folgenden, fehlerhaften Login-Versuchen mit dem gleichen Benutzernamen,
 sind weitere Versuche mit diesem Benutzernamen für 15 Sekunden blockiert. \
 Dabei spielt es keine Rolle, ob ein Benutzer mit diesem Benutzernamen existiert. \
 Nach 6 falschen Versuchen dauert die Sperre 30 Sekunden, nach 7 Versuchen eine Minute, usw.

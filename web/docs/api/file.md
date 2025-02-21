@@ -15,7 +15,7 @@ It also stores following properties as file data.
 * size
 * md5 hash of the file content (used for [integrity check](/usage/cli#integrity))
 * meta (file meta data) \
-  (set to undefined on create, unchaged on update)
+  (set to *undefined* on create, unchaged on update)
 
 Requires `Content-Type` request-header with value like `multipart/form-data;boundary=delimiter`
 where `delimiter` can be any value containing numbers, letters and dashes.

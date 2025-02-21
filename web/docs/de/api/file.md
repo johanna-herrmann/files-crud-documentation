@@ -15,7 +15,7 @@ Speichert außerdem folgende Eigenschaften als Datei-Daten.
 * Größe
 * MD5 hash des Dateiinhalts (Verwendet für den [Integritäts-Check](/de/usage/cli#integrity))
 * meta (Datei-Metadaten) \
-  (undefined beim initialen Upload, unverändert beim überschreiben der Datei)
+  (*undefined* beim initialen Upload, unverändert beim überschreiben der Datei)
 
 Der `Content-Type`-request-header muss gesendet werden, mit einem Wert wie `multipart/form-data;boundary=delimiter`,
 wobei `delimiter` eine beliebige Zeichenfolge aus Zahlen, Buchstaben und Bindestrichen sein kann.
@@ -111,7 +111,7 @@ Body: \
 File content
 
 Response enthält folgende header
-* Content-Type &minus; Mimetype der Upload gespeichert wurde (oder falls angegeben: Der Wert des `X-Mimetype`-request-headers)
+* Content-Type &minus; Mimetype der beim Upload gespeichert wurde (oder falls angegeben: Der Wert des `X-Mimetype`-request-headers)
 * Content-Length &minus; Größe der Datei (bytes)
 * Content-Disposition &minus; Enthält Informationen zur herunterzuladenden Datei \
   Beispiel: `attachment; filename=cool-text.txt`
@@ -226,7 +226,7 @@ Body:
 }
 ```
 
-#### Missing read permission
+#### Fehlende read Berechtigung
 Status-Code: 401
 
 Body:
@@ -236,7 +236,7 @@ Body:
 }
 ```
 
-#### File does not exist
+#### Datei existiert nicht
 Status-Code: 400
 
 Body:
@@ -246,18 +246,18 @@ Body:
 }
 ```
 
-## Load File Data
+## Datei-Daten laden
 **<span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999; ">{path*}</span>**
 
-Loads the data for a file. This includes: meta data, size, mimetype, owner and md5 hash.
+Lädt Datei-Daten zu einer Datei. Darin enthalten: Metadateb, Größe, Mimetype, Eigentümer und MD5-Hash.
 
 ### Request Body
 Keiner
 
-### Request Path parameters
-* path &minus; The path to the file to load the data from (relative to storage root)
+### Request Path Parameter
+* path &minus; Pfad zu der Datei zu der die Datei-Daten geladen werden sollen (relativ zum Hauptordner des Speichers)
 
-Examle:
+Beispiel:
 <span style="color: #60affe; ">GET</span> /api/file/load-data/<span style="color: #999">texts/examples/cool-text.txt</span>
 
 ### Responses
@@ -362,7 +362,7 @@ Kopiert eine Datei.
 }
 ```
 
-* path &minus; Pfad zur Datei die kopiert werden
+* path &minus; Pfad zur Datei die kopiert werden soll
 * targetPath &minus; Pfad zur Ziel-Datei
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)

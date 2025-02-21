@@ -54,11 +54,11 @@ FILES_CRUD_SERVER__FILE_SIZE_LIMIT=String | number
 
 Gibt an auf welcher Domain oder IP der Server lauscht.
 
-Standard: `0.0.0.0` (Lauscht auf alle IPs)
+Standard: `0.0.0.0` (Lauscht auf allen IPs)
 
 Typ: String
 
-Damit nur auf den `localhost` gelauscht wird:
+Damit nur auf dem `localhost` gelauscht wird:
 * Wenn installiert via `npm install -g files-crud`: setze `server.host` auf `127.0.0.1`
 * Bei Nutzung von docker: nutze `-p 127.0.0.1:9000:9000` statt `-p 9000:9000`
 
@@ -171,7 +171,7 @@ cors:
 fileSizeLimit: 2g
 ```
 
-### Umgebungsvariable
+### Umgebungsvariablen
 ```properties
 FILES_CRUD_SERVER__HOST=127.0.0.1
 FILES_CRUD_SERVER__PORT=443

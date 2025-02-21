@@ -32,11 +32,10 @@ The following starts the application width default configuration.
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud start
 ```
 
-shortcut:
+shortcut (passing no sub command, options and args):
 ```bash
 docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
-(passing no sub command, options and args)
 
 #### Start with custom host and port
 ```bash

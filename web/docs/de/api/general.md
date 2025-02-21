@@ -1,6 +1,6 @@
 # API
 
-Diese Seiten dokumentieren die API Endpoints für `files-crud`.
+Diese Seiten dokumentieren die API Endpoints für files-crud.
 
 Wir verwenden folgende Platzhalter-Notationen und Beispiele:
 * Gute und konsistente Beispiele für body Parameter, anstelle von Platzhaltern

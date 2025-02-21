@@ -1,6 +1,6 @@
 # Auth
 
-This page explains the authentication and authoritaion for files-crud.
+This page explains the authentication and authorization for files-crud.
 
 ## Authontication type
 files-crud authenticates users, using username-password-authentication.

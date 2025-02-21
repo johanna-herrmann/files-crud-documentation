@@ -8,15 +8,15 @@ Die Konfiguration kann über die folgenden Methoden geschehen:
 * Setzen von Umgebungsvariablen mit `FILES_CRUD_`-Prefix
   (oder dem via `filescrud --env-prefix` angegebenen Prefix).
 
-Alle Konfigurationseigenschaften (convention over configuration) aber manche Eigenschaften sind in eigenen Fällen stark empfohlen. \
+Alle Konfigurationseigenschaften sind optional (convention over configuration) aber manche Eigenschaften sind in eigenen Fällen stark empfohlen. \
 Beispiel: Der Standard von `accessKeyId` ist `fallback-key`, was ziemlich unbrauchbar ist, wenn zum Beispiel die `dynamodb` als Datenbankadapter genutzt wird.
 
 ## Vorrangigkeit
 Wenn du sowohl eine Konfigurationsdatei, als auch Umgebungsvariablen verwendest,
 überschreiben die Eigenschaften der Umgebungsvariablen die Eigenschaften der Konfigurationsdatei.
 
-Bei mehreren Konfigurationsdateien gilt:
-* Liegt eine `./config.json` vor wird diese ausgewendet
+Für Konfigurationsdateien gilt:
+* Liegt eine `./config.json` vor wird diese angewendet
 * Falls nicht, aber es liegt eine `./config.yaml` vor, so wird diese angewendet
 * Liegt auch diese nicht vor, aber eine `./config.yml`, dann wird diese angwendet
 
@@ -143,7 +143,7 @@ Type: [Datenbank-Konfiguration](/de/configuration/database)
 ### logging
 Konfiguriert das Logging-Verhalten
 
-Standard: See: [Logging-Konfiguraion](/de/configuration/logging)
+Standard: Siehe: [Logging-Konfiguraion](/de/configuration/logging)
 
 Typ: [Logging-Konfiguraion](/de/configuration/logging)
 
@@ -197,7 +197,8 @@ Typ: Liste/Array von Strings (ein String pro Token)
 
 ### region
 AWS-Region, die für `dynamodb` und/oder `s3` genutzt wird.
-Wird durch `database.region` bzw. `storage.region` überschrieben, wenn angegeben.
+Wird durch [database.region](/de/configuration/database#databaseregion)
+bzw. [storage.region](/de/configuration/storage#storageregion) überschrieben, wenn angegeben.
 
 Standard: `eu-central-1`
 
@@ -205,7 +206,8 @@ Typ: String
 
 ### accessKeyId
 AWS Access Key Id, für `dynamodb` und/oder `s3`.
-Wird duch `database.accessKeyId` bwz. `storage.accessKeyId` überschrieben, wenn angegeben.
+Wird duch [database.accessKeyId](/de/configuration/database#databaseaccesskeyid)
+bzw. [storage.accessKeyId](/de/configuration/storage#storageaccesskeyid) überschrieben, wenn angegeben.
 
 Defaul: `fallback-key`
 
@@ -213,7 +215,8 @@ Typ: String
 
 ### secretAccessKey
 AWS Secret Access Key, für `dynamodb` und/oder `s3`.
-Wird duch `database.secretAccessKey` oder `storage.secretAccessKey` überschrieben, wenn angegeben.
+Wird duch [database.secretAccessKey](/de/configuration/database#databasesecretaccesskey)
+bzw. [storage.secretAccessKey](/de/configuration/storage#storagesecretaccesskey) überschrieben, wenn angegeben.
 
 Standard: `fallback-secret`
 
@@ -279,7 +282,7 @@ accessKeyId: AKIAIOSFODNN7EXAMPLE
 secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
-### Umgebungsvariable
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
@@ -306,7 +309,7 @@ Wenn überhaupt gar keine Eigenschaft gesetzt wird, verhält sich die Anwendung 
 * in-memory-db wird genutzt
 * Logging:
   * Kein Debug-Logging
-  * Alle Logging-Fubktionen aktiviert
+  * Alle Logging-Funktionen aktiviert
   * Anonymisiertes IP-Logging
   * Dateien:
     * Access-Log: `./access.log`

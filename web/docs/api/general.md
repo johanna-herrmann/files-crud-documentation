@@ -1,6 +1,6 @@
 # API
 
-These pages document the API Endpoints for `files-crud`.
+These pages document the API Endpoints for files-crud.
 
 We will use following placeholders / example-notation:
 * Good and consistent example values for body parameters, instead of placeholders

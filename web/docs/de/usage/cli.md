@@ -63,7 +63,7 @@ filescrud start --env-prefix APP
 ```
 
 ## Steuern einer laufenden Anwendung
-Steuert eine laufene files-crud Anwendung. \
+Steuert eine laufende files-crud Anwendung. \
 Beim starten legt die Anwendung eine `.control.json`-Datei im aktuellen Arbeitsverzeichnis (`./`) an.
 Die folgenden Kommandos lesen diese Datei, ebenfalls vom Arbeitsverzeichnis.
 
@@ -130,7 +130,7 @@ filescrud integrity [Optionen] [Argumente]
 | ------------------------- | --------------------------------------------------------- |
 | -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
 
-### Arguments
+### Argumente
 * Pfad &minus; Pfad zum Verzeichnis oder zur Datei wovon die Integrität geprüft werden soll.
   Hauptordner des Speichers, falls nicht angegeben
 
@@ -221,12 +221,12 @@ Zeigt die gesamte Konfiguration im Standard-Format (json)
 filescrud config
 ```
 
-Zeigt definierte Eigenschaften im yaml Format
+Zeigt definierte Eigenschaften im yaml Format an
 ```bash
 filescrud config -n yaml
 ```
 
-eigt die gesamte Konfiguration in Form von Umgebungsvariablen
+Zeigt die gesamte Konfiguration in Form von Umgebungsvariablen an
 ```bash
 filescrud config env
 ```

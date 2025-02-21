@@ -8,12 +8,12 @@ Du kannst files-crud global als [npm-CLI](https://www.npmjs.com/package/files-cr
 Nach der Installation steht die CLI als `filescrud` zur Verfügung. \
 Beispiel:
 ```bash
-filescrud start`
+filescrud start
 ```
 
 ### Voraussetzungen
 * [nodejs](https://nodejs.org/en) installiert, mindestens in Version 22.x.x \
-  getestet:
+  getestet für:
   * 22.11.0
   * 22.14.0
 
@@ -23,7 +23,7 @@ npm install -g files-crud
 ```
 
 ## Docker
-Du kannst außerdem das files-crud [Docker Image](https://hub.docker.com/repository/docker/filescrud/filescrud/general) verwenden.
+Du kannst außerdem das files-crud [Docker Image](https://hub.docker.com/r/filescrud/filescrud) verwenden.
 
 ### Voraussetzungen
 * [docker](https://www.docker.com/) installiert
