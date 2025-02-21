@@ -28,6 +28,7 @@ For config files the following applies:
 {
     "defaultPermissions": String,
     "directoryPermissions": {"path": String, ...},
+    "publicFileOwner": "all" | "none",
     "database": DatabaseConfig,
     "logging": LoggingConfig,
     "storage": StorageConfig,
@@ -49,6 +50,7 @@ defaultPermissions: String
 directoryPermissions:
     path: String
     ...
+publicFileOwner: all | none,
 database:
     DatabaseConfig
 logging:
@@ -74,6 +76,7 @@ secretAccessKey: String
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=String
 FILES_CRUD_DIRECTORY_PERMISSIONS...
+FILES_CRUD_PUBLIC_FILE_OWNER=all|none
 FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
@@ -131,6 +134,15 @@ Example:
 * You specified directory permissions for `images` but not for `images/holidays`
 * A user wants to access `images/holidays`
 * In this case, the permission definition on `images` will be used, since `holidays` is a sub directory.
+
+### publicFileOwner
+Specifies how owner is handled if a file was created without login.
+
+Default: `all`
+
+Type: One of
+* `all` &minus; File is owned by everybody
+* `none` &minus; File is owned by nobody
 
 ### database
 Specifies configuration for the database connection.
@@ -232,6 +244,7 @@ Type: String
         "special/world": "crudcr---r--",
         "special/admins": "000"
     },
+    "publicFileOwner": "none",
     "database": {
         "name": "mongodb"
     },
@@ -262,6 +275,7 @@ defaultPermissions: crudcr------
 directoryPermissions:
     special/world: crudcr---r--
     special/admins: 000
+publicFileOwner: none
 database:
     name: mongodb
 logging:
@@ -287,6 +301,7 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
 FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins'
 FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000'
+FILES_CRUD_PUBLIC_FILE_OWNER=none
 FILES_CRUD_DATABASE__NAME=mongodb
 FILES_CRUD_LOGGING__IP_LOGGING=full
 FILES_CRUD_STORAGE__NAME=s3
@@ -305,6 +320,7 @@ FILES_CRUD_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 If no property is set at all, the application defaults to:
 * `crudcr------`-permissions for all directories (Full-Access for owner, create and read permissions for users)
+* files created without login will be owned by everybody
 * in-memory-db is used
 * Logging:
   * No debug logging

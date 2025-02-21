@@ -91,8 +91,8 @@ Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
   * on other directories: none (always user permissions are used)
 
 *this is handled as follows:
-* if [publicFileOwner](/configuration#publicfileowner) is set to `all` (default) &minus; file is owned by anyone
-* if [publicFileOwner](/configuration#publicfileowner) is set to `none` &minus; file is owned by no one
+* if [publicFileOwner](/configuration#publicfileowner) is set to `all` (default) &minus; file is owned by everybody
+* if [publicFileOwner](/configuration#publicfileowner) is set to `none` &minus; file is owned by nobody
 
 ## See also:
 [Configuration](/configuration/general)

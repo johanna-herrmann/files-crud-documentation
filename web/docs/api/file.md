@@ -10,7 +10,7 @@ Can be a new file or an existing file. \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in request-body
   (or if provided: the value of `X-Mimetype` request-header)
-* the owner (user-id of the uploader, `public` if public) \
+* the owner (user-id of the uploader, `public` if uploaded without login) \
   (unchaged on update).
 * size
 * md5 hash of the file content (used for [integrity check](/usage/cli#integrity))

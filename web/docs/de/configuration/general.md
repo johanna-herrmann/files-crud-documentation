@@ -28,6 +28,7 @@ Für Konfigurationsdateien gilt:
 {
     "defaultPermissions": String,
     "directoryPermissions": {"path": String, ...},
+    "publicFileOwner": "all" | "none",
     "database": DatabaseConfig,
     "logging": LoggingConfig,
     "storage": StorageConfig,
@@ -49,6 +50,7 @@ defaultPermissions: String
 directoryPermissions:
     path: String
     ...
+publicFileOwner: all | none,
 database:
     DatabaseConfig
 logging:
@@ -74,6 +76,7 @@ secretAccessKey: String
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=String
 FILES_CRUD_DIRECTORY_PERMISSIONS...
+FILES_CRUD_PUBLIC_FILE_OWNER=all|none
 FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
@@ -132,6 +135,15 @@ Beispiel:
 * Du gibst Berechtigungen für `images` an, aber nicht für `images/holidays`
 * Ein Benutzer greift auf `images/holidays` zu
 * In diesem Fall greift die Berechtigungsdefinition von `images` auch für `images/holidays`, weil `holidays` ein Unterverzeichnis ist.
+
+### publicFileOwner
+Gibt an wie der Eigentümer behandelt werden soll, wenn eine Datei ohne Login erstellt wurde.
+
+Standard: `all`
+
+Typ: Eines von
+* `all` &minus; Datei gehört jedem
+* `none` &minus; Datei gehört niemandem
 
 ### Datenbank
 Konfiguriert die Datenbakverbindung
@@ -233,6 +245,7 @@ Typ: String
         "special/world": "crudcr---r--",
         "special/admins": "000"
     },
+    "publicFileOwner": "none",
     "database": {
         "name": "mongodb"
     },
@@ -263,6 +276,7 @@ defaultPermissions: crudcr------
 directoryPermissions:
     special/world: crudcr---r--
     special/admins: 000
+publicFileOwner: none
 database:
     name: mongodb
 logging:
@@ -288,6 +302,7 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
 FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins'
 FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000'
+FILES_CRUD_PUBLIC_FILE_OWNER=none
 FILES_CRUD_DATABASE__NAME=mongodb
 FILES_CRUD_LOGGING__IP_LOGGING=full
 FILES_CRUD_STORAGE__NAME=s3
