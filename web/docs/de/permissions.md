@@ -79,11 +79,15 @@ Beispiel: `<hauptordner>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 * Bei Dateioperationen
 (Metadaten aktualisieren, Metadaten lesen, Dateidaten lesen, Datei herunterladen, Datei überschreiben, Datei löschen)
 ist der Eigentümer der Benutzer, der die Datei ursprünglich erstellt hat
-(`public` beim Hochladen mit öffentlichem Zugriff, so dass die Datei dann jedem gehört) \
+(`public`* beim Hochladen mit öffentlichem Zugriff) \
 (Administratoren können den Eigentümer bei Kopier- und Verschiebeoperationen auf den Eigentümer der Quelldatei setzen)
 * Bei Verzeichnisoperationen (neue Datei erstellen, Verzeichniselemente auflisten) ist der Eigentümer:
   * bei Benutzerverzeichnissen und deren Unterverzeichnissen: der Benutzer, dem das Verzeichnis zugeordnet ist
   * in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)
+
+*Dies wird wie folgt behandelt:
+* wenn [publicFileOwner](/configuration#publicfileowner) auf `all` gesetzt ist (Standard) &minus; Datei gehört jedem
+* wenn [publicFileOwner](/configuration#publicfileowner) auf `none` gesetzt ist &minus; Datei gehört niemandem
 
 ## Siehe auch:
 [Konfiguration](/de/configuration/general)
