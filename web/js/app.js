@@ -7,8 +7,13 @@ const footer = `
 let selectedLanguage = localStorage.getItem('language');
 const actualLanguage = self.location.pathname.startsWith('/de/') ? 'de' : 'en';
 
+if (selectedLanguage !== 'de' && selectedLanguage !== 'en') {
+  selectedLanguage = undefined;
+}
+
 if (!selectedLanguage) {
-  selectedLanguage = navigator.language;
+  const navigatorLanguae = (navigator.language || 'en').substring(0, 2);
+  selectedLanguage = navigatorLanguae === 'de' ? 'de' : 'en';
   localStorage.setItem('language', selectedLanguage);
 }
 
