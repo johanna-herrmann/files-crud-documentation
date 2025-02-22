@@ -13,3 +13,7 @@
 .page-content p + .pre-wrapper {
   margin: -13px 0 2rem 0;
 }
+
+.LanguageSelector select option {
+  background-color: var(--page-background);
+}
