@@ -1,6 +1,6 @@
-# Server Configuration
+# Server-Konfiguration
 
-The server configuration is used to specify the connection to and behaviour of the files-crud server.
+Die-Server Konfiguration bestimmt die Verbindung und das Verhalten zum files-crud Server.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ cors: CorsConfig
 fileSizeLimit: String | number
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 ```properties
 FILES_CRUD_SERVER__HOST=String
 FILES_CRUD_SERVER__PORT=number
@@ -48,95 +48,95 @@ FILES_CRUD_SERVER__CORS__...
 FILES_CRUD_SERVER__FILE_SIZE_LIMIT=String | number
 ```
 
-## Properties
+## Eigenschaften
 
 ### server.host
 
-Specifies on which ip(s) / domain(s) to listen.
+Gibt an auf welcher Domain oder IP der Server lauscht.
 
-Default: `0.0.0.0` (listens to any source IP)
+Standard: `0.0.0.0` (Lauscht auf allen IPs)
 
-Type: String
+Typ: String
 
-To listen only on `localhost`:
-* If installed via `npm install -g files-crud`: set `server.host` to `127.0.0.1`
-* If using docker: use `-p 127.0.0.1:9000:9000` instead of `-p 9000:9000`
+Damit nur auf dem `localhost` gelauscht wird:
+* Wenn installiert via `npm install -g files-crud`: setze `server.host` auf `127.0.0.1`
+* Bei Nutzung von docker: nutze `-p 127.0.0.1:9000:9000` statt `-p 9000:9000`
 
 ### server.port
 
-Specifies on which port to listen.
+Gibt an auf welchem Port der Server lauscht.
 
-Default: `9000`
+Standard: `9000`
 
-Type: number
+Typ: number
 
 ### server.useHttps
 
-Server uses `https` with ssl/tls, if `true`.
+Server verwendet `https` mit ssl/tls, wenn `true`.
 
-Default: `false`
+Standard: `false`
 
-Type: boolean
+Typ: boolean
 
 ### server.useHttp2
 
-Server uses `HTTP/2` for https. 
+Server nutzt `HTTP/2` für https, wenn `true`. 
 
-Default: `false`
+Standard: `false`
 
-Type: boolean
+Typ: boolean
 
 ### server.sslKeyPath
 
-Specifies the path to the private key for ssl/tls.
+Gibt den Dateipfad zum privaten Schlüssel für ssl/tls an.
 
-Default: `./privateKey.pem`
+Standard: `./privateKey.pem`
 
-Type: String
+Typ: String
 
 ### server.sslCertPath
 
-Specifies the path to the certificate for ssl/tls.
+Gibt den Dateipfad zum Zertifikat für ssl/tls an.
 
-Default: `./certificate.pem`
+Standard: `./certificate.pem`
 
-Type: String
+Typ: String
 
 ### server.hsts
 
-Server sends `Strict-Transport-Security` header if `true` and ssl/tls enabled.
+Server sendet `Strict-Transport-Security`-Header wenn `true` und ssl/tls aktiv.
 
-Default: `true`
+Standard: `true`
 
-Type: boolean
+Typ: boolean
 
 ### server.noRobots
 
-Server sends `X-Robots-Tag`-Header with value `none` if `true`
+Server sendet `X-Robots-Tag`-Header mit Wert `none` wenn `true`
 
-Default: `false`
+Standard: `false`
 
-Type: boolean
+Typ: boolean
 
 ### server.cors
 
-Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
+Definiert die Eigenschaften des `Cross-Origin Resource Sharing` (CORS).
 
-Default: none (no cors header will be set)
+Standard: keine (Kein CORS-Header wird gesendet)
 
-Type: [CORS Configuration](/configuration/server-cors)
+Typ: [CORS-Konfiguration](/de/configuration/server-cors)
 
 ### server.fileSizeLimit
 
-Specifies the maximum file size, which can be uploaded to storage.
+Gibt die maximale Dateigröße an, die hochgeladen werden kann.
 
-Default: `100m` (100MiB (104.8MB))
+Standard: `100m` (100MiB (104.8MB))
 
-Type: One of
-* String &minus; number and unit (Example: `42k` for 42KiB)
-* number &minus; amount of bytes (Example: 1024 for 1KiB)
+Typ: Eines von
+* String &minus; Zahl und Einheit (Beispiel: `42k` für 42KiB)
+* number &minus; Anzahl der Bytes (Beispiel: 1024 für 1KiB)
 
-## Examples
+## Beispiele
 
 ### JSON
 
@@ -171,7 +171,7 @@ cors:
 fileSizeLimit: 2g
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 ```properties
 FILES_CRUD_SERVER__HOST=127.0.0.1
 FILES_CRUD_SERVER__PORT=443

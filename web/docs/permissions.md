@@ -20,7 +20,7 @@ a permission is disabled if it's letter is replaced with a dash.
 #### Examples
 * `crud-r------` &minus;
   Full access for owner, read-access for other none-admin users, no access without login
-* `crudcrud-r--` &minus; full access for all none-admin users, read-access without login
+* `crudcrud-r--` &minus; full access for all users, read-access without login
 * `-r---r------` &minus;
   read-only access for non-admin users, no access without login
 
@@ -40,7 +40,7 @@ each digit is the sum of the enabled permission's bit values
 #### Examples
 * `f40` &minus;
   Full access for owner, read-access for other none-admin users, no access without login
-* `ff4` &minus; full access for all none-admin users, read-access without login
+* `ff4` &minus; full access for all users, read-access without login
 * `440` &minus;
   read-only access for non-admin users, no access without login
 
@@ -51,16 +51,19 @@ each digit is the sum of the enabled permission's bit values
 * update &minus; update/overwrite a file, update file metadata
 * delete &minus; delete a file (and it's meta data)
 
+## Admins
+Admins always have full-access.
+
 ## Directories
 
 The permissions can be specified:
 * For a specific directory. \
   Use `$user` placeholder for user directories
   (Example: `$user/sub` for directory `sub` in user directories)
-* Default: Applicated if the directory does not have a specification
+* Default: Applicated if the directory and all parent directories don't have a specification
 
 ### User directories
-Each user is assigned to a directory &minus; their user directory. \
+Each user is assigned to a directory. \
 The path is: `<storage_root>/user_<user_id>` \
 Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 
@@ -80,13 +83,16 @@ Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 * For file operations
   (update meta data, read meta data, read file data, download file, overwrite file, delete file),
   the owner is the user, who initially created the file
-  (`-` on public access upload) \
+  (`public`* on public access upload) \
   (admins can set the owner to the source file owner on copy and move operations)
 * For directory operations (create new file, list directory items),
   the owner is:
-  * on user directories: the user, the directory belongs to
+  * on user directories and it's sub directories: the user, the directory belongs to
   * on other directories: none (always user permissions are used)
-  
+
+*this is handled as follows:
+* if [publicFileOwner](/configuration#publicfileowner) is set to `all` (default) &minus; file is owned by everybody
+* if [publicFileOwner](/configuration#publicfileowner) is set to `none` &minus; file is owned by nobody
 
 ## See also:
 [Configuration](/configuration/general)

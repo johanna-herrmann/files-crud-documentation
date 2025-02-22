@@ -1,4 +1,4 @@
-# CorsConfiguration
+# CORS Configuration
 
 Specifies the `Cross-Origin Resource Sharing` (CORS) properties.
 

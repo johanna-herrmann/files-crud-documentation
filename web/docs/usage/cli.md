@@ -5,7 +5,9 @@ This page shows the usage of files-crud CLI.
 ## General
 
 ### Usage
-`filescrud [options] [command] [command-args] [command-options]`
+```bash
+filescrud [options] [command] [command-args] [command-options]
+```
 
 ### Options
 
@@ -15,16 +17,28 @@ This page shows the usage of files-crud CLI.
 | -h, --help                | display help for command                                  |
 
 ### Examples
-* `filescrud --version` &minus; Displays files-crud version
-* `filescrud help` &minus; Displays help summary
-* `filescrud help start` &minus; Displays help for `start` command
+Displays files-crud version
+```bash
+filescrud --version
+```
 
+Displays help summary
+```bash
+filescrud help
+```
+
+Displays help for `start` command
+```bash
+filescrud help start
+```
 
 ## Start
 Starts files-crud application.
 
 ### Usage
-`filescrud start [options]`
+```bash
+filescrud start [options]
+```
 
 ### Options
 
@@ -33,35 +47,59 @@ Starts files-crud application.
 | -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
 
 ### Examples
-* `filescrud start` &minus; Starts application with defaults
-* `filescrud start -e FC` &minus; Starts application with env-prefix `FC`
-* `filescrud start --env-prefix APP` &minus; Starts application with env-prefix `APP`
+Starts application with defaults
+```bash
+filescrud start
+```
+
+Starts application with env-prefix `FC`
+```bash
+filescrud start -e FC
+```
+
+Starts application with env-prefix `APP`
+```bash
+filescrud start --env-prefix APP
+```
 
 
-## Stop
-Stops a running files-crud application.
+## Controlling running applications
+Controlls a running files-crud application. \
+On startup, the application creates a `.control.json` file in current working directory (`./`).
+The following commands read this file, also from working dir.
 
 ### Usage
-`filescrud stop`
+```bash
+filescrud stop|restart|reload  [options]
+```
 
-## Restart
-Restarts a running files-crud application.
-
-### Usage
-`filescrud restart [options]`
-
-#### Options
+### Options
+For `restart` and `reload` command:
 
 | Option                    | Description                                               |
 | ------------------------- | --------------------------------------------------------- |
 | -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
 
-### Examples
-* `filescrud restart` &minus; Restarts application with default env-prefix (FILES_CRUD)
-* `filescrud restart -e FC` &minus; Restarts application with env-prefix `FC`
-* `filescrud restart --env-prefix APP` &minus; Restarts application with env-prefix `APP`
+### stop
+Stopps a running application
 
-## Reload
+```bash
+filescrud stop
+```
+
+### restart
+
+Restarts application with default env-prefix (FILES_CRUD)
+```bash
+filescrud restart
+```
+
+Restarts application with env-prefix `FC`
+```bash
+filescrud restart -e FC
+```
+
+### reload
 Reloads the configuration for a running application. \
 Affects all properties except for
 * server.host
@@ -69,25 +107,23 @@ Affects all properties except for
 * server.useHttps
 * server.useHttp2
 
-### Usage
-`filescrud reload [options]`
+Reloads config with default env-prefix (FILES_CRUD)
+```bash
+filescrud reload
+```
 
-### Options
-
-| Option                    | Description                                               |
-| ------------------------- | --------------------------------------------------------- |
-| -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
-
-### Examples
-* `filescrud reload` &minus; Reloads config with default env-prefix (FILES_CRUD)
-* `filescrud reload -e FC` &minus; Reloads config with env-prefix `FC`
-* `filescrud reload --env-prefix APP` &minus; Reloads config with env-prefix `APP`
+Reloads config with env-prefix `FC`
+```bash
+filescrud reload -e FC
+```
 
 ## Integrity
-Checks the integrity of all files, using their md5 checksums.
+Checks the integrity of files, using their md5 checksums.
 
 ### Usage
-`filescrud integrity [options] [path]`
+```bash
+filescrud integrity [options] [arguments]
+```
 
 ### Options
 
@@ -100,16 +136,30 @@ Checks the integrity of all files, using their md5 checksums.
   Storage root directory if not specified
 
 
+
 ### Examples
-* `filescrud integrity` &minus; Checks integrity for whole storage
-* `filescrud integrity images/holidays` &minus; Checks integrity for directory `images/holidays`
-* `filescrud integrity "videos/holidays in Rome"` &minus; Checks integrity for directory `videos/holidays in Rome`
+Checks integrity for whole storage
+```bash
+filescrud integrity
+```
+
+Checks integrity for directory `images/holidays`
+```bash
+filescrud integrity images/holidays
+```
+
+Checks integrity for directory `videos/holidays in Rome`
+```bash
+filescrud integrity "videos/holidays in Rome"
+```
 
 ## Admin
 Creates an admin user.
 
 ### Usage
-`filescrud admin [options]`
+```bash
+filescrud admin [options]
+```
 
 ### Options
 
@@ -120,23 +170,41 @@ Creates an admin user.
 | -p, --password <password> | Password of the user to create (default: random string)   |
 
 ### Examples
-* `filescrud admin` &minus; Creates admin with random username and password
-* `filescrud integrity --username johanna123_admin` &minus;
-   Creates admin with username `johanna123_admin` and random password
-* `filescrud integrity -p passw0rd987_fjqekfl` &minus;
-   Creates admin with random username  and password `passw0rd987_fjqekfl`
-* `filescrud integrity --username johanna123_admin -p passw0rd987_fjqekfl` &minus;
-   Creates admin with username `johanna123_admin` and password `passw0rd987_fjqekfl`
+Creates admin with random username and password
+```bash
+filescrud admin
+```
+
+Creates admin with username `johanna123_admin` and random password
+```bash
+filescrud integrity --username johanna123_admin
+```
+
+Creates admin with random username  and password `passw0rd987_fjqekfl`
+```bash
+filescrud integrity -p passw0rd987_fjqekfl
+```
+
+Creates admin with username `johanna123_admin` and password `passw0rd987_fjqekfl`
+```bash
+filescrud integrity --username johanna123_admin -p passw0rd987_fjqekfl
+```
 
 ### Random
 If username or password is not given, random string is generated for it. \
 The random string consist of 6 bytes for username, 15 bytes for password, base64url-encoded
 
+Examples:
+* username: `d1J0N25S`
+* password: `VExQUU1UZ3dNakl3TWpVRQ`
+
 ## Config
 Shows current configuration.
 
 ### Usage
-`filescrud config [options] [format]`
+```bash
+filescrud config [options] [arguments]
+```
 
 ### Options
 
@@ -149,6 +217,17 @@ Shows current configuration.
 * format &minus; Format to show the config in (json|yaml|env|properties) (default: "json")
 
 ### Examples
-* `filescrud config` &minus; Shows full config in json format
-* `filescrud config -n yaml` &minus; Shows specified config in yaml format
-* `filescrud config env` &minus; Shows full config in environment variables format
+Shows full config in json format
+```bash
+filescrud config
+```
+
+Shows specified config in yaml format
+```bash
+filescrud config -n yaml
+```
+
+Shows full config in environment variables format
+```bash
+filescrud config env
+```

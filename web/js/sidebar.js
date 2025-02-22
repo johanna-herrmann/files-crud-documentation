@@ -22,3 +22,28 @@ const sidebar = [
     { title: 'Permissions', link: '/permissions' },
     { title: 'Auth', link: '/auth' }
 ];
+
+const sidebarDE = [
+    { title: 'Einleitung', link: '/de/introduction' },
+    { title: 'Anwendung', toc: false, collapsable: true, children: [
+        { title: 'Installation', link: '/de/usage/install' },
+        { title: 'CLI', link: '/de/usage/cli' },
+        { title: 'Docker', link: '/de/usage/docker' },
+        { title: 'Fullstack', link: '/de/usage/fullstack' }
+    ]},
+    { title: 'Konfiguration', toc: false, collapsable: true, children: [
+        { title: 'Allgemein', link: '/de/configuration/general' },
+        { title: 'Datenbank', link: '/de/configuration/database' },
+        { title: 'Logging', link: '/de/configuration/logging' },
+        { title: 'Speicher', link: '/de/configuration/storage' },
+        { title: 'Server', link: '/de/configuration/server' },
+        { title: 'Server - CORS', link: '/de/configuration/server-cors' }
+    ]},
+    { title: 'API', toc: false, collapsable: true, children: [
+        { title: 'Allgemein', link: '/de/api/general' },
+        { title: 'Nutzer Endpoints', link: '/de/api/user' },
+        { title: 'Datei Endpoints', link: '/de/api/file' }
+    ]},
+    { title: 'Berechtigungen', link: '/de/permissions' },
+    { title: 'Auth', link: '/de/auth' }
+];

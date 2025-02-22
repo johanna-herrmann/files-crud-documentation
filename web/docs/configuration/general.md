@@ -15,6 +15,11 @@ Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dyn
 If you use both, a config file and environment variables,
 the environment variable properties overwrite the config file properties.
 
+For config files the following applies:
+* If there is a `./config.json`, it will be used
+* If not, but there is a `./config.yaml`, then this will be used
+* If this is not available either, but a `./config.yml` is available, then this one will be used
+
 ## Syntax
 
 ### JSON
@@ -23,6 +28,7 @@ the environment variable properties overwrite the config file properties.
 {
     "defaultPermissions": String,
     "directoryPermissions": {"path": String, ...},
+    "publicFileOwner": "all" | "none",
     "database": DatabaseConfig,
     "logging": LoggingConfig,
     "storage": StorageConfig,
@@ -44,6 +50,7 @@ defaultPermissions: String
 directoryPermissions:
     path: String
     ...
+publicFileOwner: all | none,
 database:
     DatabaseConfig
 logging:
@@ -69,6 +76,7 @@ secretAccessKey: String
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=String
 FILES_CRUD_DIRECTORY_PERMISSIONS...
+FILES_CRUD_PUBLIC_FILE_OWNER=all|none
 FILES_CRUD_DATABASE...
 FILES_CRUD_LOGGING...
 FILES_CRUD_STORAGE...
@@ -107,7 +115,7 @@ For consistency, we recommend to use always the *separated notation*.
 ## Properties
 
 ### defaultPermissions
-Specifies default directory permissions, used if `directoryPermissions` is not specified.
+Specifies default directory permissions, used if `directoryPermissions` is not specified for a directory.
 
 Default: `crudcr------`
 (See: [Permissions](/permissions))
@@ -121,33 +129,48 @@ Default: empty
 
 Type: Record/Map of String<=>String
 
+Permissions will be inherited. \
+Example:
+* You specified directory permissions for `images` but not for `images/holidays`
+* A user wants to access `images/holidays`
+* In this case, the permission definition on `images` will be used, since `holidays` is a sub directory.
+
+### publicFileOwner
+Specifies how owner is handled if a file was created without login.
+
+Default: `all`
+
+Type: One of
+* `all` &minus; File is owned by everybody
+* `none` &minus; File is owned by nobody
+
 ### database
 Specifies configuration for the database connection.
 
-Default: See: [DatabaseConfig](/configuration/database)
+Default: See: [Database Configuration](/configuration/database)
 
-Type: [DatabaseConfig](/configuration/database)
+Type: [Database Configuration](/configuration/database)
 
 ### logging
 Specifies configuration for logging.
 
-Default: See: [LoggingConfig](/configuration/logging)
+Default: See: [Logging Configuration](/configuration/logging)
 
-Type: [LoggingConfig](/configuration/logging)
+Type: [Logging Configuration](/configuration/logging)
 
 ### storage
 Specifies configuration for storage to use.
 
-Default: See: [StorageConfig](/configuration/storage)
+Default: See: [Storage Configuration](/configuration/storage)
 
-Type: [StorageConfig](/configuration/storage)
+Type: [Storage Configuration](/configuration/storage)
 
 ### server
 Specifies configuration for the application server.
 
-Default: See: [ServerConfig](/configuration/server)
+Default: See: [Server Configuration](/configuration/server)
 
-Type: [ServerConfig](/configuration/server)
+Type: [Server Configuration](/configuration/server)
 
 ### webRoot
 Specifies the path to serve as frontend. The application will serve static web content from this directory. The application is only backend if no `webRoot` is specified.
@@ -170,11 +193,11 @@ Specifies how users can be added and registered.
 Default: `admin`
 
 Type: One of
-* `all` &minus; Anybody can register without any retriction
+* `all` &minus; Anybody can register without any restriction
 * `token` &minus; Registration requires to include a token in request body
 * `admin` &minus; Registration is disabled. Users have to be added by an admin*.
 
-*On first startup, an initial admin will be created automatically.
+*On first startup, an initial admin will be created automatically, if no admin exists already.
 
 ### tokens
 Specifies the tokens which are valid for registration, if `register` is set to `token`.
@@ -185,7 +208,8 @@ Type: List/Array of String (one string item for each valid token)
 
 ### region
 AWS region, used for `dynamodb` and/or `s3`.
-Will be overwritten by `database.region` or `storage.region` if specified.
+Will be overwritten by [database.region](/configuration/database#databaseregion)
+or [storage.region](/configuration/storage#storageregion) if specified.
 
 Default: `eu-central-1`
 
@@ -193,7 +217,8 @@ Type: String
 
 ### accessKeyId
 AWS credential Access Key Id, used for `dynamodb` and/or `s3`.
-Will be overwritten by `database.accessKeyId` or `storage.accessKeyId` if specified.
+Will be overwritten by [database.accessKeyId](/configuration/database#databaseaccesskeyid)
+or [storage.accessKeyId](/configuration/storage#storageaccesskeyid) if specified.
 
 Default: `fallback-key`
 
@@ -201,7 +226,8 @@ Type: String
 
 ### secretAccessKey
 AWS credential Secret Access Key, used for `dynamodb` and/or `s3`.
-Will be overwritten by `database.secretAccessKey` or `storage.secretAccessKey` if specified.
+Will be overwritten by [database.secretAccessKey](/configuration/database#databasesecretaccesskey)
+or [storage.secretAccessKey](/configuration/storage#storagesecretaccesskey) if specified.
 
 Default: `fallback-secret`
 
@@ -218,6 +244,7 @@ Type: String
         "special/world": "crudcr---r--",
         "special/admins": "000"
     },
+    "publicFileOwner": "none",
     "database": {
         "name": "mongodb"
     },
@@ -248,6 +275,7 @@ defaultPermissions: crudcr------
 directoryPermissions:
     special/world: crudcr---r--
     special/admins: 000
+publicFileOwner: none
 database:
     name: mongodb
 logging:
@@ -273,6 +301,7 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
 FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins'
 FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000'
+FILES_CRUD_PUBLIC_FILE_OWNER=none
 FILES_CRUD_DATABASE__NAME=mongodb
 FILES_CRUD_LOGGING__IP_LOGGING=full
 FILES_CRUD_STORAGE__NAME=s3
@@ -290,20 +319,22 @@ FILES_CRUD_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ## Default summary
 
 If no property is set at all, the application defaults to:
-* `crudcr------`-permissions for all directories
+* `crudcr------`-permissions for all directories (Full-Access for owner, create and read permissions for users)
+* files created without login will be owned by everybody
 * in-memory-db is used
 * Logging:
+  * No debug logging
   * All logging features enabled
   * Anonymous ip logging
   * files:
-    * access log: `<AppRoot>/access.log`
-    * error log: `<AppRoot>/error.log`
+    * access log: `./access.log`
+    * error log: `./error.log`
   * formats:
     * console: `coloredHumanReadableLine`
     * console redirected to file: `json`
     * access log file: `json`
     * error log file: `json`
-* Local file system storage is used with path: `<AppRoot>/`
+* Local file system storage is used with path: `./`
 * Server:
   * Listens on `0.0.0.0:9000`
   * No ssl
