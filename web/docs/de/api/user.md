@@ -1,4 +1,4 @@
-# API: Benutzer Endpoints
+# API - Benutzer Endpoints
 
 Diese Seite dokumentiert die API Benutzer Endpoints.
 
@@ -23,7 +23,7 @@ Registriert einen neuen Benutzer
 * password (String) &minus; Gewünschtes Passwort für den neuen Benutzer
 * meta (Object) &minus; Optionales Objekt für Metadaten zum Benutzer
 * token (String) &minus;
-  Optionale Zeichenfolge: Wenn registration-mode ist `token`, muss der Wert ein gültiger Token sein
+  Optionale Zeichenfolge: Wenn registration-mode `token` ist, muss der Wert ein gültiger Token sein
 
 ### Request Path Parameter
 Keiner
@@ -196,6 +196,7 @@ Body:
 
 ## Admin Status anpassen
 **<span style="color: green; ">POST</span> /api/user/set-admin**
+
 Ändert den Admin-Status eines Benutzers
 
 ### Request Body
@@ -283,7 +284,7 @@ Body:
 }
 ```
 
-#### Fehler: Nicht-Admin versucht Benutzername anderer Bunutzer zu ändern
+#### Fehler: Nicht-Admin versucht den Benutzernamen eines anderen Bunutzers zu ändern
 Status-Code: 401
 
 Body:

@@ -214,7 +214,7 @@ Typ: String mit Anzahl und Einheit (`s`, `m`, `h` oder `d`) \
 (Beispiel: `60h` um die Dateien der letzten 60 Stunden zu behalten)
 
 ### logging.logFileRotationEnableCompression
-Gibt an, ob die rotierten Dateien komprimiert werden sollen, wenn die Log-Datei-Rotation aktiv ist.
+Gibt an, ob die rotierten Dateien mittels gzip komprimiert werden sollen, wenn die Log-Datei-Rotation aktiv ist.
 
 Standard: `true`
 
@@ -306,7 +306,7 @@ Folgende Beispiele werden genutzt, um die unterschiedlichen Formate zu visualisi
 
 Die Bilder zeigen, wie es aussehen würde, im Terminal `bash` von `Linux Mint 22` (`Cinnamon`) mit 80 Zeichen Fenster-Länge.
 Um zwischen echten Zeilenumbrüchen und zur besseren Darstellung eingefügten Zeilenumbrüchen zu unterscheiden,
-haben die eigentlichen Zeilen alternierende Hintergrundfarben.
+haben die eigentlichen Zeilen abwechselnde Hintergrundfarben.
 
 ### humanReadableLine
 Loggt eine einfache Zeile aus Informationen.

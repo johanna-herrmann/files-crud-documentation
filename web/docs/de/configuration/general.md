@@ -11,12 +11,12 @@ Die Konfiguration kann über die folgenden Methoden geschehen:
 Alle Konfigurationseigenschaften sind optional (convention over configuration) aber manche Eigenschaften sind in eigenen Fällen stark empfohlen. \
 Beispiel: Der Standard von `accessKeyId` ist `fallback-key`, was ziemlich unbrauchbar ist, wenn zum Beispiel die `dynamodb` als Datenbankadapter genutzt wird.
 
-## Vorrangigkeit
+### Vorrangigkeit
 Wenn du sowohl eine Konfigurationsdatei, als auch Umgebungsvariablen verwendest,
 überschreiben die Eigenschaften der Umgebungsvariablen die Eigenschaften der Konfigurationsdatei.
 
 Für Konfigurationsdateien gilt:
-* Liegt eine `./config.json` vor wird diese angewendet
+* Liegt eine `./config.json` vor, wird diese angewendet
 * Falls nicht, aber es liegt eine `./config.yaml` vor, so wird diese angewendet
 * Liegt auch diese nicht vor, aber eine `./config.yml`, dann wird diese angwendet
 
@@ -212,13 +212,13 @@ AWS-Region, die für `dynamodb` und/oder `s3` genutzt wird.
 Wird durch [database.region](/de/configuration/database#databaseregion)
 bzw. [storage.region](/de/configuration/storage#storageregion) überschrieben, wenn angegeben.
 
-Standard: `eu-central-1`
+Standard: `eu-central-1` (Frankfurt, Deutschland, Europa)
 
 Typ: String
 
 ### accessKeyId
 AWS Access Key Id, für `dynamodb` und/oder `s3`.
-Wird duch [database.accessKeyId](/de/configuration/database#databaseaccesskeyid)
+Wird durch [database.accessKeyId](/de/configuration/database#databaseaccesskeyid)
 bzw. [storage.accessKeyId](/de/configuration/storage#storageaccesskeyid) überschrieben, wenn angegeben.
 
 Defaul: `fallback-key`
@@ -227,7 +227,7 @@ Typ: String
 
 ### secretAccessKey
 AWS Secret Access Key, für `dynamodb` und/oder `s3`.
-Wird duch [database.secretAccessKey](/de/configuration/database#databasesecretaccesskey)
+Wird durch [database.secretAccessKey](/de/configuration/database#databasesecretaccesskey)
 bzw. [storage.secretAccessKey](/de/configuration/storage#storagesecretaccesskey) überschrieben, wenn angegeben.
 
 Standard: `fallback-secret`
@@ -326,6 +326,7 @@ Wenn überhaupt gar keine Eigenschaft gesetzt wird, verhält sich die Anwendung 
   * Kein Debug-Logging
   * Alle Logging-Funktionen aktiviert
   * Anonymisiertes IP-Logging
+  * Tägliche Datei-Rotation; Kompression der rotierten Dateien via gzip
   * Dateien:
     * Access-Log: `./access.log`
     * Error-Log: `./error.log`

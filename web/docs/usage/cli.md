@@ -9,7 +9,7 @@ This page shows the usage of files-crud CLI.
 filescrud [options] [command] [command-args] [command-options]
 ```
 
-### Options
+### General options
 
 | Option                    | Description                                               |
 | ------------------------- | --------------------------------------------------------- |
@@ -192,7 +192,7 @@ filescrud integrity --username johanna123_admin -p passw0rd987_fjqekfl
 
 ### Random
 If username or password is not given, random string is generated for it. \
-The random string consist of 6 bytes for username, 15 bytes for password, base64url-encoded
+The random string consists of 6 bytes for username, 15 bytes for password, each base64url-encoded.
 
 Examples:
 * username: `d1J0N25S`

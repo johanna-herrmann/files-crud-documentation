@@ -2,7 +2,7 @@
 
 To add a frontend and let filescrud serve it, following steps have to be done:
 * Build and deploy the frontend files, for example to directory `./web`
-* Start filescrud with [webRoot](/configuration/general#webRoot) set , for example to `./web`
+* Start filescrud with [webRoot](/configuration/general#webroot) set , for example to `./web`
 
 ## Example
 
@@ -25,5 +25,5 @@ filescrud start
 docker:
 ```bash
 cd /opt/fc
-docker run -d -p 9000:9000 -v ./:/data -e FILES_CRUD_WEB_ROOT=./web filescrud/filescrud
+docker run --init -dt -p 9000:9000 -v ./:/data -e FILES_CRUD_WEB_ROOT=./web filescrud/filescrud
 ```

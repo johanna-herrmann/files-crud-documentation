@@ -86,8 +86,8 @@ ist der Eigentümer der Benutzer, der die Datei ursprünglich erstellt hat
   * in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)
 
 *Dies wird wie folgt behandelt:
-* wenn [publicFileOwner](/configuration#publicfileowner) auf `all` gesetzt ist (Standard) &minus; Datei gehört jedem
-* wenn [publicFileOwner](/configuration#publicfileowner) auf `none` gesetzt ist &minus; Datei gehört niemandem
+* wenn [publicFileOwner](/de/configuration#publicfileowner) auf `all` gesetzt ist (Standard) &minus; Datei gehört jedem
+* wenn [publicFileOwner](/de/configuration#publicfileowner) auf `none` gesetzt ist &minus; Datei gehört niemandem
 
 ## Siehe auch:
 [Konfiguration](/de/configuration/general)

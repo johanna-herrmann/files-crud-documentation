@@ -1,4 +1,4 @@
-# API: File Endpoints
+# API - File Endpoints
 
 This page documents the API file Endpoints.
 

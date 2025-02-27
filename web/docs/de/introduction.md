@@ -10,7 +10,7 @@
   * postgresql
   * DynamoDB
   * in-memory (zu Testzwecken)
-* Nutzt CRUD-basierte Berechtigung, angegeben für verschiedene Verzeichnisse
+* Nutzt CRUD-basierte Berechtigungen, angegeben für verschiedene Verzeichnisse
 
 ## Funktionen
 * Erstellen, überschreiben, lesen und löschen von Dateien

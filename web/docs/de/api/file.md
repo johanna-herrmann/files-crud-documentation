@@ -1,4 +1,4 @@
-# API: Datei Endpoints
+# API - Datei Endpoints
 
 Diese Seite dokumentiert die API Datei Endpoints.
 
@@ -27,7 +27,7 @@ Wir empfehlen stark, Upload-Tools (Upload-Formular, JS Files API, etc.) zu verwe
 
 ### Request Body
 Datei als `multipart/form-data`, mit exakt einem Datei-Objekt.
-Der `name` kann jeder nicht-leerer, alpha-numerischer Wert sein.
+Der `name` kann jeder nicht-leere, alpha-numerische Wert sein.
 Der `filename`-Parameter wird ignoriert.
 
 Beispiel mit delimiter `---delimiter123`:
@@ -367,7 +367,7 @@ Kopiert eine Datei.
 * targetPath &minus; Pfad zur Ziel-Datei
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
+  * false (standard): Eigentümer ist der Aufrufer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner
@@ -437,7 +437,8 @@ Body:
 ## Datei verschieben
 **<span style="color: green; ">POST</span> /api/file/move**
 
-Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
+Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden). \
+Kopiert die Datei und löscht anschließend die Quell-Datei.
 
 ### Request Body
 ```json
@@ -452,7 +453,7 @@ Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
 * targetPath &minus; Neuer Pfad
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
+  * false (standard): Eigentümer ist der Aufrufer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner

@@ -11,7 +11,7 @@ Configuration can be done, using one of the following methods:
 All configuration properties are optional (convention over configuration) but some properties are highly recommended in some cases. \
 Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dynamodb` is used as database adapter.
 
-## Precedence
+### Precedence
 If you use both, a config file and environment variables,
 the environment variable properties overwrite the config file properties.
 
@@ -211,7 +211,7 @@ AWS region, used for `dynamodb` and/or `s3`.
 Will be overwritten by [database.region](/configuration/database#databaseregion)
 or [storage.region](/configuration/storage#storageregion) if specified.
 
-Default: `eu-central-1`
+Default: `eu-central-1` (Frankfurt, Germany, Europe)
 
 Type: String
 
@@ -326,6 +326,7 @@ If no property is set at all, the application defaults to:
   * No debug logging
   * All logging features enabled
   * Anonymous ip logging
+  * Daily file rotation, compressing rotated files via gzip
   * files:
     * access log: `./access.log`
     * error log: `./error.log`

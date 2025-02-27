@@ -54,7 +54,7 @@ Specifies which storage to use.
 Default: `fs`
 
 Type: One of
-* `fs` &minus; Uses local file system as files and data* storage.
+* `fs` &minus; Uses local file system as storage for files and data*.
 * `s3` &minus; Uses AWS S3 (or S3-compatible service)
   as file storage and local file system as data* storage.
 
@@ -118,8 +118,8 @@ Specifies if S3 path style should be used instead of sub-domain style.
 Default: `false`
 
 Type: boolean
-* `false` (default) &minus; Uses `bucketname.domain.tld/key` as bucket address
-* `true` &minus; Uses `domain.tld/bucketname/key` as bucket address
+* `false` (default) &minus; Uses `bucketname.domain.tld/key` as bucket object address
+* `true` &minus; Uses `domain.tld/bucketname/key` as bucket object address
 
 ## Examples
 
