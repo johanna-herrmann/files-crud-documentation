@@ -301,6 +301,102 @@ Body:
 }
 ```
 
+## Prüfen, ob Datei existiert
+**<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999; ">{path*}</span>**
+
+Prüft, ob eine Datei existiert.
+
+### Request Body
+Keiner
+
+### Request Path Parameter
+* path &minus; Pfad zur Datei (relativ zum Hauptordner des Speichers)
+
+Beispiel:
+<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999">texts/examples/cool-text.txt</span>
+
+### Responses
+
+#### Erfolg - Datei existiert
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": true
+}
+```
+
+#### Erfolg - Existiert nicht oder ist keine Datei
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": false
+}
+```
+
+#### Fehlende read Berechtigung für das übergeordnete Verzeichis
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts/examples"
+}
+```
+
+## Prüfen, ob ein Verzeichnis existiert
+**<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999; ">{path*}</span>**
+
+Prüft, ob ein Verzeichnis existiert.
+
+### Request Body
+Keiner
+
+### Request Path Parameter
+* path &minus; Der Pfad zum Verzeichnis (relativ zum Hauptordner des Speichers)
+
+Beispiel:
+<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+
+### Responses
+
+#### Success - Verzeichnis existiert
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": true
+}
+```
+
+#### Success - Existiert nicht oder ist kein Verzeichnis
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": false
+}
+```
+
+#### Fehlende read Berechtigung für das übergeordnete Verzeichis
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts"
+}
+```
+
 ## Dateien und Ordner auflisten
 **<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
 

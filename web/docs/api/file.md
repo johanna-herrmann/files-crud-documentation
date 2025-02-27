@@ -299,6 +299,102 @@ Body:
 }
 ```
 
+## Check if file exists
+**<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999; ">{path*}</span>**
+
+Checks if a file exists.
+
+### Request Body
+None
+
+### Request Path parameters
+* path &minus; The path to the file (relative to storage root)
+
+Examle:
+<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999">texts/examples/cool-text.txt</span>
+
+### Responses
+
+#### Success - File exists
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": true
+}
+```
+
+#### Success - Does not exist or is not a file
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": false
+}
+```
+
+#### Missing read permission on parent directory
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts/examples"
+}
+```
+
+## Check if directory exists
+**<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999; ">{path*}</span>**
+
+Checks if a directory exists.
+
+### Request Body
+None
+
+### Request Path parameters
+* path &minus; The path to the directory (relative to storage root)
+
+Examle:
+<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+
+### Responses
+
+#### Success - Directory exists
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": true
+}
+```
+
+#### Success - Does not exist or is not a directory
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": false
+}
+```
+
+#### Missing read permission on parent directory
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts"
+}
+```
+
 ## List Files And Directories
 **<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
 
@@ -311,7 +407,7 @@ None
 * path &minus; The path to the directory to list the files and directories in (relative to storage root) \
   (empty to list items of storage root)
 
-Examles:
+Examples:
 * <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999">texts/examples</span>
 * <span style="color: #60affe; ">GET</span> /api/file/list/
 
