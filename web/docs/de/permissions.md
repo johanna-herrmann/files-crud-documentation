@@ -80,7 +80,7 @@ Beispiel: `<hauptordner>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
 (Metadaten aktualisieren, Metadaten lesen, Dateidaten lesen, Datei herunterladen, Datei überschreiben, Datei löschen)
 ist der Eigentümer der Benutzer, der die Datei ursprünglich erstellt hat
 (`public`* beim Hochladen mit öffentlichem Zugriff) \
-(Administratoren können den Eigentümer bei Kopier- und Verschiebeoperationen auf den Eigentümer der Quelldatei setzen)
+(Administratoren können den Eigentümer beim Kopieren auf den Eigentümer der Quelldatei setzen)
 * Bei Verzeichnisoperationen (neue Datei erstellen, Verzeichniselemente auflisten) ist der Eigentümer:
   * bei Benutzerverzeichnissen und deren Unterverzeichnissen: der Benutzer, dem das Verzeichnis zugeordnet ist
   * in anderen Verzeichnissen: keine (es werden immer Benutzerberechtigungen verwendet)

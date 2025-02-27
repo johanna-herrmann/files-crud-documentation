@@ -84,7 +84,7 @@ Example: `<storage_root>/user_5d79cd2f-91c7-4d9d-93ed-06418ea81ee6`
   (update meta data, read meta data, read file data, download file, overwrite file, delete file),
   the owner is the user, who initially created the file
   (`public`* on public access upload) \
-  (admins can set the owner to the source file owner on copy and move operations)
+  (admins can set the owner to the source file owner on copy operations)
 * For directory operations (create new file, list directory items),
   the owner is:
   * on user directories and it's sub directories: the user, the directory belongs to

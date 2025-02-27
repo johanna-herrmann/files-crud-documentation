@@ -6,7 +6,7 @@ This page documents the API file Endpoints.
 **<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint to upload a file. \
-Can be a new file or an existing file. \
+Can be a new file or an existing file (will be overwritten). \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in request-body
   (or if provided: the value of `X-Mimetype` request-header)
@@ -447,6 +447,7 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/copy**
 
 Copies a file.
+If the target file already exists, it will be overwritten.
 
 ### Request Body
 ```json
@@ -532,21 +533,18 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/move**
 
 Moves a file to another path (can also be used to rename a file).
+If the target file already exists, it will be overwritten.
 
 ### Request Body
 ```json
 {
   "path": "texts/examples/cool-text.txt",
-  "targetPath": "better/path/really-cool-text.txt",
-  "copyOwner": false
+  "targetPath": "better/path/really-cool-text.txt"
 }
 ```
 
 * path &minus; Path to the file to move from
 * targetPath &minus; Path to the file to move to
-* copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file had
-  * true: target file will have same owner as source file
-  * false (default): target file owner will be the accessor, if file is new, else owner stays unchanged.
 
 ### Request Path parameters
 None
@@ -560,16 +558,6 @@ Body:
 ```json
 {
   "path": "better/path/really-cool-text.txt"
-}
-```
-
-#### Missing read permission on source file
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. You are not allowed to read texts/examples/cool-text.txt"
 }
 ```
 
@@ -600,16 +588,6 @@ Body:
 ```json
 {
   "error": "Unauthorized. You are not allowed to delete texts/examples/cool-text.txt"
-}
-```
-
-#### None-admin user tries to copy the owner attribute (copyOwner)
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. Only admins are allowed to copy the owner."
 }
 ```
 

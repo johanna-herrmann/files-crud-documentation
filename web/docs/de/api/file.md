@@ -6,7 +6,7 @@ Diese Seite dokumentiert die API Datei Endpoints.
 **<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint um eine Datei hochzuladen. \
-Kann eine neue oder eine bereits existierende Datei sein. \
+Kann eine neue oder eine bereits existierende Datei sein (wird überschrieben). \
 Speichert außerdem folgende Eigenschaften als Datei-Daten.
 * Den Mimetype der via `Content-Type`-Parameter im request-body angegeben wurde
   (oder falls angegeben: der Wert des `X-Mimetype`-request-headers)
@@ -449,6 +449,7 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/copy**
 
 Kopiert eine Datei.
+Wenn die Ziel-Datei bereits existiert, wird sie überschrieben.
 
 ### Request Body
 ```json
@@ -533,23 +534,19 @@ Body:
 ## Datei verschieben
 **<span style="color: green; ">POST</span> /api/file/move**
 
-Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden). \
-Kopiert die Datei und löscht anschließend die Quell-Datei.
+Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
+Wenn die Ziel-Datei bereits existiert, wird sie überschrieben.
 
 ### Request Body
 ```json
 {
   "path": "texts/examples/cool-text.txt",
-  "targetPath": "better/path/really-cool-text.txt",
-  "copyOwner": false
+  "targetPath": "better/path/really-cool-text.txt"
 }
 ```
 
 * path &minus; Pfad zu der Datei die verschoben werden soll
 * targetPath &minus; Neuer Pfad
-* copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
-  * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der Aufrufer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner
@@ -563,16 +560,6 @@ Body:
 ```json
 {
   "path": "better/path/really-cool-text.txt"
-}
-```
-
-#### Fehlende read Berechtigung für die Quell-Datei
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. You are not allowed to read texts/examples/cool-text.txt"
 }
 ```
 
@@ -603,16 +590,6 @@ Body:
 ```json
 {
   "error": "Unauthorized. You are not allowed to delete texts/examples/cool-text.txt"
-}
-```
-
-#### Nutzer der kein Admin ist, versucht Eigentümer-Attribut zu kopieren (copyOwner)
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. Only admins are allowed to copy the owner."
 }
 ```
 
