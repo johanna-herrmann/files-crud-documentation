@@ -20,7 +20,8 @@ const sidebar = [
     { title: 'File Endpoints', link: '/api/file' }
   ]},
   { title: 'Permissions', link: '/permissions' },
-  { title: 'Auth', link: '/auth' }
+  { title: 'Auth', link: '/auth' },
+  { title: 'Storage', link: '/storage' }
 ];
 
 const sidebarDE = [
@@ -45,5 +46,6 @@ const sidebarDE = [
     { title: 'Datei Endpoints', link: '/de/api/file' }
   ]},
   { title: 'Berechtigungen', link: '/de/permissions' },
-  { title: 'Auth', link: '/de/auth' }
+  { title: 'Auth', link: '/de/auth' },
+  { title: 'Speicher', link: '/de/storage' }
 ];
