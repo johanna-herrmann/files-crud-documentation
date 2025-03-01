@@ -7,6 +7,8 @@ Instead of write/read/execute permissions files-crud uses create/read/update/del
 
 ## Notation
 
+You can use three different notations for the permissions.
+
 ### rwx equivalent
 Permissions can be specified using a `crud`-syntax similar to unix's `rwx`-syntax.
 
@@ -25,7 +27,7 @@ a permission is disabled if it's letter is replaced with a dash.
   read-only access for non-admin users, no access without login
 
 ### octal equivalent
-Permissions can be also specified using a hex-syntax similar to unix's octal syntax (000 to fff instead of 000 to 777).
+Permissions can be specified using a hex-syntax similar to unix's octal syntax (000 to fff instead of 000 to 777).
 
 The first digit specifies the permissions for the owner,
 the second digit specifies the permissions for any other logged-in user
@@ -44,6 +46,19 @@ each digit is the sum of the enabled permission's bit values
 * `440` &minus;
   read-only access for non-admin users, no access without login
 
+### Explicit array
+Permissions can be specified using an array, one item per level.
+Each item contains the permissions, separated by dashes.
+The order of the permissions in the item does not matter.
+
+#### Examples (JSON)
+
+* `["create-delete-read-update", "read", ""]` &minus;
+  Full access for owner, read-access for other none-admin users, no access without login
+* `["create-read-update-delete", "create-read-update-delete", "read"]` &minus;
+  full access for all users, read-access without login
+* `["read", "read", ""]` &minus;
+  read-only access for non-admin users, no access without login
 
 ## File operations
 * create &minus; Save a new file, save file meta data

@@ -6,6 +6,7 @@ Die Berechtigungen können auf Verzeichnisebene und für verschiedene API-Zugrif
 Anstelle von Schreib-/Lese-/Ausführungsberechtigungen verwendet files-crud Berechtigungen zum Erstellen/Lesen/Aktualisieren/Löschen.
 
 ## Notation
+Du kannst drei unterschiedliche Notationen für die Berechtigungen nutzen.
 
 ### rwx-Äquivalent
 Berechtigungen können mit einer `crud`-Syntax festgelegt werden, die der `rwx`-Syntax von Unix ähnelt.
@@ -25,7 +26,7 @@ Vollzugriff für Eigentümer, Lesezugriff für andere Benutzer ohne Administrato
 Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
 
 ### Oktal-Äquivalent
-Berechtigungen können auch mit einer Hex-Syntax angegeben werden, die der Oktal-Syntax von Unix ähnelt (000 bis fff statt 000 bis 777).
+Berechtigungen können mit einer Hex-Syntax angegeben werden, die der Oktal-Syntax von Unix ähnelt (000 bis fff statt 000 bis 777).
 
 Die erste Ziffer gibt die Berechtigungen für den Eigentümer an,
 die zweite Ziffer gibt die Berechtigungen für alle anderen angemeldeten Benutzer an
@@ -39,8 +40,21 @@ Einfach ausgedrückt ist jede Ziffer die Summe der Bitwerte der aktivierten Bere
 * `f40` &minus;
 Vollzugriff für Eigentümer, Lesezugriff für andere Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
 * `ff4` &minus; Vollzugriff für alle Benutzer, Lesezugriff ohne Anmeldung
-* `440` &minus;
-Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
+* `440` &minus; Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
+
+### Explizites Array
+Berechtigungen können mit einem Array angegeben werden, mit einem Item pro Level.
+Jedes Item enthält die Berechtigungen, getrennt durch Bindestriche.
+Die Reihenfolge der Berechtigungen innerhalb des Items spielt keine Rolle.
+
+#### Beispiele (JSON)
+
+* `["create-delete-read-update", "read", ""]` &minus;
+  Vollzugriff für Eigentümer, Lesezugriff für andere Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
+* `["create-read-update-delete", "create-read-update-delete", "read"]` &minus;
+  Vollzugriff für alle Benutzer, Lesezugriff ohne Anmeldung
+* `["read", "read", ""]` &minus;
+  Nur-Lese-Zugriff für Benutzer ohne Administratorrechte, kein Zugriff ohne Anmeldung
 
 ## Dateioperationen
 * Erstellen &minus; Neue Datei speichern, Dateimetadaten erstmals speichern

@@ -90,7 +90,7 @@ FILES_CRUD_ACCESS_KEY_ID=String
 FILES_CRUD_SECRET_ACCESS_KEY=String
 ```
 
-#### Notices
+#### Notices about yaml
 
 ##### Directory permissions
 You can always specify the permissions, using one of the following methods:
@@ -111,6 +111,13 @@ FILES_CRUD_DIRECTORY_PERMISSIONS__SOME_OTHER_DIR=000
 ```
 
 For consistency, we recommend to use always the *separated notation*.
+
+If you want to use the [explicit array](/permissions#explicit-array) notation together with *separated notation*, this can be done as follows: \
+comma-separation for directories, colon-separation for levels
+```properties
+FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='dir/one,dir/two'
+FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='create-read-update-delete:read:read,create-read:read:'
+```
 
 ## Properties
 
@@ -242,7 +249,8 @@ Type: String
     "defaultPermissions": "crudcr------",
     "directoryPermissions": {
         "special/world": "crudcr---r--",
-        "special/admins": "000"
+        "special/admins": "000",
+        "special/all-cr": ["create-read", "create-read", "create-read"]
     },
     "publicFileOwner": "none",
     "database": {
@@ -275,6 +283,10 @@ defaultPermissions: crudcr------
 directoryPermissions:
     special/world: crudcr---r--
     special/admins: 000
+    special/all-cr:
+        - create-read
+        - create-read
+        - create-read
 publicFileOwner: none
 database:
     name: mongodb
@@ -299,8 +311,8 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
-FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins'
-FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000'
+FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins,special/all-cr'
+FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000,create-read:create-read:create-read'
 FILES_CRUD_PUBLIC_FILE_OWNER=none
 FILES_CRUD_DATABASE__NAME=mongodb
 FILES_CRUD_LOGGING__IP_LOGGING=full
