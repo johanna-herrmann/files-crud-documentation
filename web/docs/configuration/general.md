@@ -131,6 +131,7 @@ Type: String
 
 ### directoryPermissions
 Specifies permissions for specific directories.
+To specify permissions for a directory, it does not matter whether the directory exists already.
 
 Default: empty
 

@@ -73,6 +73,10 @@ Verwende den Platzhalter `$user` für Benutzerverzeichnisse
 (Beispiel: `$user/sub` für das Verzeichnis `sub` in Benutzerverzeichnissen)
 * Standard: Wird angewendet, wenn das Verzeichnis und alle übergeordneten Verzeichnisse keine Spezifikation haben
 
+Verzeichnisse werden (rekursiv) erstellt, wenn die erste Datei dort gespeichert wird.
+Sie werden gelöscht, wenn die letzte Datei darin gelöscht ist.
+Für die Definition der Verzeichnis-Berechtigungen spielt es keine Rolle, ob die Verzeichnisse existieren.
+
 ### Benutzerverzeichnisse
 Jedem Benutzer wird ein Verzeichnis zugewiesen. \
 Der Pfad lautet: `<hauptordner>/user_<user_id>` \

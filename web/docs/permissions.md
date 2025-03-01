@@ -77,6 +77,10 @@ The permissions can be specified:
   (Example: `$user/sub` for directory `sub` in user directories)
 * Default: Applicated if the directory and all parent directories don't have a specification
 
+Directories are created (recursively) when the first file is saved there.
+They will be deleted when the last file in them is deleted.
+When defining directory permissions, it does not matter whether the directories exist.
+
 ### User directories
 Each user is assigned to a directory. \
 The path is: `<storage_root>/user_<user_id>` \

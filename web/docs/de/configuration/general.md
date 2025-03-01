@@ -133,6 +133,7 @@ Typ: String
 
 ### directoryPermissions
 Gibt die Berechtigungen für bestimmte Verzeichnisse an.
+Um Berechtigungen für ein Verzeichnis festzulegen, spielt es keine Rolle, ob das Verzeichnis bereits existiert.
 
 Standard: leer
 
