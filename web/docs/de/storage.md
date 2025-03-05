@@ -57,9 +57,3 @@ Wenn man sich das obige Beispiel ansieht, sieht die Liste der verwendeten Objekt
 * ad/ad37d6b2-73e9-4430-bc2b-70cbe2e33ac8
 
 Wie du siehst, wird der `key` als Objektschlüssel verwendet.
-
-## Vollständiges Beispiel
-Du kannst ein
-[vollständiges Beispiel](/storage_example.zip/) herunterladen,
-unter Verwendung von FS-Speicher mit
-[Speicherpfad](/de/configuration/storage#storagepath) `/opt/fc`.

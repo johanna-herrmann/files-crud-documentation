@@ -57,5 +57,3 @@ Looking at the example, above, the list of used object keys, looks like this.
 * ad/ad37d6b2-73e9-4430-bc2b-70cbe2e33ac8
 
 As you can see, the key is used as object key.
-
-## 
