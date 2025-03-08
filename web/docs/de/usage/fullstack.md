@@ -2,7 +2,7 @@
 
 Um ein Frontend hinzuzufügen und es files-crud ausliefern zu lassen, sind folgende Schritte nötig:
 * Bauen und deployen der Frontend-Dateien, zum Beispiel zum Verzeichnis `./web`
-* files-crud starten mit [webRoot](/de/configuration/general#webRoot) gesetzt zum Beispiel auf `./web`
+* files-crud starten mit [webRoot](/de/configuration/general#webroot) gesetzt, zum Beispiel auf `./web`
 
 ## Beispiel
 
@@ -25,5 +25,5 @@ filescrud start
 docker:
 ```bash
 cd /opt/fc
-docker run -d -p 9000:9000 -v ./:/data -e FILES_CRUD_WEB_ROOT=./web filescrud/filescrud
+docker run --init -dt -p 9000:9000 -v ./:/data -e FILES_CRUD_WEB_ROOT=./web filescrud/filescrud
 ```

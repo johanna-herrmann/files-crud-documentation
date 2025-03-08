@@ -7,7 +7,7 @@ Wir verwenden folgende Platzhalter-Notationen und Beispiele:
 * <span style="color: #999; ">{...}</span> Platzhalter für Path Parameter, deren Werte keine Slashes enthalten dürfen
 * <span style="color: #999; ">{...*}</span> Platzhalter für Path Parameter, deren Werte auch Slashes enthalten können
 
-Request-Body und Response-Body (wenn vorhanden) sind immer JSON, außer für:
+Request-Body und Response-Body (wenn vorhanden) sind immer JSON, außer bei:
 * <span style="color: green; ">POST</span> /api/file/save/<span style="color: #999; ">{path*}</span> request-body
 * <span style="color: #60affe; ">GET</span> /api/file/one/<span style="color: #999; ">{path*}</span> response-body
 
@@ -18,6 +18,26 @@ Request-Body und Response-Body (wenn vorhanden) sind immer JSON, außer für:
 [Datei Endpoints](/de/api/file)
 
 ## Allgemeine Fehler Responses
+
+### Fehler beim Validieren (Beispiel)
+StatusCode: 400
+
+Beispiel: Benutzername zu kurz beim Registreiren:
+```json
+{
+  "error": "Validation Error.",
+  "schema": {
+    "username": "required string, 3 to 64 chars",
+    "password": "required string, at least 3 chars",
+    "meta": "optional object"
+  },
+  "value": {
+    "username": "ab",
+    "password": "p8ssw0rd",
+    "meta": {}
+  }
+}
+```
 
 ### Nicht gefunden / Invalide Methode / Forbidden Access
 StatusCode: 404

@@ -58,7 +58,7 @@ Typ: Eines von
 * `s3` &minus; Nutzt AWS S3 (oder S3-kompatible Dienste)
   als Speicher für die Dateien und das lokale Dateisystem für Datei-Daten*.
 
-*Datei-Daten: Grüße, Eigentümer, Mimetype, MD5-Hash und Metadaten
+*Datei-Daten: Größe, Eigentümer, Mimetype, MD5-Hash und Metadaten
 
 ### storage.path
 
@@ -119,8 +119,8 @@ Gibt für S3 an, ob path style statt sub-domain style verwendet werden soll.
 Standard: `false`
 
 Typ: boolean
-* `false` (Standard) &minus; Nutzt `bucketname.domain.tld/key` als Bucket-Adresse
-* `true` &minus; Nutzt `domain.tld/bucketname/key` als Bucket-Adresse
+* `false` (Standard) &minus; Nutzt `bucketname.domain.tld/key` als Bucket-Objekt-Adresse
+* `true` &minus; Nutzt `domain.tld/bucketname/key` als Bucket-Objekt-Adresse
 
 ## Beispiele
 

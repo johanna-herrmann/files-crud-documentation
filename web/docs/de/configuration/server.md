@@ -1,6 +1,6 @@
 # Server-Konfiguration
 
-Die-Server Konfiguration bestimmt die Verbindung und das Verhalten zum files-crud Server.
+Die-Server Konfiguration bestimmt die Verbindung und das Verhalten des files-crud Servers.
 
 ## Syntax
 

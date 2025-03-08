@@ -9,7 +9,7 @@ Diese Seite zeigt, wie die CLI genutzt wird.
 filescrud [Optionen] [Kommando] [Kommando-Argumente] [Kommando-Optionen]
 ```
 
-### Optionen
+### Allgemeine Optionen
 
 | Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
@@ -40,7 +40,7 @@ Startet die files-crud Anwendung.
 filescrud start [Optionen]
 ```
 
-### Options
+### Optionen
 
 | Optionen                  | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
@@ -72,8 +72,8 @@ Die folgenden Kommandos lesen diese Datei, ebenfalls vom Arbeitsverzeichnis.
 filescrud stop|restart|reload  [Optionen]
 ```
 
-### Options
-For `restart` and `reload` command:
+### Optionen
+Für `restart` und `reload`:
 
 | Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
@@ -93,7 +93,7 @@ Startet die Anwendung mit Standard env-prefix (FILES_CRUD) neu
 filescrud restart
 ```
 
-Startet die Anwendung mit env-prefix `FC`
+Startet die Anwendung mit env-prefix `FC` neu
 ```bash
 filescrud restart -e FC
 ```
@@ -124,7 +124,7 @@ Prüft die Datei-Integrität, unter Verwendung der MD5-Hashes.
 filescrud integrity [Optionen] [Argumente]
 ```
 
-### Options
+### Optionen
 
 | Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
@@ -160,7 +160,7 @@ Erstellt einen Admin-Benutzer.
 filescrud admin [Optionen]
 ```
 
-### Options
+### Optionen
 
 | Option                    | Beschreibung                                              |
 | ------------------------- | --------------------------------------------------------- |
@@ -205,7 +205,7 @@ Zeigt die aktuelle Konfiguration an.
 filescrud config [Optionen] [Argumente]
 ```
 
-### Options
+### Optionen
 
 | Option                    | Beschreibung                                                |
 | ------------------------- | ----------------------------------------------------------- |
@@ -216,7 +216,7 @@ filescrud config [Optionen] [Argumente]
 * Format &minus; Das Format in dem die Konfiguration angezeigt werden soll (json|yaml|env|properties) (Standard: "json")
 
 ### Beispiele
-Zeigt die gesamte Konfiguration im Standard-Format (json)
+Zeigt die gesamte Konfiguration im Standard-Format (json) an
 ```bash
 filescrud config
 ```

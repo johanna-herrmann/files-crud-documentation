@@ -11,7 +11,7 @@ Configuration can be done, using one of the following methods:
 All configuration properties are optional (convention over configuration) but some properties are highly recommended in some cases. \
 Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dynamodb` is used as database adapter.
 
-## Precedence
+### Precedence
 If you use both, a config file and environment variables,
 the environment variable properties overwrite the config file properties.
 
@@ -90,7 +90,7 @@ FILES_CRUD_ACCESS_KEY_ID=String
 FILES_CRUD_SECRET_ACCESS_KEY=String
 ```
 
-#### Notices
+#### Notices about yaml
 
 ##### Directory permissions
 You can always specify the permissions, using one of the following methods:
@@ -112,6 +112,13 @@ FILES_CRUD_DIRECTORY_PERMISSIONS__SOME_OTHER_DIR=000
 
 For consistency, we recommend to use always the *separated notation*.
 
+If you want to use the [explicit array](/permissions#explicit-array) notation together with *separated notation*, this can be done as follows: \
+comma-separation for directories, colon-separation for levels
+```properties
+FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='dir/one,dir/two'
+FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='create-read-update-delete:read:read,create-read:read:'
+```
+
 ## Properties
 
 ### defaultPermissions
@@ -124,6 +131,7 @@ Type: String
 
 ### directoryPermissions
 Specifies permissions for specific directories.
+To specify permissions for a directory, it does not matter whether the directory exists already.
 
 Default: empty
 
@@ -211,7 +219,7 @@ AWS region, used for `dynamodb` and/or `s3`.
 Will be overwritten by [database.region](/configuration/database#databaseregion)
 or [storage.region](/configuration/storage#storageregion) if specified.
 
-Default: `eu-central-1`
+Default: `eu-central-1` (Frankfurt, Germany, Europe)
 
 Type: String
 
@@ -242,7 +250,8 @@ Type: String
     "defaultPermissions": "crudcr------",
     "directoryPermissions": {
         "special/world": "crudcr---r--",
-        "special/admins": "000"
+        "special/admins": "000",
+        "special/all-cr": ["create-read", "create-read", "create-read"]
     },
     "publicFileOwner": "none",
     "database": {
@@ -275,6 +284,10 @@ defaultPermissions: crudcr------
 directoryPermissions:
     special/world: crudcr---r--
     special/admins: 000
+    special/all-cr:
+        - create-read
+        - create-read
+        - create-read
 publicFileOwner: none
 database:
     name: mongodb
@@ -299,8 +312,8 @@ secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 ```properties
 FILES_CRUD_DEFAULT_PERMISSIONS=crudcr------
-FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins'
-FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000'
+FILES_CRUD_DIRECTORY_PERMISSIONS__DIRECTORIES='special/world,special/admins,special/all-cr'
+FILES_CRUD_DIRECTORY_PERMISSIONS__PERMISSIONS='crudcr---r--,000,create-read:create-read:create-read'
 FILES_CRUD_PUBLIC_FILE_OWNER=none
 FILES_CRUD_DATABASE__NAME=mongodb
 FILES_CRUD_LOGGING__IP_LOGGING=full
@@ -326,6 +339,7 @@ If no property is set at all, the application defaults to:
   * No debug logging
   * All logging features enabled
   * Anonymous ip logging
+  * Daily file rotation, compressing rotated files via gzip
   * files:
     * access log: `./access.log`
     * error log: `./error.log`

@@ -36,13 +36,16 @@ const changeOriginalUrlMiddleware = function (req, _, next) {
   next();
 };
 
-const rewriteMiddlewares = function (pattern, targetDE, targetEN, prefix = '') {
+const rewriteMiddlewares = function (pattern, targetDE, targetEN, prefix = '', notFound = false) {
   const regex = new RegExp(`^${prefix}/(de/)?${pattern}$`, 'u');
   return [
     function (req, res, next) {
       const path = req.path;
       const target = path.startsWith(prefix + DE) ? targetDE : targetEN;
       rewrite(regex, target)(req, res, next);
+      if (notFound) {
+        res.statusCode = 404;
+      }
     },
     changeOriginalUrlMiddleware
   ];
@@ -67,7 +70,7 @@ app.use(accessLoggingMiddleWare);
 app.use(...rewriteMiddlewares('[^\\.]+', DE, EN));
 app.use(redirectionMiddleware);
 app.use(staticMiddleware);
-app.use(...rewriteMiddlewares('.+\\.md', '/docs/de/404.md', '/docs/404.md', '/docs'));
+app.use(...rewriteMiddlewares('.+\\.md', '/docs/de/404.md', '/docs/404.md', '/docs', true));
 app.use(staticMiddleware);
 
 const server = http.createServer(app);

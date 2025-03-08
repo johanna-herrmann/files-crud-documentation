@@ -38,14 +38,20 @@ docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud
 ```
 
 
-#### Starten mit alternativen Host und Port
+#### Starten mit alternativem Host und Port
 ```bash
 docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.4 -e FILES_CRUD_SERVER__PORT=8000 filescrud/filescrud start
 ```
 
 #### Integrität des gesamten Speichers prüfen
+In einem neuen Container
 ```bash
-docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity
+docker run --init -dt -v ./:/data filescrud/filescrud integrity
+```
+
+In einem laufenden Container (angenommener Container-Name `filescrud_1`)
+```bash
+docker exec -it filescrud_1 filescrud integrity
 ```
 
 
@@ -129,6 +135,6 @@ docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt
 * Fehlende Berechtigungen im `/data`-Verzeichnis oder Unterverzeichnissen im Container
   * Stelle für alle Volumes sicher, dass der angegebene lokale Pfad existiert. \
     Beispiel: für `-v ./fc:/data` muss sichergestellt sein, dass `./fc` bereits existiert.
-* Fehlermeldung `Error: listen EADDRNOTAVAIL: address not available 172.0.0.0:3000` (oder ähnlich) beim Starten
+* Fehlermeldung `Error: listen EADDRNOTAVAIL: address not available 127.0.0.1:9000` (oder ähnlich) beim Starten
   * Wenn docker genutzt wird, kann `server.host` nicht auf `127.0.0.1` gesetzt werden. \
     Verwende stattdessen `-p 127.0.0.1:9000:9000`.

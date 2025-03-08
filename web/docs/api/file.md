@@ -1,4 +1,4 @@
-# API: File Endpoints
+# API - File Endpoints
 
 This page documents the API file Endpoints.
 
@@ -6,7 +6,7 @@ This page documents the API file Endpoints.
 **<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint to upload a file. \
-Can be a new file or an existing file. \
+Can be a new file or an existing file (will be overwritten). \
 It also stores following properties as file data.
 * the Mimetype provided in the value of the `Content-Type` parameter in request-body
   (or if provided: the value of `X-Mimetype` request-header)
@@ -299,6 +299,102 @@ Body:
 }
 ```
 
+## Check if file exists
+**<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999; ">{path*}</span>**
+
+Checks if a file exists.
+
+### Request Body
+None
+
+### Request Path parameters
+* path &minus; The path to the file (relative to storage root)
+
+Examle:
+<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999">texts/examples/cool-text.txt</span>
+
+### Responses
+
+#### Success - File exists
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": true
+}
+```
+
+#### Success - Does not exist or is not a file
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": false
+}
+```
+
+#### Missing read permission on parent directory
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts/examples"
+}
+```
+
+## Check if directory exists
+**<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999; ">{path*}</span>**
+
+Checks if a directory exists.
+
+### Request Body
+None
+
+### Request Path parameters
+* path &minus; The path to the directory (relative to storage root)
+
+Examle:
+<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+
+### Responses
+
+#### Success - Directory exists
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": true
+}
+```
+
+#### Success - Does not exist or is not a directory
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": false
+}
+```
+
+#### Missing read permission on parent directory
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts"
+}
+```
+
 ## List Files And Directories
 **<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
 
@@ -311,7 +407,7 @@ None
 * path &minus; The path to the directory to list the files and directories in (relative to storage root) \
   (empty to list items of storage root)
 
-Examles:
+Examples:
 * <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999">texts/examples</span>
 * <span style="color: #60affe; ">GET</span> /api/file/list/
 
@@ -351,6 +447,7 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/copy**
 
 Copies a file.
+If the target file already exists, it will be overwritten.
 
 ### Request Body
 ```json
@@ -436,21 +533,18 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/move**
 
 Moves a file to another path (can also be used to rename a file).
+If the target file already exists, it will be overwritten.
 
 ### Request Body
 ```json
 {
   "path": "texts/examples/cool-text.txt",
-  "targetPath": "better/path/really-cool-text.txt",
-  "copyOwner": false
+  "targetPath": "better/path/really-cool-text.txt"
 }
 ```
 
 * path &minus; Path to the file to move from
 * targetPath &minus; Path to the file to move to
-* copyOwner &minus; Optional: Defines if the target file should have the same owner as the source file had
-  * true: target file will have same owner as source file
-  * false (default): target file owner will be the accessor, if file is new, else owner stays unchanged.
 
 ### Request Path parameters
 None
@@ -464,16 +558,6 @@ Body:
 ```json
 {
   "path": "better/path/really-cool-text.txt"
-}
-```
-
-#### Missing read permission on source file
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. You are not allowed to read texts/examples/cool-text.txt"
 }
 ```
 
@@ -504,16 +588,6 @@ Body:
 ```json
 {
   "error": "Unauthorized. You are not allowed to delete texts/examples/cool-text.txt"
-}
-```
-
-#### None-admin user tries to copy the owner attribute (copyOwner)
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. Only admins are allowed to copy the owner."
 }
 ```
 

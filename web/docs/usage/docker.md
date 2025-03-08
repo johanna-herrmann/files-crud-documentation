@@ -43,8 +43,15 @@ docker run --init -dt -p 8000:8000 -v ./:/data -e FILES_CRUD_SERVER__HOST=1.2.3.
 ```
 
 #### Check integrity for whole storage
+
+In new container
 ```bash
-docker run --init -dt -p 9000:9000 -v ./:/data filescrud/filescrud integrity
+docker run --init -dt -v ./:/data filescrud/filescrud integrity
+```
+
+In running container (assuming container name `filescrud_1`)
+```bash
+docker exec -it filescrud_1 filescrud integrity
 ```
 
 
@@ -127,6 +134,6 @@ docker exec -it -e FILES_CRUD_SERVER__PORT=8000 -e FILES_CRUD_STORAGE__PATH=/opt
 * missing permissions in docker container's `/data` directory (or sub directories)
   * Ensure for all volumes, that the host directories already exist. \
     Example: for `-v ./fc:/data` you have to ensure `./fc` already exists.
-* error message `Error: listen EADDRNOTAVAIL: address not available 172.0.0.0:3000` (or similar) at startup
+* error message `Error: listen EADDRNOTAVAIL: address not available 127.0.0.1:9000` (or similar) at startup
   * Using docker, you can not set `server.host` to `127.0.0.1`. \
     Use `-p 127.0.0.1:9000:9000` instead.

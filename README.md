@@ -13,7 +13,7 @@ To deploy to AWS Amplify:
 * Connect the branches `main` and `dev`.
 * Edit the `Build and test settings` as follows:
   * change value of `frontend`->`artifacts`->`baseDirectory` to `web/` and remove `phases` and `cache`
-* Under `Domain Management`, connect the live domain with the `main` branch and the dev domain with the `dev` branch.
+* Under `Domain Management`, connect the live domain with the `main` branch and the stage domain with the `stage` branch.
 * Under `Rewrites and Redirects` configure Amplify, as follows (order matters!):
   | `#` |    Source address         | Target address  | Type                       | Country code |
   | --- | ------------------------- | --------------- | -------------------------- | ------------ |

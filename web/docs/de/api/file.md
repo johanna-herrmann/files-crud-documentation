@@ -1,4 +1,4 @@
-# API: Datei Endpoints
+# API - Datei Endpoints
 
 Diese Seite dokumentiert die API Datei Endpoints.
 
@@ -6,7 +6,7 @@ Diese Seite dokumentiert die API Datei Endpoints.
 **<span style="color: green; ">POST</span> /api/file/upload/<span style="color: #999; ">{path*}</span>**
 
 Endpoint um eine Datei hochzuladen. \
-Kann eine neue oder eine bereits existierende Datei sein. \
+Kann eine neue oder eine bereits existierende Datei sein (wird überschrieben). \
 Speichert außerdem folgende Eigenschaften als Datei-Daten.
 * Den Mimetype der via `Content-Type`-Parameter im request-body angegeben wurde
   (oder falls angegeben: der Wert des `X-Mimetype`-request-headers)
@@ -27,7 +27,7 @@ Wir empfehlen stark, Upload-Tools (Upload-Formular, JS Files API, etc.) zu verwe
 
 ### Request Body
 Datei als `multipart/form-data`, mit exakt einem Datei-Objekt.
-Der `name` kann jeder nicht-leerer, alpha-numerischer Wert sein.
+Der `name` kann jeder nicht-leere, alpha-numerische Wert sein.
 Der `filename`-Parameter wird ignoriert.
 
 Beispiel mit delimiter `---delimiter123`:
@@ -301,6 +301,102 @@ Body:
 }
 ```
 
+## Prüfen, ob Datei existiert
+**<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999; ">{path*}</span>**
+
+Prüft, ob eine Datei existiert.
+
+### Request Body
+Keiner
+
+### Request Path Parameter
+* path &minus; Pfad zur Datei (relativ zum Hauptordner des Speichers)
+
+Beispiel:
+<span style="color: #60affe; ">GET</span> /api/file/file-exists/<span style="color: #999">texts/examples/cool-text.txt</span>
+
+### Responses
+
+#### Erfolg - Datei existiert
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": true
+}
+```
+
+#### Erfolg - Existiert nicht oder ist keine Datei
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples/cool-text.txt",
+  "exists": false
+}
+```
+
+#### Fehlende read Berechtigung für das übergeordnete Verzeichis
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts/examples"
+}
+```
+
+## Prüfen, ob ein Verzeichnis existiert
+**<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999; ">{path*}</span>**
+
+Prüft, ob ein Verzeichnis existiert.
+
+### Request Body
+Keiner
+
+### Request Path Parameter
+* path &minus; Der Pfad zum Verzeichnis (relativ zum Hauptordner des Speichers)
+
+Beispiel:
+<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+
+### Responses
+
+#### Success - Verzeichnis existiert
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": true
+}
+```
+
+#### Success - Existiert nicht oder ist kein Verzeichnis
+Status-Code: 200
+
+Body:
+```json
+{
+  "path": "texts/examples",
+  "exists": false
+}
+```
+
+#### Fehlende read Berechtigung für das übergeordnete Verzeichis
+Status-Code: 401
+
+Body:
+```json
+{
+  "error": "Unauthorized. You are not allowed to read texts"
+}
+```
+
 ## Dateien und Ordner auflisten
 **<span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999; ">{path*}</span>**
 
@@ -353,6 +449,7 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/copy**
 
 Kopiert eine Datei.
+Wenn die Ziel-Datei bereits existiert, wird sie überschrieben.
 
 ### Request Body
 ```json
@@ -367,7 +464,7 @@ Kopiert eine Datei.
 * targetPath &minus; Pfad zur Ziel-Datei
 * copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
   * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
+  * false (standard): Eigentümer ist der Aufrufer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner
@@ -438,21 +535,18 @@ Body:
 **<span style="color: green; ">POST</span> /api/file/move**
 
 Verschiebt eine Datei (kann auch zum umbenennen einer Datei verwendet werden).
+Wenn die Ziel-Datei bereits existiert, wird sie überschrieben.
 
 ### Request Body
 ```json
 {
   "path": "texts/examples/cool-text.txt",
-  "targetPath": "better/path/really-cool-text.txt",
-  "copyOwner": false
+  "targetPath": "better/path/really-cool-text.txt"
 }
 ```
 
 * path &minus; Pfad zu der Datei die verschoben werden soll
 * targetPath &minus; Neuer Pfad
-* copyOwner &minus; Optional: Definiert ob die Ziel-Datei den gleichen Eigentümer haben soll, wie die Quell-Datei
-  * true: Eigentümer der Quell-Datei wird kopiert (Ziel-Datei hat gleichen Eigentümer)
-  * false (standard): Eigentümer ist der Zugreifer, wenn Ziel-Datei vorher nicht existierte, andernfalls bleibt Eigentümer unverändert
 
 ### Request Path Parameter
 Keiner
@@ -466,16 +560,6 @@ Body:
 ```json
 {
   "path": "better/path/really-cool-text.txt"
-}
-```
-
-#### Fehlende read Berechtigung für die Quell-Datei
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. You are not allowed to read texts/examples/cool-text.txt"
 }
 ```
 
@@ -506,16 +590,6 @@ Body:
 ```json
 {
   "error": "Unauthorized. You are not allowed to delete texts/examples/cool-text.txt"
-}
-```
-
-#### Nutzer der kein Admin ist, versucht Eigentümer-Attribut zu kopieren (copyOwner)
-Status-Code: 401
-
-Body:
-```json
-{
-  "error": "Unauthorized. Only admins are allowed to copy the owner."
 }
 ```
 

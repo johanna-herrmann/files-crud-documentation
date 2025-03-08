@@ -1,4 +1,4 @@
-# API: User Endpoints
+# API - User Endpoints
 
 This page documents the API user Endpoints.
 
@@ -197,6 +197,7 @@ Body:
 
 ## Update Admin State
 **<span style="color: green; ">POST</span> /api/user/set-admin**
+
 Changes the admin state of a user
 
 ### Request Body
