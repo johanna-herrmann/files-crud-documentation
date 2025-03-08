@@ -19,6 +19,26 @@ Request-Body und Response-Body (wenn vorhanden) sind immer JSON, außer bei:
 
 ## Allgemeine Fehler Responses
 
+### Fehler beim Validieren (Beispiel)
+StatusCode: 400
+
+Beispiel: Benutzername zu kurz beim Registreiren:
+```json
+{
+  "error": "Validation Error.",
+  "schema": {
+    "username": "required string, 3 to 64 chars",
+    "password": "required string, at least 3 chars",
+    "meta": "optional object"
+  },
+  "value": {
+    "username": "ab",
+    "password": "p8ssw0rd",
+    "meta": {}
+  }
+}
+```
+
 ### Nicht gefunden / Invalide Methode / Forbidden Access
 StatusCode: 404
 
