@@ -566,7 +566,8 @@ Body:
 ## Benutzer löschen
 **<span style="color: #a00; ">DELETE</span> /api/user/remove/<span style="color: #999">{id}</span>**
 
-Löscht einen Benutzer
+Löscht einen Benutzer. Löscht außerdem alle Dateien, die dem gelöschten Benutzer gehören. \
+Achtung: Dieser Vorgang ist irreversibel!
 
 ### Request Body
 Keiner

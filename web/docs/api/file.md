@@ -604,7 +604,8 @@ Body:
 ## Delete File
 **<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999; ">{path*}</span>**
 
-Deletes a file.
+Deletes a file. \
+Caution: This operation is irreversible!
 
 ### Request Body
 None

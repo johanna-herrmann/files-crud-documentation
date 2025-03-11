@@ -606,7 +606,8 @@ Body:
 ## Datei löschen
 **<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999; ">{path*}</span>**
 
-Löscht eine Datei
+Löscht eine Datei. \
+Achtung: Dieser Vorgang ist irreversibel!
 
 ### Request Body
 Keiner
