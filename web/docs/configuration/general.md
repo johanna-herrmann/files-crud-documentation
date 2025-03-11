@@ -9,7 +9,7 @@ Configuration can be done, using one of the following methods:
   (or prefix, set via `filescrud --env-prefix`).
 
 All configuration properties are optional (convention over configuration) but some properties are highly recommended in some cases. \
-Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `dynamodb` is used as database adapter.
+Example: `accessKeyId` defaults to `fallback-key` which is quite useless if `s3` is used as storage.
 
 ### Precedence
 If you use both, a config file and environment variables,
@@ -36,10 +36,7 @@ For config files the following applies:
     "webRoot": String,
     "tokenExpiresInSeconds": number,
     "register": "all" | "admin" | "token",
-    "tokens": [String, ...],
-    "region": String,
-    "accessKeyId": String,
-    "secretAccessKey": String
+    "tokens": [String, ...]
 }
 ```
 
@@ -65,10 +62,6 @@ register: all | admin | token
 tokens:
     - String,
     ...
-region: String
-accessKeyId: String
-secretAccessKey: String
-
 ```
 
 ### Environment Variables
@@ -85,9 +78,6 @@ FILES_CRUD_WEB_ROOT=String
 FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=number
 FILES_CRUD_REGISTER=all|admin|token
 FILES_CRUD_TOKENS=String,...
-FILES_CRUD_REGION=String
-FILES_CRUD_ACCESS_KEY_ID=String
-FILES_CRUD_SECRET_ACCESS_KEY=String
 ```
 
 #### Notices about yaml
@@ -214,33 +204,6 @@ Default: empty
 
 Type: List/Array of String (one string item for each valid token)
 
-### region
-AWS region, used for `dynamodb` and/or `s3`.
-Will be overwritten by [database.region](/configuration/database#databaseregion)
-or [storage.region](/configuration/storage#storageregion) if specified.
-
-Default: `eu-central-1` (Frankfurt, Germany, Europe)
-
-Type: String
-
-### accessKeyId
-AWS credential Access Key Id, used for `dynamodb` and/or `s3`.
-Will be overwritten by [database.accessKeyId](/configuration/database#databaseaccesskeyid)
-or [storage.accessKeyId](/configuration/storage#storageaccesskeyid) if specified.
-
-Default: `fallback-key`
-
-Type: String
-
-### secretAccessKey
-AWS credential Secret Access Key, used for `dynamodb` and/or `s3`.
-Will be overwritten by [database.secretAccessKey](/configuration/database#databasesecretaccesskey)
-or [storage.secretAccessKey](/configuration/storage#storagesecretaccesskey) if specified.
-
-Default: `fallback-secret`
-
-Type: String
-
 ## Examples
 
 ### JSON
@@ -270,10 +233,7 @@ Type: String
     "webRoot": "/opt/filescrud/web",
     "tokenExpiresInSeconds": 3600,
     "register": "token",
-    "tokens": ["ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"],
-    "region": "us-east-1",
-    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
-    "secretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    "tokens": ["ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"]
 }
 ```
 
@@ -303,9 +263,6 @@ tokenExpiresInSeconds: 3600
 register: token
 tokens: 
     - ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
-region: us-east-1
-accessKeyId: AKIAIOSFODNN7EXAMPLE
-secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
 ### Environment Variables
@@ -324,9 +281,6 @@ FILES_CRUD_WEB_ROOT=/opt/filescrud/web
 FILES_CRUD_TOKEN_EXPIRES_IN_SECONDS=3600
 FILES_CRUD_REGISTER=token
 FILES_CRUD_TOKENS=1a79a4d60de6718e8e5b326e338ae533,3712c56ef7490da429ffe2d364871edb
-FILES_CRUD_REGION=us-east-1
-FILES_CRUD_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-FILES_CRUD_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
 ## Default summary

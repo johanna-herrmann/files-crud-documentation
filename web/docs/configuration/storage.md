@@ -72,8 +72,7 @@ Type: String
 
 Specifies AWS region to use for S3(-compatible) Storage.
 
-Default: Value specified at [region](/configuration/general#region) on configartion root,
-if specified, else `eu-central-1` (Frankfurt, Germany, Europe)
+Default: `eu-central-1` (Frankfurt, Germany, Europe)
 
 Type: String
 
@@ -81,8 +80,7 @@ Type: String
 
 Specifies AWS credential Access Key Id to use for S3(-compatible) Storage.
 
-Default: Value specified at [accessKeyId](/configuration/general#accesskeyid) on configartion root,
-if specified, else `fallback-key`
+Default: `fallback-key`
 
 Type: String
 
@@ -90,8 +88,7 @@ Type: String
 
 Specifies AWS credential secret access key to use for S3(-compatible) Storage.
 
-Default: Value specified at [secretAccessKey](/configuration/general#secretaccesskey) on configartion root,
-if specified, else `fallback-secret`
+Default: `fallback-secret`
 
 Type: String
 

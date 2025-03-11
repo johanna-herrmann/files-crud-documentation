@@ -8,7 +8,6 @@
 * Supported Databases (for user accounts)
   * mongoDB
   * postgresql
-  * DynamoDB
   * in-memory (for testing purposes)
 * Uses CRUD-based permissions, specified for different directories
 
