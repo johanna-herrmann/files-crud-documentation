@@ -360,8 +360,10 @@ Keiner
 ### Request Path Parameter
 * path &minus; Der Pfad zum Verzeichnis (relativ zum Hauptordner des Speichers)
 
-Beispiel:
-<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+Beispiele:
+* <span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+* <span style="color: #60affe; ">GET</span> /api/file/directory-exists/ \
+  (muss mit Slash enden)
 
 ### Responses
 
@@ -411,7 +413,8 @@ Keiner
 
 Beispiele:
 * <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999">texts/examples</span>
-* <span style="color: #60affe; ">GET</span> /api/file/list/
+* <span style="color: #60affe; ">GET</span> /api/file/list/ \
+  (muss mit Slash enden)
 
 ### Responses
 
