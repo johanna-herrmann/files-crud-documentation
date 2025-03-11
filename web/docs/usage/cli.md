@@ -81,6 +81,8 @@ For `restart` and `reload` command:
 | -e, --env-prefix <prefix> | Prefix for environment variables (default: "FILES_CRUD")  |
 
 ### stop
+(not suitable for docker)
+
 Stopps a running application
 
 ```bash
@@ -88,6 +90,7 @@ filescrud stop
 ```
 
 ### restart
+(not suitable for docker)
 
 Restarts application with default env-prefix (FILES_CRUD)
 ```bash
