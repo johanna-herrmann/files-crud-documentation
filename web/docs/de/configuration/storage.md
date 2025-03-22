@@ -72,8 +72,7 @@ Typ: String
 
 Gibt die AWS-Region für den S3-Speicher an.
 
-Standard: Der Wert von [region](/de/configuration/general#region) in der Hauptkonfiguration,
-wenn angebenen, ansonsten `eu-central-1` (Frankfurt, Deutschland, Europa)
+Standard: `eu-central-1` (Frankfurt, Deutschland, Europa)
 
 Typ: String
 
@@ -81,8 +80,7 @@ Typ: String
 
 Gibt den AWS Access Key für den S3(-kompatiblen) Speicher an.
 
-Standard: Der Wert von [accessKeyId](/de/configuration/general#accesskeyid) in der Hauptkonfiguration,
-wenn angegeben, ansonsten `fallback-key`
+Standard: `fallback-key`
 
 Typ: String
 
@@ -90,8 +88,7 @@ Typ: String
 
 Gibt den AWS Secret Key für den S3(-kompatiblen) Speicher an.
 
-Standard: Der Wert von [secretAccessKey](/de/configuration/general#secretaccesskey) in der Hauptkonfiguration,
-wenn angegeben, ansonsten `fallback-secret`
+Standard: `fallback-secret`
 
 Typ: String
 

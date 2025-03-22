@@ -8,7 +8,6 @@
 * Unterstützte Datenbanken (für die Benutzerverwaltung)
   * mongoDB
   * postgresql
-  * DynamoDB
   * in-memory (zu Testzwecken)
 * Nutzt CRUD-basierte Berechtigungen, angegeben für verschiedene Verzeichnisse
 

@@ -8,6 +8,8 @@ files-crud authentisiert Benutzer mittels Benutzername und Passwort.
 ## Hashing
 Aktuell werden Passwörter mittels [scrypt](https://en.wikipedia.org/wiki/Scrypt) mit folgenden Parametern gehasht:
 * iterations count: 131072
+  (2^17, was der
+  [OWASP-Empfehlung](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md) entspricht)
 * block size: 8
 * parallelism: 1
 * max memory: 176160768

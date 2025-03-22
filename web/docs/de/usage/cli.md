@@ -80,6 +80,8 @@ Für `restart` und `reload`:
 | -e, --env-prefix <prefix> | Prefix für Umgebungsvariablen (Standard: "FILES_CRUD")    |
 
 ### stop
+(nicht geeignet für docker)
+
 Stoppt die laufende Anwendung
 
 ```bash
@@ -87,6 +89,7 @@ filescrud stop
 ```
 
 ### restart
+(nicht geeignet für docker)
 
 Startet die Anwendung mit Standard env-prefix (FILES_CRUD) neu
 ```bash

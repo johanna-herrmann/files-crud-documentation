@@ -358,8 +358,10 @@ None
 ### Request Path parameters
 * path &minus; The path to the directory (relative to storage root)
 
-Examle:
-<span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+Examles:
+* <span style="color: #60affe; ">GET</span> /api/file/directory-exists/<span style="color: #999">texts/examples</span>
+* <span style="color: #60affe; ">GET</span> /api/file/directory-exists/ \
+  (trailing slash is required)
 
 ### Responses
 
@@ -409,7 +411,8 @@ None
 
 Examples:
 * <span style="color: #60affe; ">GET</span> /api/file/list/<span style="color: #999">texts/examples</span>
-* <span style="color: #60affe; ">GET</span> /api/file/list/
+* <span style="color: #60affe; ">GET</span> /api/file/list/ \
+  (trailing slash is required)
 
 ### Responses
 
@@ -604,7 +607,8 @@ Body:
 ## Delete File
 **<span style="color: #a00; ">DELETE</span> /api/file/remove/<span style="color: #999; ">{path*}</span>**
 
-Deletes a file.
+Deletes a file. \
+Caution: This operation is irreversible!
 
 ### Request Body
 None
