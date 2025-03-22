@@ -1,6 +1,6 @@
 # API
 
-These pages document the API Endpoints for `files-crud`.
+These pages document the API Endpoints for files-crud.
 
 We will use following placeholders / example-notation:
 * Good and consistent example values for body parameters, instead of placeholders
@@ -18,6 +18,26 @@ Request-Bodies and response-bodies (if any) are always JSON, except for:
 [File Endpoints](/api/file)
 
 ## General error responses
+
+### Validation Error (Example)
+StatusCode: 400
+
+For example: username too short on register:
+```json
+{
+  "error": "Validation Error.",
+  "schema": {
+    "username": "required string, 3 to 64 chars",
+    "password": "required string, at least 3 chars",
+    "meta": "optional object"
+  },
+  "value": {
+    "username": "ab",
+    "password": "p8ssw0rd",
+    "meta": {}
+  }
+}
+```
 
 ### Not found / Invalid Method / Forbidden
 StatusCode: 404

@@ -1,0 +1,36 @@
+.page-content .pre-wrapper[data-lang="properties"]::before {
+  content: "env";
+}
+
+.page-content .pre-wrapper[data-lang="bash"]::before {
+  content: "shell";
+}
+
+.page-content .pre-wrapper {
+  margin: 4px 0 2rem 0;
+}
+
+.page-content p + .pre-wrapper {
+  margin: -13px 0 2rem 0;
+}
+
+.LanguageSelector select option {
+  background-color: var(--page-background);
+}
+
+.LanguageSelector {
+  position: relative;
+}
+
+.LanguageSelector .DocuteSelect::after {
+  content: "\1F310";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3px;
+  font-size: 1rem;
+}
+
+.LanguageSelector .DocuteSelect select {
+  padding-left: 23px;
+}

@@ -1,6 +1,6 @@
-# Database Configuration
+# Datenbank-Konfiguration
 
-The database configuration is used to configure the connection to the database, used for user management.
+Die Datenbank-Konfiguration wird für die Verbindung zur Datenbank verwendet, die für die Benutzerverwaltung genutzt wird.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ user: String
 pass: String
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_DATABASE__NAME=mongodb | postgresql | in-memory
@@ -42,61 +42,61 @@ FILES_CRUD_DATABASE__USER=String
 FILES_CRUD_DATABASE__PASS=String
 ```
 
-## Properties
+## Eigenschaften
 
 ### database.name
-Specifies which database adapter to use.
+Gibt an, welcher Adapter verwendet werden soll
 
-Default: `in-memory`
+Standard: `in-memory`
 
-Type: One of
-* `in-memory` &minus; Saves all data in RAM (memory). Only useful for tests, no data will be persistent
-* `mongodb` &minus; Saves data in a [mongodb](https://www.mongodb.com/)
-* `postgresql` &minus; Saves data in a [postgresql](https://www.postgresql.org/) database
+Typ: Eines der folgenden
+* `in-memory` &minus; Daten werden im Arbeitsspeicher gespeichert. Nur für Tests sinnvoll, keine Daten dauerhaft
+* `mongodb` &minus; Daten werden in einer [mongodb](https://www.mongodb.com/) gespeichert
+* `postgresql` &minus; Daten werden in einer [postgresql](https://www.postgresql.org/)-Datenbank gespeichert
 
 ### database.db
-Specifies the database name for postgresql.
+Gibt den Namen der postgresql Datenbank an.
 
-Default: `files-crud`
+Standard: `files-crud`
 
-Type: String
+Typ: String
 
 ### database.url
-Specifies the database url for mongodb.
+Gibt die Datenbank-URL für mongodb an.
 
-Default: `mongodb://localhost:27017/files-crud`
+Standard: `mongodb://localhost:27017/files-crud`
 
-Type: String
+Typ: String
 
 ### database.host
-Specifies the database host for postgresql.
+Gibt den host für die postgresql Datenbank an.
 
-Default: `localhost`
+Standard: `localhost`
 
-Type: String
+Typ: String
 
 ### database.port
-Specifies the database port for postgresql.
+Gibt den Port für die postgresql Datenbank an.
 
 Default: 5432
 
-Type: number
+Typ: number
 
 ### database.user
-Specifies the database user for mongodb and postgresql.
+Gibt den Benutzernamen für die postgresql Datenbank oder mongodb an.
 
-Default: none (no auth)
+Standard: keiner (Verbindung ohne Login)
 
-Type: String
+Typ: String
 
 ### database.pass
-Specifies the database password for mongodb and postgresql.
+Gibt das Passwort für die postgresql Datenbank oder mongodb an.
 
-Default: none (no auth)
+Standard: keines (Verbindung ohne Login)
 
-Type: String
+Typ: String
 
-## Examples
+## Beispiele
 
 ### JSON
 
@@ -154,7 +154,7 @@ user: dbUser
 pass: s0meLong-and-go0d_p8ssword!sfjdalS
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 #### in-memory
 ```properties

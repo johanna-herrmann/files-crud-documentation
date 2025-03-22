@@ -1,6 +1,6 @@
-# Logging Configuration
+# Logging-Konfiguration
 
-The logging configuration is used to specify the logging behaviour.
+Die Logging-Konfiguration steuert das Logging-Verhalten.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ logFileRotationMaxFiles: String
 logFileRotationEnableCompression: boolean
 ```
 
-### Environment Variables
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_LOGGING__NAME=debug | info | warn | error
@@ -63,166 +63,164 @@ FILES_CRUD_LOGGING__LOG_FILE_ROTATION_MAX_FILES=String
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_ENABLE_COMPRESSION=boolean
 ```
 
-## Properties
+## Eigenschaften
 
 ### logging.level
 
-Specifies the minimum level to log.
+Gibt das minimale Logging-Level an.
 
-Default: `info`
+Standard: `info`
 
-Type: One of
-* `debug` &minus; Logs on: `debug`, `info`, `warn`, `error`
-* `info` &minus; Logs on: `info`, `warn`, `error`
-* `warn` &minus; Logs on: `warn`, `error`
-* `error` &minus; Logs on: `error`
+Typ: Eines von
+* `debug` &minus; Logging für: `debug`, `info`, `warn`, `error`
+* `info` &minus; Logging für: `info`, `warn`, `error`
+* `warn` &minus; Logging für: `warn`, `error`
+* `error` &minus; Logging für: `error`
 
 ### logging.ipLogging
 
-Specifies if and how to log ip addresses for access logging, if enabled.
+Gibt an, ob und wie IPs geloggt werden, wenn detailiertes Access-Logging aktiviert ist.
 
-Default: `anonymous`
+Standard: `anonymous`
 
-Type: One of
-* `full` &minus; Logs full ip address
-* `anonymous` &minus; Logs anonymized ip address (last part will be replaced by `_`) \
-  (Example: `233.42.23._` instead of `233.42.23.123`)
-* `none` &minus; Does not log ip addresses (whole address will be replaced by `_`)
+Typ: Eines von
+* `full` &minus; Loggt die komplette IP-Adresse
+* `anonymous` &minus; Loggt IP-Addressen anonymisiert (letztes Segment wird durch `_` ersetzt) \
+  (Beispiel: `233.42.23._` statt `233.42.23.123`)
+* `none` &minus; Loggt keine IP-Adressen (Gesamte Adresse wird durch `_` ersetzt)
 
 ### logging.enableErrorFileLogging
 
-If `true`, errors will be logged to a file,
-specified as [logging.errorLogFile](#loggingerrorlogfile),
-additionally to console logging.
+Wenn `true`, werden Fehler zusätzlich in eine Datei geloggt,
+die via [logging.errorLogFile](#loggingerrorlogfile) angegeben wurde,
+zusätzlich zum Logging in der Konsole.
 
-Default: `true`
+Standard: `true`
 
-Type: Boolean
+Typ: Boolean
 
 ### logging.enableAccessLogging
 
-Static file access always will be logged (method, path, statusCode) to console.
-If `true`, additionally,
-each access (static files and API) will be logged detailed to a file,
-specified as [logging.accessLogFile](#loggingaccesslogfile).
+Der Zuriff auf Frontend-Dateien wird immer in der Konsole geloggt (Methode, Pfad, StatusCode).
+Wenn `true`, wird zusätzlich jeder Zugriff (Frontend und API) detailiert in eine Datei geloggt,
+die via [logging.accessLogFile](#loggingaccesslogfile) angegeben wurde.
 
-Default: `true`
+Standard: `true`
 
-Type: Boolean
+Typ: Boolean
 
 ### logging.accessLogFile
-Specifies the path to the file for access logging
-(see: [logging.enableAccessLogging](#loggingenableaccesslogging))
+Gibt den Datei-Pfad für das detailierte Access-Logging an
+(Siehe: [logging.enableAccessLogging](#loggingenableaccesslogging))
 
-Default: `./access.log`
+Standard: `./access.log`
 
-Type: String
+Typ: String
 
 ### logging.errorLogFile
-Specifies the path to the file for error file logging
-(see: [logging.enableErrorFileLogging](#loggingenableerrorfilelogging))
+Gibt den Dateipfad fürs Error-Logging an
+(Siehe: [logging.enableErrorFileLogging](#loggingenableerrorfilelogging))
 
-Default: `./error.log`
+Standard: `./error.log`
 
 Type: String
 
 ### logging.ttyLoggingFormat
-Specifies which format to use for logging in console.
+Gibt das Format des Loggings in der Konsole an.
 
-Default: [coloredHumanReadableLine](#coloredhumanreadableline)
+Standard: [coloredHumanReadableLine](#coloredhumanreadableline)
 
-Type: LoggingFormat, which is one of
-* `humanReadableLine` &minus; Logs a simple line of information
-* `humanReadableBlock` &minus; Logs a block of information, one line per detail
-* `coloredHumanReadableLine` &minus; Logs a colored line of information
-   (color depends on logging level)
-* `coloredHumanReadableBlock` &minus; Logs a colored block of information, one line per detail
-   (color depends on logging level)
-* `json` &minus; Logs all information as single line json object.
+Typ: LoggingFormat, also eines aus
+* `humanReadableLine` &minus; Loggt eine einfache Zeile aus Informationen
+* `humanReadableBlock` &minus; Loggt einen Block von Informatioen, mit einer Zeile pro Detail
+* `coloredHumanReadableLine` &minus; Loggt eine gefärbte Zeile aus Informationen
+   (Farbe abhängig vom Level)
+* `coloredHumanReadableBlock` &minus; Loggt einen gefärbten Block von Informatioen, mit einer Zeile pro Detail
+   (Farbe abhängig vom Level)
+* `json` &minus; Loggt alle Informationen als ein einzeiliges JSON-Objekt
 
-See also: [Logging Formats](#logging-formats)
+Siehe auch: [Logging-Formate](#logging-formate)
 
 ### logging.fileLoggingFormat
-Specifies which format to use for file logging
-if stdout or stderr is redirected to a file.
+Gibt an welches Format verwendet werden soll, für das Logging in der Konsole, welches in eine Datei umgeleitet wird.
 
-Default: [json](#json-error-log-file-and-console)
+Standard: [json](#json-error-log-datei-und-konsole)
 
-Type: LoggingFormat, which is one of
-* `humanReadableLine` &minus; Logs a simple line of information
-* `humanReadableBlock` &minus; Logs a block of information, one line per detail
-* `coloredHumanReadableLine` &minus; Logs a colored line of information
-   (color depends on logging level)
-* `coloredHumanReadableBlock` &minus; Logs a colored block of information, one line per detail
-   (color depends on logging level)
-* `json` &minus; Logs all information as single line json object.
+Typ: LoggingFormat, also eines aus
+* `humanReadableLine` &minus; Loggt eine einfache Zeile aus Informationen
+* `humanReadableBlock` &minus; Loggt einen Block von Informatioen, mit einer Zeile pro Detail
+* `coloredHumanReadableLine` &minus; Loggt eine gefärbte Zeile aus Informationen
+   (Farbe abhängig vom Level)
+* `coloredHumanReadableBlock` &minus; Loggt einen gefärbten Block von Informatioen, mit einer Zeile pro Detail
+   (Farbe abhängig vom Level)
+* `json` &minus; Loggt alle Informationen als ein einzeiliges JSON-Objekt
 
-See also: [Logging Formats](#logging-formats)
+Siehe auch: [Logging-Formate](#logging-formate)
 
 ### logging.errorFileLoggingFormat
-Specifies which format to use for error file logging.
+Gibt das Format für das Error-Logging an.
 
-Default: [json](#json-error-log-file-and-console)
+Standard: [json](#json-error-log-datei-und-konsole)
 
-Type: LoggingFormat, which is one of
-* `humanReadableLine` &minus; Logs a simple line of information
-* `humanReadableBlock` &minus; Logs a block of information, one line per detail
-* `coloredHumanReadableLine` &minus; Logs a colored line of information
-   (color depends on logging level)
-* `coloredHumanReadableBlock` &minus; Logs a colored block of information, one line per detail
-   (color depends on logging level)
-* `json` &minus; Logs all information as single line json object.
+Typ: LoggingFormat, also eines aus
+* `humanReadableLine` &minus; Loggt eine einfache Zeile aus Informationen
+* `humanReadableBlock` &minus; Loggt einen Block von Informatioen, mit einer Zeile pro Detail
+* `coloredHumanReadableLine` &minus; Loggt eine gefärbte Zeile aus Informationen
+   (Farbe abhängig vom Level)
+* `coloredHumanReadableBlock` &minus; Loggt einen gefärbten Block von Informatioen, mit einer Zeile pro Detail
+   (Farbe abhängig vom Level)
+* `json` &minus; Loggt alle Informationen als ein einzeiliges JSON-Objekt
 
-See also: [Logging Formats](#logging-formats)
+Siehe auch: [Logging-Formate](#logging-formate)
 
 ### logging.accessLoggingFormat
-Specifies which format to use for detailed access logging.
+Gibt das Format für das detailierte Access-Logging an.
 
-Default: [json](#json-access-logging-file)
+Standard: [json](#json-access-log-datei)
 
-Type: AccessLoggingFormat, which is one of
-* `classic` &minus; Logs details, similar to nginx or apache2 access logging.
-* `json` &minus; Logs details as single-line json object.
+Typ: AccessLoggingFormat, also eines von
+* `classic` &minus; Loggt Details, ähnlich wie nginx or apache2
+* `json` &minus; Loggt Details als ein einzeiliges JSON-Objekt
 
-See also: [Access Logging Formats](#access-logging-formats)
+Siehe auch: [Access-Logging-Formate](#access-logging-formate)
 
 ### logging.enableLogFileRotation
-Specifies if the error log file and the access log file should be rotated automatically.
+Gibt an ob die Dateien für das Error-Logging und das Access-Logging rotiert werden sollen.
 
-Default: `true`
+Standard: `true`
 
-Type: boolean
+Typ: boolean
 
 ### logging.logFileRotationFrequenceUnit
-Specifies the frequency of the log file rotation, if enabled.
+Gibt die Häufigkeit (Interval) der Log-Dateien-Rotation an, falls aktiv.
 
-Default: `d` (Daily)
+Standard: `d` (täglich)
 
-Type: One of
-* `s` &minus; Secondly (On logging event, if last event is at least one second in past)
-  (Only suitable for tests)
-* `m` &minus; Minutely (On logging event, if last event is at least one minute in past)
-  (Only recommended for tests)
-* `h` &minus; Hourly (On logging event, if last event is at least one hour in past)
-* `d` &minus; Daily (On logging event, if last event is at least one day in past)
-  (recommended)
+Typ: Eines von
+* `s` &minus; Sekündlich (Beim loggen, falls das letzte Logging mindestens eine Sekune zurück liegt)
+  (Ausschließlich für Tests geeignet)
+* `m` &minus; Minütlich (Beim loggen, falls das letzte Logging mindestens eine Minute zurück liegt)
+  (Ausschließlich für Tests empfohlen)
+* `h` &minus; Stündlich (Beim loggen, falls das letzte Logging mindestens eine Stunde zurück liegt)
+* `d` &minus; Täglich (Beim loggen, falls das letzte Logging mindestens einen Tag zurück liegt)
+  (empfohlen)
 
 ### logging.logFileRotationMaxFiles
-Specifies the amount of files to keep if log file rotation is enabled.
+Gibt die Anzahl der Dateien an, die behalten werden sollen, wenn die Log-Datei-Rotation aktiv ist.
 
-Default: `14d` (Files of last 14 days)
+Standard: `14d` (Dateien der letzten 14 Tage)
 
-Type: String with number and unit (`s`, `m`, `h` or `d`) \
-(Example: `60h` to keep the files of the last 60 hours)
+Typ: String mit Anzahl und Einheit (`s`, `m`, `h` oder `d`) \
+(Beispiel: `60h` um die Dateien der letzten 60 Stunden zu behalten)
 
 ### logging.logFileRotationEnableCompression
-Specifies if the rotated files should be compressed using gzip.
+Gibt an, ob die rotierten Dateien mittels gzip komprimiert werden sollen, wenn die Log-Datei-Rotation aktiv ist.
 
-Default: `true`
+Standard: `true`
 
-Type: boolean
+Typ: boolean
 
-## Examples
+## Beispiele
 
 ### JSON
 
@@ -263,7 +261,7 @@ logFileRotationFrequencyUnit: h
 logFileRotationMaxFiles: 20h
 logFileRotationEnableCompression: false
 ```
-### Environment Variables
+### Umgebungsvariablen
 
 ```properties
 FILES_CRUD_LOGGING__NAME=debug
@@ -282,9 +280,9 @@ FILES_CRUD_LOGGING__LOG_FILE_ROTATION_MAX_FILES=20h
 FILES_CRUD_LOGGING__LOG_FILE_ROTATION_ENABLE_COMPRESSION=false
 ```
 
-## Logging Formats
+## Logging-Formate
 
-Following examples are used to visualize the different formats
+Folgende Beispiele werden genutzt, um die unterschiedlichen Formate zu visualisieren
 * debug
   * timestamp: `2025-01-29T12:11:12.654`
   * sourcePath: `/opt/fc/built/lib/server/handler/file.js`
@@ -306,39 +304,39 @@ Following examples are used to visualize the different formats
   * message: `Error. File holidays/allTogeth.png does not exist.`
   * meta: `{"statusCode":400}`
 
-Visualization shows, how it would look like, using `bash` in `Linux Mint 22` (`Cinnamon`) with 80 chars length.
-To differentiate between true line breaks and those added by the terminal,
-actual lines have alternating background-colors.
+Die Bilder zeigen, wie es aussehen würde, im Terminal `bash` von `Linux Mint 22` (`Cinnamon`) mit 80 Zeichen Fenster-Länge.
+Um zwischen echten Zeilenumbrüchen und zur besseren Darstellung eingefügten Zeilenumbrüchen zu unterscheiden,
+haben die eigentlichen Zeilen abwechselnde Hintergrundfarben.
 
 ### humanReadableLine
-Logs a simple line of information.
+Loggt eine einfache Zeile aus Informationen.
 
 ![humanReadableLine](/images/humanReadableLine.png)
 
 ### humanReadableBlock
-Logs a block of information.
+Loggt einen Block von Informatioen, mit einer Zeile pro Detail.
 
 ![humanReadableBlock](/images/humanReadableBlock.png)
 
 ### coloredHumanReadableLine
-Logs a colored line of information. Color depends on log level.
+Loggt eine gefärbte Zeile aus Informationen. Farbe abhängig vom Level
 
 ![coloredHumanReadableLine](/images/coloredHumanReadableLine.png)
 
 ### coloredHumanReadableBlock
-Logs a colored block of information.
+Loggt einen gefärbten Block von Informatioen, mit einer Zeile pro Detail. Farbe abhängig vom Level
 
 ![coloredHumanReadableBlock](/images/coloredHumanReadableBlock.png)
 
-### json (error log file and console)
+### json (Error-Log-Datei und Konsole)
 
-Logs all information as single line json object.
+Loggt alle Information als ein einzeiliges JSON-Objekt.
 
 ![json](/images/json.png)
 
-## Access Logging Formats
+## Access-Logging-Formate
 
-Following example details are used to visualize the different formats
+Folgende Beispiel-Details werden genutzt, um die verschiedenen Formate zu visualisieren
 * ip: `42.0.8.15`
 * timestamp: `2025-01-18T18:29:56.382`
 * method: `POST`
@@ -348,17 +346,17 @@ Following example details are used to visualize the different formats
 * contentLength: 35
 * referer: `https://example-files-crud.com/upload-form.html`
 * userAgent: `Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0`
-* time: 213 (time between request and response in milli seconds)
+* time: 213 (Zeit zwischen Request und Response in Millisekunden)
 
 ### classic
-Logs details, similar to nginx or apache2 access logging.
+Loggt Details, ähnlich zu nginx or apache2.
 
 ```
 42.0.8.15 - [2025-01-18T18:29:56.382] "POST /api/file/save/holidays/allTogether.png HTTP/1.1" 200 35 "https://example-files-crud.com/upload-form.html" "Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0" - 213
 ```
 
-### json (access logging file)
-Logs details as single-line json object.
+### json (Access-Log-Datei)
+Loggt Details als ein einzeiliges JSON-Objekt.
 
 ```
 {"ip":"42.0.8.15","timestamp":"2025-01-18T18:29:56.382","method":"POST","path":"/api/file/save/holidays/allTogether.png","httpVersion":"HTTP/1.1","statusCode":200,"contentLength":35,"referer":"https://example-files-crud.com/upload-form.html","userAgent":"Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0","time":213}
